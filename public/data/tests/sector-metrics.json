@@ -1,0 +1,342 @@
+{
+    "data": [
+        {
+            "id": "405",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 0.622226
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "7",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "891",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 2.27191
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "86",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "916",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 94446200.0
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "8",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "639",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 10.0268
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "4",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "406",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 4.87653
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "3",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "150",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 48.9198
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "2",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "395",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 9.77764
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "6",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "890",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 6158.55
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "9",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "149",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 3.11056
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "5",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "122",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 1.81167
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "1",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "903",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 2.79527
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "26",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        },
+        {
+            "id": "394",
+            "type": "sector_metric",
+            "attributes": {
+                "value": 4.7237
+            },
+            "relationships": {
+                "metric_type": {
+                    "data": {
+                        "id": "24",
+                        "type": "metric_type"
+                    }
+                },
+                "sector": {
+                    "data": {
+                        "id": "45",
+                        "type": "sector_gic"
+                    }
+                }
+            }
+        }
+    ],
+    "included": [
+        {
+            "id": "7",
+            "type": "metric_type",
+            "attributes": {
+                "field": "assets_turnover"
+            }
+        },
+        {
+            "id": "86",
+            "type": "metric_type",
+            "attributes": {
+                "field": "capex_to_sales"
+            }
+        },
+        {
+            "id": "8",
+            "type": "metric_type",
+            "attributes": {
+                "field": "cash_from_operations_as_reported"
+            }
+        },
+        {
+            "id": "4",
+            "type": "metric_type",
+            "attributes": {
+                "field": "ebitda_margin"
+            }
+        },
+        {
+            "id": "3",
+            "type": "metric_type",
+            "attributes": {
+                "field": "ebit_margin"
+            }
+        },
+        {
+            "id": "2",
+            "type": "metric_type",
+            "attributes": {
+                "field": "gross_margin"
+            }
+        },
+        {
+            "id": "6",
+            "type": "metric_type",
+            "attributes": {
+                "field": "levered_fcf_margin"
+            }
+        },
+        {
+            "id": "9",
+            "type": "metric_type",
+            "attributes": {
+                "field": "net_inc_per_employee"
+            }
+        },
+        {
+            "id": "5",
+            "type": "metric_type",
+            "attributes": {
+                "field": "net_margin"
+            }
+        },
+        {
+            "id": "1",
+            "type": "metric_type",
+            "attributes": {
+                "field": "return_on_avg_tot_assets"
+            }
+        },
+        {
+            "id": "26",
+            "type": "metric_type",
+            "attributes": {
+                "field": "return_on_total_capital"
+            }
+        },
+        {
+            "id": "24",
+            "type": "metric_type",
+            "attributes": {
+                "field": "rtn_on_common_equity"
+            }
+        }
+    ]
+}

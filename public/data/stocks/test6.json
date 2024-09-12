@@ -1,0 +1,2229 @@
+[
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here are our top 3 and bottom 3 stocks during a divergent second quarter",
+    "pageName": "107433774|2024/06/30/here-are-our-top-3-and-bottom-3-stocks-during-a-divergent-second-quarter",
+    "description": "It was another largely great quarter for the stock market — completing a strong first half of the year.",
+    "dateFirstPublished": "2024-06-30T15:18:01+0000",
+    "relatedTagsFilteredFormatted": "entertainment|media|retail industry|breaking news business|technology|breaking news technology|nasdaq composite|dow jones industrial average|sp 500 index|earnings|walt disney co|stanley black decker inc|estee lauder companies inc|broadcom inc|apple inc|nvidia corp|jim cramer|investment strategy|markets|breaking news markets|big picture",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club analysis",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/30/2024",
+    "shortDateLastPublished": "06/30/2024",
+    "shorterHeadline": "Here are our top 3 and bottom 3 stocks during a divergent second quarter",
+    "id": 107433774,
+    "type": "cnbcnewsstory",
+    "title": "Here are our top 3 and bottom 3 stocks during a divergent second quarter",
+    "url": "https://www.cnbc.com/2024/06/30/here-are-our-top-3-and-bottom-3-stocks-during-a-divergent-second-quarter.html",
+    "dateLastPublished": "2024-06-30T15:18:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107183667,
+      "url": "https://image.cnbcfm.com/api/v1/image/107183667-1674652131362-gettyimages-1459193200-nasdaqstockreadytopastq4expectations002.jpeg?v=1719758621"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107085830,
+      "shortestHeadline": "Analysis",
+      "tagName": "CNBC Investing Club: Analysis",
+      "url": "https://www.cnbc.com/investingclub/analysis/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".DJI"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SWK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "EL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Karen Firestone: Cheap stocks are appealing – but not always the best deal. Here’s why",
+    "pageName": "107435090|2024/06/30/karen-firestone-cheap-stocks-arent-always-the-best-buy-heres-why",
+    "description": "Investors fixate on the price-to-earnings ratio as they pick stocks they think are cheap. But there is no guarantee that outperformance will follow.",
+    "dateFirstPublished": "2024-06-30T11:02:55+0000",
+    "relatedTagsFilteredFormatted": "regwallwhitepaper|lululemon athletica inc|nike inc|alphabet inc|apple inc|microsoft corp|investment strategy|stock markets",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro investing insight|pro macro insights for investing",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/30/2024",
+    "shortDateLastPublished": "06/30/2024",
+    "shorterHeadline": "Karen Firestone: Cheap stocks are appealing – but not always the best deal",
+    "id": 107435090,
+    "type": "cnbcnewsstory",
+    "title": "Karen Firestone: Cheap stocks are appealing – but not always the best deal. Here’s why",
+    "url": "https://www.cnbc.com/2024/06/30/karen-firestone-cheap-stocks-arent-always-the-best-buy-heres-why.html",
+    "dateLastPublished": "2024-06-30T11:02:55+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107428070,
+      "url": "https://image.cnbcfm.com/api/v1/image/107428070-1718214493938-Traders-Photo-MW-20240612-PRESS-9.jpg?v=1718214558"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106605962,
+      "shortestHeadline": "Macro Insights for Investing",
+      "tagName": "Pro: Macro Insights for Investing",
+      "url": "https://www.cnbc.com/pro/macro-insights-for-investing/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "LULU"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NKE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Growth, value stocks could see boost from Russell rebalancing",
+    "pageName": "107435024|2024/06/29/growth-value-stocks-could-see-boost-from-russell-rebalancing-",
+    "description": "This key market event could help boost growth and value stocks. Here’s why.",
+    "dateFirstPublished": "2024-06-29T15:00:01+0000",
+    "relatedTagsFilteredFormatted": "warren buffett|energy|energy industry|oil and gas drilling|artificial intelligence|generative ai|software|exxon mobil corp|jpmorgan chase co|nvidia corp|apple inc|microsoft corp|exchangetraded funds|stock markets|wall street|markets|investment strategy|ishares russell 1000 growth etf|ishares russell 1000 value etf|berkshire hathaway inc|berkshire hathaway inc|personal investing|technology|economy|us economy|amazoncom inc|meta platforms inc",
+    "sectionHierarchyFormatted": "markets|etf street|etf edge",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/29/2024",
+    "shortDateLastPublished": "06/29/2024",
+    "shorterHeadline": "Growth, value stocks could see boost from Russell rebalancing ",
+    "id": 107435024,
+    "type": "cnbcnewsstory",
+    "title": "Growth, value stocks could see boost from Russell rebalancing ",
+    "url": "https://www.cnbc.com/2024/06/29/growth-value-stocks-could-see-boost-from-russell-rebalancing-.html",
+    "dateLastPublished": "2024-06-29T15:00:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107435043,
+      "url": "https://image.cnbcfm.com/api/v1/image/107435043-1719598064626-gettyimages-1749105208-1020_14_sre-041-eq1338.jpeg?v=1719598148"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 105610557,
+      "shortestHeadline": "ETF Edge",
+      "tagName": "ETF Edge",
+      "url": "https://www.cnbc.com/etf-edge/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "XOM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "JPM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "IWF"
+      },
+      {
+        "__typename": "security",
+        "symbol": "IWD"
+      },
+      {
+        "__typename": "security",
+        "symbol": "BRK.A"
+      },
+      {
+        "__typename": "security",
+        "symbol": "BRK.B"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "META"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Buy these five stocks for 'superior returns,' Bank of America says",
+    "pageName": "107432198|2024/06/29/bank-of-america-offers-top-stocks-for-superior-returns",
+    "description": "The Wall Street bank is pounding the table on these five stocks.",
+    "dateFirstPublished": "2024-06-29T11:51:44+0000",
+    "relatedTagsFilteredFormatted": "weekend brief|breaking news investing|markets|breaking news markets|investment strategy|samsara inc|tmobile us inc|apple inc|nvidia corp|viking holdings ltd|viking therapeutics inc",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro analyst calls",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/29/2024",
+    "shortDateLastPublished": "06/29/2024",
+    "shorterHeadline": "Tech stocks like Nvidia and Apple have more room to run, Bank of America says",
+    "id": 107432198,
+    "type": "cnbcnewsstory",
+    "title": "Buy these five stocks for 'superior returns,' Bank of America says",
+    "url": "https://www.cnbc.com/2024/06/29/bank-of-america-offers-top-stocks-for-superior-returns.html",
+    "dateLastPublished": "2024-06-29T11:51:44+0000",
+    "premium": true,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107409108,
+      "url": "https://image.cnbcfm.com/api/v1/image/107409108-17145964132024-05-01t203558z_73565243_rc2vh7aqxfrj_rtrmadp_0_usa-stocks-viking.jpeg?v=1714596793"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106605926,
+      "shortestHeadline": "Analyst Calls",
+      "tagName": "Pro: Analyst Calls",
+      "url": "https://www.cnbc.com/pro/analyst-stock-picks/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "IOT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TMUS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "VIK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "VKTX"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Jim Cramer reviews 10 stocks leading the S&P 500 in the second quarter",
+    "pageName": "107435113|2024/06/28/cramer-nvidia-apple-broadcom",
+    "description": "CNBC's Jim Cramer on Friday analyzed the top 10 performers in the S&P 500 over the last quarter.",
+    "dateFirstPublished": "2024-06-28T22:35:37+0000",
+    "relatedTagsFilteredFormatted": "jim cramer|stock markets|investment strategy|business|markets|netapp inc|broadcom inc|monolithic power systems inc|microsoft corp|alphabet inc|amazoncom inc|ge vernova inc|apple inc|vistra corp|teradyne inc|first solar inc|nvidia corp|sp 500 index|jim cramer|arista networks inc",
+    "sectionHierarchyFormatted": "cnbc tv|mad money",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Jim Cramer reviews 10 stocks leading the S&P 500 in the second quarter",
+    "id": 107435113,
+    "type": "cnbcnewsstory",
+    "title": "Jim Cramer reviews 10 stocks leading the S&P 500 in the second quarter",
+    "url": "https://www.cnbc.com/2024/06/28/cramer-nvidia-apple-broadcom.html",
+    "dateLastPublished": "2024-06-28T23:59:36+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 103548683,
+      "url": "https://image.cnbcfm.com/api/v1/image/103548683-IMG_9928rr.jpg?v=1695684041"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 15838459,
+      "shortestHeadline": "Mad Money",
+      "tagName": "Mad Money",
+      "url": "https://www.cnbc.com/mad-money/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "NTAP"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MPWR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GEV"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "VST"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TER"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FSLR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ANET"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcvideo",
+    "headline": "Jim Cramer takes a look at the top stocks of Q2",
+    "pageName": "7000344455|video/2024/06/28/jim-cramer-takes-a-look-at-the-top-stocks-of-q2",
+    "description": "'Mad Money' host Jim Cramer looks back at Q2 and which companies were the top performers for the quarter.",
+    "dateFirstPublished": "2024-06-28T23:08:00+0000",
+    "relatedTagsFilteredFormatted": "arista networks inc|monolithic power systems inc|apple inc|first solar inc|netapp inc|nvidia corp|stock markets|neutral",
+    "sectionHierarchyFormatted": "cnbc tv|mad money",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Jim Cramer takes a look at the top stocks of Q2",
+    "id": 107435221,
+    "type": "cnbcvideo",
+    "title": "Jim Cramer takes a look at the top stocks of Q2",
+    "url": "https://www.cnbc.com/video/2024/06/28/jim-cramer-takes-a-look-at-the-top-stocks-of-q2.html",
+    "dateLastPublished": "2024-06-28T23:08:00+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107435242,
+      "url": "https://image.cnbcfm.com/api/v1/image/107435242-MM-A-062824-v2_mezz.jpg?v=1719615665"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 15838459,
+      "shortestHeadline": "Mad Money",
+      "tagName": "Mad Money",
+      "url": "https://www.cnbc.com/mad-money/",
+      "premium": false
+    },
+    "duration": 668,
+    "playbackURL": "//cnbcawsmpvod.akamaized.net/out/v1/dd00f330e5d24a51a5b4d5c309067208/54fbf64382f04b94bb69340d5528ff8b/26cdcccd8cb84f5398bc0124836d47ee/master.m3u8",
+    "vcpsId": 7000344455,
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "ANET"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MPWR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FSLR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NTAP"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Tech founders are shunning IPOs after extended market lull, survey finds",
+    "pageName": "107435097|2024/06/28/tech-founders-are-shunning-ipos-after-extended-market-lull-techstars",
+    "description": "Only 15% of the 1,550 entrepreneurs surveyed by Techstars said their long-term goal is an IPO.",
+    "dateFirstPublished": "2024-06-28T21:01:21+0000",
+    "relatedTagsFilteredFormatted": "rivian automotive inc|toast inc|gitlab inc|robinhood markets inc|colin stewart|morgan stanley|arm holdings plc|instacart maplebear inc|klaviyo inc|reddit inc|breaking news technology|technology|ipo|oracle corp|apple inc|alphabet inc|meta platforms inc|microsoft corp|coinbase global inc|roblox corp|uipath inc|pinterest inc|astera labs inc|rubrik inc",
+    "sectionHierarchyFormatted": "technology",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Tech founders are shunning IPOs after extended market lull, survey finds",
+    "id": 107435097,
+    "type": "cnbcnewsstory",
+    "title": "Tech founders are shunning IPOs after extended market lull, survey finds",
+    "url": "https://www.cnbc.com/2024/06/28/tech-founders-are-shunning-ipos-after-extended-market-lull-techstars.html",
+    "dateLastPublished": "2024-06-28T21:01:21+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107353630,
+      "url": "https://image.cnbcfm.com/api/v1/image/107353630-1704285928831-107353630-1704285865401-gettyimages-1895737802-US_STOCKS.jpg?v=1710533605"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 19854910,
+      "shortestHeadline": "Tech",
+      "tagName": "Technology",
+      "url": "https://www.cnbc.com/technology/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "RIVN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TOST"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GTLB"
+      },
+      {
+        "__typename": "security",
+        "symbol": "HOOD"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ARM"
+      },
+      {
+        "__typename": "security",
+        "symbol": null
+      },
+      {
+        "__typename": "security",
+        "symbol": null
+      },
+      {
+        "__typename": "security",
+        "symbol": "RDDT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ORCL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "META"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "COIN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "RBLX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PATH"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PINS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ALAB"
+      },
+      {
+        "__typename": "security",
+        "symbol": "RBRK"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Chinese smartphone maker Honor says AI's power is 'worthless' without data privacy",
+    "pageName": "107433250|2024/06/28/chinese-phone-maker-honor-ais-power-is-worthless-without-data-privacy",
+    "description": "The transforming power of artificial intelligence is of no value unless user data is protected, says the CEO of Chinese smartphone company Honor, George Zhao.",
+    "dateFirstPublished": "2024-06-28T03:42:20+0000",
+    "relatedTagsFilteredFormatted": "breaking news technology|alphabet inc|baidu inc|apple inc|technology|stock markets|markets|market insider",
+    "sectionHierarchyFormatted": "technology|cyber report",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Chinese smartphone maker Honor says AI's power is 'worthless' without data privacy",
+    "id": 107433250,
+    "type": "cnbcnewsstory",
+    "title": "Chinese smartphone maker Honor says AI's power is 'worthless' without data privacy",
+    "url": "https://www.cnbc.com/2024/06/28/chinese-phone-maker-honor-ais-power-is-worthless-without-data-privacy.html",
+    "dateLastPublished": "2024-06-28T19:58:52+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107434657,
+      "url": "https://image.cnbcfm.com/api/v1/image/107434657-1719543226283-gettyimages-2126121178-cros-notitle240402_np77S.jpeg?v=1719543266"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107149785,
+      "shortestHeadline": "Cyber Report",
+      "tagName": "Cyber Report",
+      "url": "https://www.cnbc.com/cyber-report/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "BIDU"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Why Jim Cramer wants to buy more Disney — plus Wall Street praises our newest stock",
+    "pageName": "107435011|2024/06/28/jim-cramer-wants-to-buy-disney-plus-praise-for-our-solar-stock",
+    "description": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+    "dateFirstPublished": "2024-06-28T18:31:24+0000",
+    "relatedTagsFilteredFormatted": "array technologies inc|nextracker inc|dow jones industrial average|nasdaq composite|sp 500 index|homestretch|breaking news markets|markets|investment strategy|jim cramer|microsoft corp|alphabet inc|amazoncom inc|wells fargo co|morgan stanley|nvidia corp|apple inc|broadcom inc|nike inc|walt disney co",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club homestretch",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Why Cramer wants to buy more Disney — plus Wall Street praises our newest stock",
+    "id": 107435011,
+    "type": "cnbcnewsstory",
+    "title": "Why Jim Cramer wants to buy more Disney — plus Wall Street praises our newest stock",
+    "url": "https://www.cnbc.com/2024/06/28/jim-cramer-wants-to-buy-disney-plus-praise-for-our-solar-stock.html",
+    "dateLastPublished": "2024-06-28T18:31:24+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107260319,
+      "url": "https://image.cnbcfm.com/api/v1/image/107260319-1687368587540-gettyimages-1241412182-TRV-CRU-DISNEY-SOLO-2-FL.jpeg?v=1687368700"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107161393,
+      "shortestHeadline": "Homestretch",
+      "tagName": "CNBC Investing Club: Homestretch",
+      "url": "https://www.cnbc.com/investingclub/homestretch/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "ARRY"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NXT"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".DJI"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WFC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NKE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DIS"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcvideo",
+    "headline": "You don't know Nvidia",
+    "pageName": "7000344419|video/2024/06/28/you-dont-know-nvidia",
+    "description": "The world has gone crazy for Nvidia. Or at least, Wall Street has. The stock has almost single-handedly lifted the entire market due to its monster valuation and latest, monster quarter. But the largest companies in the world are also typically the most well-known… and Nvidia is far from being a household name. And the last time a tech company without mass brand recognition became the most valuable in the world? That was Cisco in the late 90s. Is another bubble brewing? This week on TechCheck, the stock everyone owns and no one knows.",
+    "dateFirstPublished": "2024-06-28T18:29:39+0000",
+    "relatedTagsFilteredFormatted": "jensen huang|software|sundar pichai|amazoncom inc|meta platforms inc|nvidia corp|apple inc|microsoft corp|alphabet inc|breaking news business|technology|media|generative ai|computer hardware|tim cook|sam altman|iphone|startup",
+    "sectionHierarchyFormatted": "technology|techcheck",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "You don't know Nvidia",
+    "id": 107435042,
+    "type": "cnbcvideo",
+    "title": "You don't know Nvidia",
+    "url": "https://www.cnbc.com/video/2024/06/28/you-dont-know-nvidia.html",
+    "dateLastPublished": "2024-06-28T18:29:39+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107435051,
+      "url": "https://image.cnbcfm.com/api/v1/image/107435051-22208306_DIGITAL_TECHCHECK_NVIDIA_V3.png?v=1719598424"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106865631,
+      "shortestHeadline": "TechCheck",
+      "tagName": "TechCheck",
+      "url": "https://www.cnbc.com/techcheck/",
+      "premium": false
+    },
+    "duration": 450,
+    "playbackURL": "//cnbcawsmpvod.akamaized.net/out/v1/1d0d2bd1cac84335b3de4a034e6547ad/54fbf64382f04b94bb69340d5528ff8b/26cdcccd8cb84f5398bc0124836d47ee/master.m3u8",
+    "vcpsId": 7000344419,
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "META"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Third quarter starts with earnings trends largely intact, but nascent signs of trouble in tech land",
+    "pageName": "107434780|2024/06/28/third-quarter-starts-with-earnings-hinting-at-nascent-cracks-in-tech",
+    "description": "We have a deceleration in big-cap tech earnings and clear signs the consumer wants lower prices.",
+    "dateFirstPublished": "2024-06-28T12:39:53+0000",
+    "relatedTagsFilteredFormatted": "urban outfitters inc|lowes companies inc|macys inc|pool corp|southwest airlines co|general mills inc|fedex corp|levi strauss co|micron technology inc|walgreens boots alliance inc|nike inc|alphabet inc|microsoft corp|apple inc|nvidia corp|investment strategy|stock markets|markets",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro investing insight|pro pro columnists",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Third quarter starts with earnings trends hinting at nascent cracks in tech",
+    "id": 107434780,
+    "type": "cnbcnewsstory",
+    "title": "Third quarter starts with earnings trends largely intact, but nascent signs of trouble in tech land",
+    "url": "https://www.cnbc.com/2024/06/28/third-quarter-starts-with-earnings-hinting-at-nascent-cracks-in-tech.html",
+    "dateLastPublished": "2024-06-28T15:38:39+0000",
+    "premium": true,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107413360,
+      "url": "https://image.cnbcfm.com/api/v1/image/107413360-1715355434489-gettyimages-1833766429-IdreesAbbas_08Dec2023__5.jpeg?v=1719578345"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106842200,
+      "shortestHeadline": "Pro Columnists",
+      "tagName": "Pro: Pro Columnists",
+      "url": "https://www.cnbc.com/pro/columnists/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "URBN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LOW"
+      },
+      {
+        "__typename": "security",
+        "symbol": "M"
+      },
+      {
+        "__typename": "security",
+        "symbol": "POOL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LUV"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FDX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LEVI"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MU"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WBA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NKE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcvideo",
+    "headline": "Friday, June 28, 2024: Cramer favors these three big names",
+    "pageName": "7000344390|video/2024/06/28/friday-june-28-2024-cramer-favors-these-three-big-names",
+    "description": "Jim discusses why he believes these FTC-targeted stocks are buys. He also talks about pricing at consumer staples. Finally, he breaks down this energy stock's growth strategy.",
+    "dateFirstPublished": "2024-06-28T14:46:57+0000",
+    "relatedTagsFilteredFormatted": "ford motor co|tesla inc|capri holdings ltd|new fortress energy llc|tjx companies inc|apple inc|morgan stanley|neutral",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club video|investing club morning meeting",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Friday, June 28, 2024: Cramer favors these three big names",
+    "id": 107434890,
+    "type": "cnbcvideo",
+    "title": "Friday, June 28, 2024: Cramer favors these three big names",
+    "url": "https://www.cnbc.com/video/2024/06/28/friday-june-28-2024-cramer-favors-these-three-big-names.html",
+    "dateLastPublished": "2024-06-28T15:36:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107434891,
+      "url": "https://image.cnbcfm.com/api/v1/image/107434891-17195850201719585016-35149386471-1080pnbcnews.jpg?v=1719585020"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107004558,
+      "shortestHeadline": "Morning Meeting",
+      "tagName": "Investing Club: Morning Meeting",
+      "url": "https://www.cnbc.com/investingclub/morning-meeting/",
+      "premium": false
+    },
+    "duration": 611,
+    "playbackURL": "//cnbcawsmpvod.akamaized.net/out/v1/6dcabe286f6940108be8217871ae796b/54fbf64382f04b94bb69340d5528ff8b/26cdcccd8cb84f5398bc0124836d47ee/master.m3u8",
+    "vcpsId": 7000344390,
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "F"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TSLA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CPRI"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NFE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TJX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MS"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here are Rosenblatt's best AI and tech ideas for the second half",
+    "pageName": "107434844|2024/06/28/here-are-rosenblatts-best-ai-and-tech-ideas-for-the-second-half",
+    "description": "Rosenblatt is laying out its top artificial intelligence pick heading into the second half of 2024.",
+    "dateFirstPublished": "2024-06-28T15:20:22+0000",
+    "relatedTagsFilteredFormatted": "breaking news technology|advanced micro devices inc|apple inc|autodesk inc|five9 inc|crowdstrike holdings inc|stock markets|investment strategy|technology",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro analyst calls",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Here are Rosenblatt's best AI and tech ideas for the second half",
+    "id": 107434844,
+    "type": "cnbcnewsstory",
+    "title": "Here are Rosenblatt's best AI and tech ideas for the second half",
+    "url": "https://www.cnbc.com/2024/06/28/here-are-rosenblatts-best-ai-and-tech-ideas-for-the-second-half.html",
+    "dateLastPublished": "2024-06-28T15:31:18+0000",
+    "premium": true,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107299158,
+      "url": "https://image.cnbcfm.com/api/v1/image/107299158-1694529776346-img_2269.jpg?v=1697465561"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106605926,
+      "shortestHeadline": "Analyst Calls",
+      "tagName": "Pro: Analyst Calls",
+      "url": "https://www.cnbc.com/pro/analyst-stock-picks/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AMD"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ADSK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FIVN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CRWD"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Apple's Vision Pro starts deliveries at a higher price in China than in the U.S.",
+    "pageName": "107434731|2024/06/28/apples-vision-pro-starts-deliveries-at-a-higher-price-in-china-than-in-the-us",
+    "description": "Apple's mixed-reality headset began deliveries in China on Friday with a retail price 18% higher than in the U.S. ",
+    "dateFirstPublished": "2024-06-28T11:06:54+0000",
+    "relatedTagsFilteredFormatted": "technology|stock markets|markets|market insider|apple inc|breaking news technology",
+    "sectionHierarchyFormatted": "china economy",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Apple's Vision Pro starts deliveries at a higher price in China than in the U.S.",
+    "id": 107434731,
+    "type": "cnbcnewsstory",
+    "title": "Apple's Vision Pro starts deliveries at a higher price in China than in the U.S.",
+    "url": "https://www.cnbc.com/2024/06/28/apples-vision-pro-starts-deliveries-at-a-higher-price-in-china-than-in-the-us.html",
+    "dateLastPublished": "2024-06-28T15:25:25+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107426608,
+      "url": "https://image.cnbcfm.com/api/v1/image/107426608-1718039366007-Screenshot_2024-06-10_at_10907_PM.png?v=1718039424"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 105228996,
+      "shortestHeadline": "China Economy",
+      "tagName": "China Economy",
+      "url": "https://www.cnbc.com/china-economy/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Investors say Trump is better for stocks, but split on where the market is heading, CNBC survey shows",
+    "pageName": "107434530|2024/06/28/investors-think-trump-is-better-for-stocks-cnbc-delivering-alpha-survey-shows",
+    "description": "A new CNBC Delivering Alpha Stock Survey of 400 money managers shows they think Trump is better for stocks, but they're split where the market is heading.",
+    "dateFirstPublished": "2024-06-28T14:26:12+0000",
+    "relatedTagsFilteredFormatted": "breaking news markets|politics|breaking news politics|nasdaq composite|tesla inc|meta platforms inc|oracle corp|international business machines corp|apple inc|alphabet inc|microsoft corp|nvidia corp|sp 500 index|joe biden|donald trump|investment strategy|breaking news investing|markets",
+    "sectionHierarchyFormatted": "investing|delivering alpha",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Investors say Trump is better for stocks, split on market's direction, CNBC survey shows",
+    "id": 107434530,
+    "type": "cnbcnewsstory",
+    "title": "Investors say Trump is better for stocks, but are split on where the market is heading, CNBC survey shows",
+    "url": "https://www.cnbc.com/2024/06/28/investors-think-trump-is-better-for-stocks-cnbc-delivering-alpha-survey-shows.html",
+    "dateLastPublished": "2024-06-28T14:42:14+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107430438,
+      "url": "https://image.cnbcfm.com/api/v1/image/107430438-1718725504195-gettyimages-2158123365-markets437188_azp53r4p.jpeg?v=1719584563"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 100388736,
+      "shortestHeadline": "Delivering Alpha",
+      "tagName": "Delivering Alpha",
+      "url": "https://www.cnbc.com/delivering-alpha/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TSLA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "META"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ORCL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "IBM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Jim Cramer's top 10 things to watch in the stock market Friday",
+    "pageName": "107434826|2024/06/28/jim-cramers-top-10-things-to-watch-in-the-stock-market-friday",
+    "description": "Wall Street is on track for another day of gains following the release of the Fed's preferred inflation gauge for May.",
+    "dateFirstPublished": "2024-06-28T13:20:55+0000",
+    "relatedTagsFilteredFormatted": "investingclubsample|jim cramer|investment strategy|markets|breaking news markets|china|earnings|walgreens boots alliance inc|donald trump|apple inc|nike inc|starbucks corp|joe biden|general mills inc|nextracker inc|sp 500 index|nasdaq composite",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club cramers morning thoughts",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Jim Cramer's top 10 things to watch in the stock market Friday",
+    "id": 107434826,
+    "type": "cnbcnewsstory",
+    "title": "Jim Cramer's top 10 things to watch in the stock market Friday",
+    "url": "https://www.cnbc.com/2024/06/28/jim-cramers-top-10-things-to-watch-in-the-stock-market-friday.html",
+    "dateLastPublished": "2024-06-28T13:20:55+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107169833,
+      "url": "https://image.cnbcfm.com/api/v1/image/107169833-1671653160686-gettyimages-1451132332-dsc06654_ff1abf32-dbd4-4b4f-a2a3-f2fbbef2eecd.jpeg?v=1719580373"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106983796,
+      "shortestHeadline": "Jim's Top 10",
+      "tagName": "CNBC Investing Club: Cramer’s Morning Thoughts",
+      "url": "https://www.cnbc.com/investingclub/cramers-morning-thoughts/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "WBA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NKE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SBUX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NXT"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here are Friday's biggest analyst calls: Nvidia, Apple, Nike, First Solar, Amazon, Deere, Alphabet",
+    "pageName": "107434679|2024/06/28/fridays-top-analyst-calls-on-wall-street",
+    "description": "Here are Friday's biggest calls on Wall Street.",
+    "dateFirstPublished": "2024-06-28T12:25:34+0000",
+    "relatedTagsFilteredFormatted": "essential properties realty trust inc|intuitive machines inc|apple inc|equity residential|amazoncom inc|asml holding nv|nvidia corp|nike inc|first solar inc|travelers companies inc|sap se|deere co|alphabet inc|xerox holdings corp|digital realty trust inc|array technologies inc|investment strategy|breaking news markets|markets|breaking news investing|nextracker inc",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro analyst calls",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/28/2024",
+    "shortDateLastPublished": "06/28/2024",
+    "shorterHeadline": "Friday's top analyst calls: Nvidia, Apple, Nike, First Solar, Amazon, Deere",
+    "id": 107434679,
+    "type": "cnbcnewsstory",
+    "title": "Here are Friday's biggest analyst calls: Nvidia, Apple, Nike, First Solar, Deere, Alphabet, Amazon, ASML & more",
+    "url": "https://www.cnbc.com/2024/06/28/fridays-top-analyst-calls-on-wall-street.html",
+    "dateLastPublished": "2024-06-28T13:16:32+0000",
+    "premium": true,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107299921,
+      "url": "https://image.cnbcfm.com/api/v1/image/107299921-16946070922023-09-13t080032z_1902054062_rc2i73a30nmr_rtrmadp_0_apple-china.jpeg?v=1704902500"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106605926,
+      "shortestHeadline": "Analyst Calls",
+      "tagName": "Pro: Analyst Calls",
+      "url": "https://www.cnbc.com/pro/analyst-stock-picks/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "EPRT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LUNR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "EQR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ASML-NL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NKE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FSLR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TRV"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SAP"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "XRX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DLR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ARRY"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NXT"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcvideo",
+    "headline": "Wednesday, June 26, 2024: The Investing Club weighs in on this mega cap tech's AI strategy",
+    "pageName": "7000344129|video/2024/06/26/wednesday-june-26-2024-the-investing-club-weighs-in-on-this-mega-cap-techs-ai-strategy",
+    "description": "Jim and Jeff discuss mega-cap tech stock's AI strategy. They also talk about the outlook for the financial sector. Finally, they weigh in on Citi's price target upgrade of this semiconductor stock.",
+    "dateFirstPublished": "2024-06-26T14:42:57+0000",
+    "relatedTagsFilteredFormatted": "morgan stanley|nvidia corp|apple inc|neutral",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club video|investing club morning meeting",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/26/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Wednesday, June 26, 2024: The Investing Club weighs in on this mega cap tech's AI strategy",
+    "id": 107433539,
+    "type": "cnbcvideo",
+    "title": "Wednesday, June 26, 2024: The Investing Club weighs in on this mega cap tech's AI strategy",
+    "url": "https://www.cnbc.com/video/2024/06/26/wednesday-june-26-2024-the-investing-club-weighs-in-on-this-mega-cap-techs-ai-strategy.html",
+    "dateLastPublished": "2024-06-28T00:56:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107433540,
+      "url": "https://image.cnbcfm.com/api/v1/image/107433540-17194122361719412233-35121597787-1080pnbcnews.jpg?v=1719412236"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107004558,
+      "shortestHeadline": "Morning Meeting",
+      "tagName": "Investing Club: Morning Meeting",
+      "url": "https://www.cnbc.com/investingclub/morning-meeting/",
+      "premium": false
+    },
+    "duration": 621,
+    "playbackURL": "//cnbcawsmpvod.akamaized.net/out/v1/b0c6ef6ef25f420d8757557ee021f4a0/54fbf64382f04b94bb69340d5528ff8b/26cdcccd8cb84f5398bc0124836d47ee/master.m3u8",
+    "vcpsId": 7000344129,
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "MS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Tesla loses its EV quality edge as repair problems continue to plague the market",
+    "pageName": "107434279|2024/06/27/jd-power-tesla-loses-its-ev-quality-edge",
+    "description": "The study found electric vehicles are plagued with more problems compared to traditional gas- and diesel-powered vehicles with internal combustion engines.",
+    "dateFirstPublished": "2024-06-27T21:30:15+0000",
+    "relatedTagsFilteredFormatted": "electric vehicles|business|apple inc|markets|autos|breaking news business|transportation|breaking news technology|technology|tesla inc|united states|environment",
+    "sectionHierarchyFormatted": "business news|transportation|autos",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Tesla loses its EV quality edge as repair problems continue to plague the market",
+    "id": 107434279,
+    "type": "cnbcnewsstory",
+    "title": "Tesla loses its EV quality edge as repair problems continue to plague the market",
+    "url": "https://www.cnbc.com/2024/06/27/jd-power-tesla-loses-its-ev-quality-edge.html",
+    "dateLastPublished": "2024-06-27T23:22:38+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107415612,
+      "url": "https://image.cnbcfm.com/api/v1/image/107415612-1715808851992-gettyimages-2152558751-AFP_34RQ48F.jpeg?v=1715808941"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 10000101,
+      "shortestHeadline": "Autos",
+      "tagName": "Autos",
+      "url": "https://www.cnbc.com/autos/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TSLA"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcvideo",
+    "headline": "June Monthly Meeting: Jim Cramer reveals his outlook for stocks in the second half of 2024",
+    "pageName": "7000344293|video/2024/06/27/june-monthly-meeting-jim-cramer-reveals-his-outlook-for-stocks-in-the-second-half-of-2024",
+    "description": "Nvidia and other artificial intelligence plays have largely driven this year's rally. Will it broaden out to different sectors in the coming months? What are the catalysts? Join Jim Cramer and Jeff Marks as they update their positions on every stock in the portfolio.",
+    "dateFirstPublished": "2024-06-27T17:40:14+0000",
+    "relatedTagsFilteredFormatted": "merck co inc|astrazeneca plc|honeywell international inc|starbucks corp|tjx companies inc|ford motor co|salesforce inc|foot locker inc|nextracker inc|linde plc|walt disney co|apple inc|coterra energy inc|eaton corporation plc|dover corp|broadcom inc|alphabet inc|meta platforms inc|constellation brands inc|eli lilly and co|stanley black decker inc|morgan stanley|wells fargo co|wynn resorts ltd|palo alto networks inc|microsoft corp|nvidia corp|neutral",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club video|monthlymeeting",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "June Monthly Meeting: Jim Cramer reveals his outlook for stocks in the second half of 2024",
+    "id": 107434278,
+    "type": "cnbcvideo",
+    "title": "June Monthly Meeting: Jim Cramer reveals his outlook for stocks in the second half of 2024",
+    "url": "https://www.cnbc.com/video/2024/06/27/june-monthly-meeting-jim-cramer-reveals-his-outlook-for-stocks-in-the-second-half-of-2024.html",
+    "dateLastPublished": "2024-06-27T19:51:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107434323,
+      "url": "https://image.cnbcfm.com/api/v1/image/107434323-cramer_clip.jpg?v=1719509605"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106965349,
+      "shortestHeadline": "Monthly Meeting",
+      "tagName": "MonthlyMeeting",
+      "url": "https://www.cnbc.com/investingclub/live/",
+      "premium": false
+    },
+    "duration": 3759,
+    "playbackURL": "//cnbcawsmpvod.akamaized.net/out/v1/45f6ecf1dc0a462690f20fe73922f02a/54fbf64382f04b94bb69340d5528ff8b/26cdcccd8cb84f5398bc0124836d47ee/master.m3u8",
+    "vcpsId": 7000344293,
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "MRK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AZN-GB"
+      },
+      {
+        "__typename": "security",
+        "symbol": "HON"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SBUX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TJX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "F"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CRM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NXT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LIN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CTRA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ETN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DOV"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "META"
+      },
+      {
+        "__typename": "security",
+        "symbol": "STZ"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LLY"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SWK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WFC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WYNN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PANW"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here's a rapid fire update on all 33 stocks in our portfolio, including a few names to buy now",
+    "pageName": "107434134|2024/06/27/jim-cramers-rapid-fire-update-on-all-33-investing-club-stocks",
+    "description": "Jim Cramer on Thursday offered his latest thinking on Nvidia, Apple and the other 31 stocks in the Investing Club portfolio.",
+    "dateFirstPublished": "2024-06-27T19:21:01+0000",
+    "relatedTagsFilteredFormatted": "johnson johnson|monthly meeting|breaking news markets|markets|investment strategy|jim cramer|nvidia corp|linde plc|linde plc|eli lilly and co|meta platforms inc|morgan stanley|microsoft corp|procter gamble co|palo alto networks inc|honeywell international inc|constellation brands inc|stanley black decker inc|tjx companies inc|wells fargo co|wynn resorts ltd|starbucks corp|foot locker inc|alphabet inc|salesforce inc|apple inc|abbott laboratories|amazoncom inc|broadcom inc|best buy co inc|costco wholesale corp|coterra energy inc|ge healthcare technologies inc|dupont de nemours inc|danaher corp|walt disney co|dover corp|estee lauder companies inc|eaton corporation plc|ford motor co|nextracker inc|general motors co|goldman sachs group inc|crowdstrike holdings inc|jpmorgan chase co",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club video|monthlymeeting",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "A rapid fire update on all 33 stocks in our portfolio including names to buy now",
+    "id": 107434134,
+    "type": "cnbcnewsstory",
+    "title": "Here's a rapid fire update on all 33 stocks in our portfolio, including a few names to buy now",
+    "url": "https://www.cnbc.com/2024/06/27/jim-cramers-rapid-fire-update-on-all-33-investing-club-stocks.html",
+    "dateLastPublished": "2024-06-27T19:21:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107427882,
+      "url": "https://image.cnbcfm.com/api/v1/image/107427882-1718204601272-gettyimages-2157295093-ms1_9642_x24kqchc.jpeg?v=1719522301"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106965349,
+      "shortestHeadline": "Monthly Meeting",
+      "tagName": "MonthlyMeeting",
+      "url": "https://www.cnbc.com/investingclub/live/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "JNJ"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LIN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LIN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "LLY"
+      },
+      {
+        "__typename": "security",
+        "symbol": "META"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PG"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PANW"
+      },
+      {
+        "__typename": "security",
+        "symbol": "HON"
+      },
+      {
+        "__typename": "security",
+        "symbol": "STZ"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SWK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "TJX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WFC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WYNN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SBUX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CRM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ABT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "BBY"
+      },
+      {
+        "__typename": "security",
+        "symbol": "COST"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CTRA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GEHC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DD"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DHR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DOV"
+      },
+      {
+        "__typename": "security",
+        "symbol": "EL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ETN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "F"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NXT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CRWD"
+      },
+      {
+        "__typename": "security",
+        "symbol": "JPM"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Chart analysts say 'something is not right' with stock market, grow increasingly worried",
+    "pageName": "107434094|2024/06/27/chart-analysts-grow-increasingy-worried-that-stock-markets-off-kilter",
+    "description": "Risk-on assets are struggling even as the stock market remains near record highs, which could signal a looming pullback. ",
+    "dateFirstPublished": "2024-06-27T17:16:32+0000",
+    "relatedTagsFilteredFormatted": "investment strategy|markets|invesco sp 500 eql wght etf|nvidia corp|microsoft corp|apple inc|sp 500 index|nasdaq composite|bitcoinusd coin metrics|invesco ltd|exchangetraded funds",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro investing insight|pro how to invest|pro chart analysis",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Chart analysts grow increasingly worried that the stock market is off-kilter",
+    "id": 107434094,
+    "type": "cnbcnewsstory",
+    "title": "Chart analysts say 'something is not right' with stock market, grow increasingly worried",
+    "url": "https://www.cnbc.com/2024/06/27/chart-analysts-grow-increasingy-worried-that-stock-markets-off-kilter.html",
+    "dateLastPublished": "2024-06-27T18:00:07+0000",
+    "premium": true,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107432318,
+      "url": "https://image.cnbcfm.com/api/v1/image/107432318-17192425682024-06-24t151956z_911118072_rc2ph8a1vdwe_rtrmadp_0_usa-stocks.jpeg?v=1719408983"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107170559,
+      "shortestHeadline": "Chart Analysis",
+      "tagName": "Pro: Chart Analysis",
+      "url": "https://www.cnbc.com/pro/chart-analysis/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "RSP"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "BTC.CM="
+      },
+      {
+        "__typename": "security",
+        "symbol": "IVZ"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here are 6 of the safest ways to pay online and in-person ",
+    "pageName": "107336691|select/safest-payment-methods",
+    "description": "With financial crime on the rise, it's important to know which payment methods you should use and which you should avoid.",
+    "dateFirstPublished": "2023-12-21T13:00:01+0000",
+    "relatedTagsFilteredFormatted": "cnbc select lists|social issues|labor economy|personal finance|securities fraud|united states|apple inc",
+    "sectionHierarchyFormatted": "select credit cards",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "12/21/2023",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Safest online and in-person payment methods",
+    "id": 107336691,
+    "type": "cnbcnewsstory",
+    "title": "Here are 6 of the safest ways to pay online and in-person ",
+    "url": "https://www.cnbc.com/select/safest-payment-methods/",
+    "dateLastPublished": "2024-06-27T17:27:43+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107337297,
+      "url": "https://image.cnbcfm.com/api/v1/image/107337297-1700585120726-gettyimages-674056978-hill024d.jpeg?v=1700585130"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106336459,
+      "shortestHeadline": "Credit Cards",
+      "tagName": "Select: Credit Cards",
+      "url": "https://www.cnbc.com/select/credit-cards/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Costco Anywhere Visa Card review: Is it the best card for Costco?",
+    "pageName": "106318378|select/costco-anywhere-visa-card-review",
+    "description": "CNBC Select breaks down the rewards, benefits and fees associated with the Costco Anywhere Visa Card to help you decide if it's the right card for you.",
+    "dateFirstPublished": "2020-01-02T20:59:35+0000",
+    "relatedTagsFilteredFormatted": "no apple syndication|personal finance|consumer spending|credit card services|selectreviews|selectmonetized|costco wholesale corp|united states|apple inc|jpmorgan chase co|wells fargo co|visa inc",
+    "sectionHierarchyFormatted": "select credit cards",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "01/02/2020",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Costco Anywhere Visa Card review: Is it the best card for Costco?",
+    "id": 106318378,
+    "type": "cnbcnewsstory",
+    "title": "Costco Anywhere Visa Card review: Is it the best card for Costco?",
+    "url": "https://www.cnbc.com/select/costco-anywhere-visa-card-review/",
+    "dateLastPublished": "2024-06-27T16:40:27+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 106318376,
+      "url": "https://image.cnbcfm.com/api/v1/image/106318376-1577981781042gettyimages-71090262.jpg?v=1577981845"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106336459,
+      "shortestHeadline": "Credit Cards",
+      "tagName": "Select: Credit Cards",
+      "url": "https://www.cnbc.com/select/credit-cards/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "COST"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "JPM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "WFC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "V"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Is the Apple Card worth the hype?",
+    "pageName": "106124122|select/apple-card-review",
+    "description": "CNBC Select reviews the Apple credit card for its benefits and features, as well as putting it side-by-side against other cash-back credit cards.",
+    "dateFirstPublished": "2019-10-15T05:00:00+0000",
+    "relatedTagsFilteredFormatted": "no apple syndication|consumer spending|credit card services|selectreviews|selectmonetized|entertainment|personal finance|apple inc",
+    "sectionHierarchyFormatted": "select credit cards",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "10/15/2019",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Apple credit card review",
+    "id": 106124122,
+    "type": "cnbcnewsstory",
+    "title": "Apple credit card review",
+    "url": "https://www.cnbc.com/select/apple-card-review/",
+    "dateLastPublished": "2024-06-27T16:20:25+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 106088633,
+      "url": "https://image.cnbcfm.com/api/v1/image/106088633-1566333650819applecard2.jpg?v=1685559601"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106336459,
+      "shortestHeadline": "Credit Cards",
+      "tagName": "Select: Credit Cards",
+      "url": "https://www.cnbc.com/select/credit-cards/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here are Thursday's biggest analyst calls: Nvidia, Apple, Broadcom, Micron, Goldman Sachs, Carvana",
+    "pageName": "107433979|2024/06/27/thursdays-top-stocks-to-watch-like-nvidia-micron",
+    "description": "Here are Thursday's biggest calls on Wall Street.",
+    "dateFirstPublished": "2024-06-27T12:11:24+0000",
+    "relatedTagsFilteredFormatted": "att inc|crescent energy co|arista networks inc|grindr inc|viking therapeutics inc|cocacola co|micron technology inc|apple inc|carvana co|kyndryl holdings inc|grab holdings ltd|nvidia corp|broadcom inc|marvell technology inc|walt disney co|goldman sachs group inc|bank of new york mellon corp|us bancorp|emerson electric co|petroleo brasileiro sa petrobras|investment strategy|breaking news markets|markets|breaking news investing",
+    "sectionHierarchyFormatted": "pro home|cnbc pro|pro analyst calls",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Thursday's top analyst calls: Nvidia, Apple, Broadcom, Micron, Goldman Sachs",
+    "id": 107433979,
+    "type": "cnbcnewsstory",
+    "title": "Here are Thursday's biggest analyst calls: Nvidia, Apple, Broadcom, Micron, Goldman Sachs, Carvana, Arista & more",
+    "url": "https://www.cnbc.com/2024/06/27/thursdays-top-stocks-to-watch-like-nvidia-micron.html",
+    "dateLastPublished": "2024-06-27T13:08:32+0000",
+    "premium": true,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 106906303,
+      "url": "https://image.cnbcfm.com/api/v1/image/106906303-16252503512021-07-02t173401z_1031823769_rc2hco92qtbx_rtrmadp_0_usa-broadcom-ftc.jpeg?v=1695376861"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 106605926,
+      "shortestHeadline": "Analyst Calls",
+      "tagName": "Pro: Analyst Calls",
+      "url": "https://www.cnbc.com/pro/analyst-stock-picks/",
+      "premium": true
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "T"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CRGY"
+      },
+      {
+        "__typename": "security",
+        "symbol": "ANET"
+      },
+      {
+        "__typename": "security",
+        "symbol": null
+      },
+      {
+        "__typename": "security",
+        "symbol": "VKTX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "KO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MU"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "CVNA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "KD"
+      },
+      {
+        "__typename": "security",
+        "symbol": "A6I-FF"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MRVL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "DIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "BK"
+      },
+      {
+        "__typename": "security",
+        "symbol": "USB"
+      },
+      {
+        "__typename": "security",
+        "symbol": "EMR"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PETR'-BR"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Here are the portfolio's top 5 performing stocks since May's Monthly Meeting",
+    "pageName": "107433664|2024/06/27/here-are-the-portfolios-top-5-performing-stocks-since-mays-monthly-meeting",
+    "description": "Continued interest in the AI trade and hopes that the Fed will cut benchmark rates sooner rather than later helped Wall Street hit a number of milestones. ",
+    "dateFirstPublished": "2024-06-27T10:00:01+0000",
+    "relatedTagsFilteredFormatted": "salesforce inc|snowflake inc|palo alto networks inc|apple inc|nvidia corp|nasdaq composite|sp 500 index|broadcom inc|stock takes|jim cramer|investment strategy|markets|breaking news markets|breaking news technology|technology|stock markets",
+    "sectionHierarchyFormatted": "cnbc investing club|cnbc investing club analysis",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/27/2024",
+    "shortDateLastPublished": "06/27/2024",
+    "shorterHeadline": "Here are the portfolio's top 5 performing stocks since May's Monthly Meeting",
+    "id": 107433664,
+    "type": "cnbcnewsstory",
+    "title": "Here are the portfolio's top 5 performing stocks since May's Monthly Meeting",
+    "url": "https://www.cnbc.com/2024/06/27/here-are-the-portfolios-top-5-performing-stocks-since-mays-monthly-meeting.html",
+    "dateLastPublished": "2024-06-27T10:00:01+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107429317,
+      "url": "https://image.cnbcfm.com/api/v1/image/107429317-1718647090780-107429317-17183808522024-06-14t150732z_151487312_rc21b8ax5x6v_rtrmadp_0_usa-stocks.jpg?v=1718647104"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 107085830,
+      "shortestHeadline": "Analysis",
+      "tagName": "CNBC Investing Club: Analysis",
+      "url": "https://www.cnbc.com/investingclub/analysis/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "CRM"
+      },
+      {
+        "__typename": "security",
+        "symbol": "SNOW"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PANW"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AVGO"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      }
+    ]
+  },
+  {
+    "__typename": "wirestory",
+    "headline": "Modi's government calls on Indian state to look into report on Foxconn hiring",
+    "pageName": "107433930|2024/06/27/modis-government-calls-on-indian-state-to-look-into-report-on-foxconn-hiring",
+    "description": "Modi's government said it has asked the Tamil Nadu state to submit a \"detailed report\" after Reuters revealed Foxconn rejected married women from assembly jobs.",
+    "dateFirstPublished": "2024-06-27T01:18:55+0000",
+    "relatedTagsFilteredFormatted": "apple inc|jobs|workplace discrimination|narendra modi|india|foxconn technology co ltd|breaking news technology|technology|chennai|iphone|gender discrimination|gender issues|discrimination|wage gap|labor economy|reuters|marriage|hiring and recruitment",
+    "sectionHierarchyFormatted": "markets|economy|world economy|asia news",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/26/2024",
+    "shortDateLastPublished": "06/26/2024",
+    "shorterHeadline": "Modi's government calls on Indian state to look into report on Foxconn hiring",
+    "id": 107433930,
+    "type": "wirestory",
+    "title": "Modi's government calls on Indian state to look into report on Foxconn hiring",
+    "url": "https://www.cnbc.com/2024/06/27/modis-government-calls-on-indian-state-to-look-into-report-on-foxconn-hiring.html",
+    "dateLastPublished": "2024-06-27T01:18:55+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107182183,
+      "url": "https://image.cnbcfm.com/api/v1/image/107182183-1674434241608-gettyimages-1246360412-20230119_mum-sb-mn_pmmodi_015.jpeg?v=1719450826"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 19832390,
+      "shortestHeadline": "Asia News",
+      "tagName": "Asia News",
+      "url": "https://www.cnbc.com/asia-news/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "2354-TW"
+      }
+    ]
+  },
+  {
+    "__typename": "cnbcnewsstory",
+    "headline": "Amazon reaches $2 trillion market cap for the first time",
+    "pageName": "107433674|2024/06/26/amazon-reaches-2-trillion-market-cap-for-the-first-time",
+    "description": "The company joins other tech heavyweights, such as Nvidia, Apple, Alphabet and Microsoft, all of which have crossed a $2 trillion market capitalization.",
+    "dateFirstPublished": "2024-06-26T17:22:27+0000",
+    "relatedTagsFilteredFormatted": "nasdaq composite|microsoft corp|alphabet inc|apple inc|nvidia corp|breaking news technology|technology|internet|amazoncom inc",
+    "sectionHierarchyFormatted": "technology",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/26/2024",
+    "shortDateLastPublished": "06/26/2024",
+    "shorterHeadline": "Amazon reaches $2 trillion market cap for the first time",
+    "id": 107433674,
+    "type": "cnbcnewsstory",
+    "title": "Amazon reaches $2 trillion market cap for the first time",
+    "url": "https://www.cnbc.com/2024/06/26/amazon-reaches-2-trillion-market-cap-for-the-first-time.html",
+    "dateLastPublished": "2024-06-26T22:00:16+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107267818,
+      "url": "https://image.cnbcfm.com/api/v1/image/107267818-1688677222077-Jassy3.jpg?v=1696451648"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 19854910,
+      "shortestHeadline": "Tech",
+      "tagName": "Technology",
+      "url": "https://www.cnbc.com/technology/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AMZN"
+      }
+    ]
+  },
+  {
+    "__typename": "live_story",
+    "headline": "S&P 500 inches higher for a second day as tech shares gain",
+    "pageName": "107433178|2024/06/25/stock-market-today-live-updates",
+    "description": "The S&P 500 and the Nasdaq Composite snapped a three-day losing streak on Tuesday.",
+    "dateFirstPublished": "2024-06-25T22:03:22+0000",
+    "relatedTagsFilteredFormatted": "artificial intelligence|dow jones industrial average|nasdaq composite|sp 500 index|dow jones fut mar23|nasdaq 100 fut mar23|sp 500 fut mar23|nvidia corp|paychex inc|general mills inc|rivian automotive inc|nike inc|micron technology inc|fedex corp|united states|markets|stock markets|breaking news markets|apple inc|alphabet inc|microsoft corp",
+    "sectionHierarchyFormatted": "markets",
+    "authorFormatted": "NA",
+    "shortDateFirstPublished": "06/25/2024",
+    "shortDateLastPublished": "06/26/2024",
+    "shorterHeadline": "S&P 500 inches higher for a second day as tech shares gain",
+    "id": 107433178,
+    "type": "live_story",
+    "title": "S&P 500 inches higher for a second day as tech shares gain",
+    "url": "https://www.cnbc.com/2024/06/25/stock-market-today-live-updates.html",
+    "dateLastPublished": "2024-06-26T21:24:03+0000",
+    "premium": false,
+    "promoImage": {
+      "__typename": "infographic",
+      "id": 107428066,
+      "url": "https://image.cnbcfm.com/api/v1/image/107428066-1718214493939-Traders-Photo-MW-20240612-PRESS-4.jpg?v=1719420269"
+    },
+    "section": {
+      "__typename": "franchise",
+      "id": 102,
+      "shortestHeadline": "Markets",
+      "tagName": "Markets",
+      "url": "https://www.cnbc.com/markets/",
+      "premium": false
+    },
+    "tickerSymbols": [
+      {
+        "__typename": "security",
+        "symbol": ".DJI"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".IXIC"
+      },
+      {
+        "__typename": "security",
+        "symbol": ".SPX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "@DJ.1"
+      },
+      {
+        "__typename": "security",
+        "symbol": "@ND.1"
+      },
+      {
+        "__typename": "security",
+        "symbol": "@SP.1"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NVDA"
+      },
+      {
+        "__typename": "security",
+        "symbol": "PAYX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GIS"
+      },
+      {
+        "__typename": "security",
+        "symbol": "RIVN"
+      },
+      {
+        "__typename": "security",
+        "symbol": "NKE"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MU"
+      },
+      {
+        "__typename": "security",
+        "symbol": "FDX"
+      },
+      {
+        "__typename": "security",
+        "symbol": "AAPL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "GOOGL"
+      },
+      {
+        "__typename": "security",
+        "symbol": "MSFT"
+      }
+    ]
+  }
+]

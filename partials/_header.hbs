@@ -1,0 +1,41 @@
+ <style>
+  #hdr-icon {
+  margin-right: 20px
+}
+ </style>
+ <header class="mdl-layout__header" id="hdr">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title"></span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <form method="post" action="/stocks/searchbox/quote">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable " style="height: 30px; border-radius: 10px;">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="expando1">
+                            <i class="material-icons" id="search-icon">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" id="expando1" name="expando1">
+                            <label class="mdl-textfield__label" for="expando1">Search</label>
+                        </div>
+                    </div>
+                  </form>
+                    <a class="hdr-icon" href="/stocks/profile"><i id="icon-1" class="material-icons">assessment</i></a>
+                    <span for="icon-1" class="mdl-tooltip">Profile</span>
+                    <a class="hdr-icon" href="/stocks/news"><i id="icon-2" class="material-icons">dvr</i></a>
+                    <span for="icon-2" class="mdl-tooltip">News</span>
+                  <a class="hdr-icon"href="/logout"><i id="icon-3" class="material-icons">logout</i></a>
+                    <span for="icon-3" class="mdl-tooltip">Logout</span>
+                </nav>
+            </div>
+        </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title"></span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/profile"><i class="material-icons" id="icon-3">assessment</i>Profiles</a>
+        <a class="mdl-navigation__link" href="/profile"><i class="material-icons" id="icon-4">add_to_queue</i>Profiles</a>
+      <a class="mdl-navigation__link" href="/profile"><i class="material-icons" id="icon-5">chat</i>Profiles</a>
+      </nav>
+    </div>

@@ -1,0 +1,217 @@
+[
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-10",
+    "marketCap": 2766786621570
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-11",
+    "marketCap": 2788655387400
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-12",
+    "marketCap": 2802769271730
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-13",
+    "marketCap": 2773921112550
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-16",
+    "marketCap": 2771904843360
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-17",
+    "marketCap": 2747554515450
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-18",
+    "marketCap": 2727236725920
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-19",
+    "marketCap": 2721343015980
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-20",
+    "marketCap": 2681327827440
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-23",
+    "marketCap": 2683188999000
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-24",
+    "marketCap": 2690013294720
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-25",
+    "marketCap": 2653720449300
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-26",
+    "marketCap": 2588424347070
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-27",
+    "marketCap": 2609052331860
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-30",
+    "marketCap": 2641157541270
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-10-31",
+    "marketCap": 2648602227510
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-01",
+    "marketCap": 2698233469110
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-02",
+    "marketCap": 2754068615910
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-03",
+    "marketCap": 2739799633950
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-06",
+    "marketCap": 2779814822490
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-07",
+    "marketCap": 2819985108660
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-08",
+    "marketCap": 2836580555070
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-09",
+    "marketCap": 2829135868830
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-10",
+    "marketCap": 2891019823200
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-13",
+    "marketCap": 2866204202400
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-14",
+    "marketCap": 2907149976720
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-15",
+    "marketCap": 2915990541630
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-16",
+    "marketCap": 2942357138730
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-17",
+    "marketCap": 2942046943470
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-20",
+    "marketCap": 2969344126350
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-21",
+    "marketCap": 2956781218320
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-22",
+    "marketCap": 2967172759530
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-24",
+    "marketCap": 2946389677110
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-27",
+    "marketCap": 2943597919770
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-28",
+    "marketCap": 2953058875200
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-29",
+    "marketCap": 2937083819310
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-11-30",
+    "marketCap": 2946079481850
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-12-01",
+    "marketCap": 2966087076120
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-12-04",
+    "marketCap": 2938014405090
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-12-05",
+    "marketCap": 2999898359460
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-12-06",
+    "marketCap": 2982837620160
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-12-07",
+    "marketCap": 3013081658010
+  },
+  {
+    "symbol": "AAPL",
+    "date": "2023-12-08",
+    "marketCap": 3035415716730
+  }
+]

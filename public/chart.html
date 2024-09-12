@@ -1,0 +1,81 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AmCharts with FRED Data</title>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+<body>
+    <div id="chartdiv" style="width: 100%; height: 500px;"></div>
+    <script>
+        fetch('/api/fred_data')
+            .then(response => response.json())
+            .then(data => {
+                // Process FRED data into AmCharts format
+                let chartData = data.observations.map(observation => ({
+                    date: new Date(observation.date),
+                    value: parseFloat(observation.value)
+                }));
+
+                // Create AmCharts chart
+                am5.ready(function() {
+                    let root = am5.Root.new("chartdiv");
+
+                    root.setThemes([
+                        am5themes_Animated.new(root)
+                    ]);
+
+                    let chart = root.container.children.push(
+                        am5xy.XYChart.new(root, {
+                            panX: true,
+                            panY: true,
+                            wheelX: "panX",
+                            wheelY: "zoomX",
+                            pinchZoomX: true
+                        })
+                    );
+
+                    let cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+                    cursor.lineY.set("visible", false);
+
+                    let xAxis = chart.xAxes.push(
+                        am5xy.DateAxis.new(root, {
+                            maxDeviation: 0.2,
+                            baseInterval: {
+                                timeUnit: "day",
+                                count: 1
+                            },
+                            renderer: am5xy.AxisRendererX.new(root, {}),
+                            tooltip: am5.Tooltip.new(root, {})
+                        })
+                    );
+
+                    let yAxis = chart.yAxes.push(
+                        am5xy.ValueAxis.new(root, {
+                            renderer: am5xy.AxisRendererY.new(root, {})
+                        })
+                    );
+
+                    let series = chart.series.push(
+                        am5xy.LineSeries.new(root, {
+                            name: "Series",
+                            xAxis: xAxis,
+                            yAxis: yAxis,
+                            valueYField: "value",
+                            valueXField: "date",
+                            tooltip: am5.Tooltip.new(root, {
+                                labelText: "{valueY}"
+                            })
+                        })
+                    );
+
+                    series.data.setAll(chartData);
+
+                    chart.appear(1000, 100);
+                });
+            });
+    </script>
+</body>
+</html>
