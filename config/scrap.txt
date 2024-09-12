@@ -1,0 +1,28 @@
+$('.peers').each(function() {
+        const symbol = $(this).data('symbol');
+        const peersCell = $(this);
+        
+        fetch(`https://seeking-alpha.p.rapidapi.com/symbols/get-peers?symbol=${symbol}`, {
+          "method": "GET",
+          "headers": {
+            "x-rapidapi-host": "seeking-alpha.p.rapidapi.com",
+            "x-rapidapi-key": apiKeySeekingAlpha
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.data && data.data.length) {
+            const peers = data.data.slice(0, 3).map(peer =>
+             
+              `<a href="/stocks/${symbol}">${peer.attributes.name}</a>`
+            ).join(', ');
+            peersCell.html(peers);
+          } else {
+            peersCell.text('N/A');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching peers data:', error);
+          peersCell.text('Error');
+        });
+      });
