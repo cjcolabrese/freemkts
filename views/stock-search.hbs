@@ -1,0 +1,38 @@
+<!-- followedStocks.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autopopulate Followed Stocks</title>
+</head>
+<body>
+  <label for="searchInput">Search Followed Stocks:</label>
+  <input type="text" id="searchInput" list="followedStocksList">
+  <datalist id="followedStocksList">
+    {{#each followedStocks}}
+    <option value="{{symbol}} - {{companyName}}">
+    {{/each}}
+  </datalist>
+
+  
+  <script>
+    const followedStocks = {{{json followedStocks}}}; // Pass followedStocks data from backend
+
+    const searchInput = document.getElementById('searchInput');
+    const followedStocksList = document.getElementById('followedStocksList');
+
+    // Function to populate datalist options with followed stocks
+    function populateFollowedStocks() {
+      followedStocks.forEach(stock => {
+        const option = document.createElement('option');
+        option.value = `${stock.symbol} - ${stock.companyName}`;
+        followedStocksList.appendChild(option);
+      });
+    }
+
+    // Call populateFollowedStocks when the page loads
+    document.addEventListener('DOMContentLoaded', populateFollowedStocks);
+  </script>
+</body>
+</html>

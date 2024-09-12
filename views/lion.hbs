@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+    html {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #232528;
+}
+
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.section {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Abril Fatface', cursive;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color:#fff;
+}
+
+h1 {
+  font-size: 9vw;
+  line-height: 1;
+  margin-top: 0;
+}
+
+.cat {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #B1B3B2;
+}
+.cat.margin-bottom {
+  margin-bottom: 1rem;
+}
+.cat:after {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  content: "";
+  width: 50px;
+  height: 1px;
+  background-color: #B1B3B2;
+  margin-left: 5px;
+}
+
+.contain {
+  margin: 0 10%;
+}
+
+.hero-text {
+  width: 80%;
+  float: left;
+}
+@media (min-width: 600px) {
+  .hero-text {
+    width: 50%;
+  }
+}
+
+.description {
+  letter-spacing: 1px;
+  width: 100%;
+  float: left;
+  margin-bottom: 1rem;
+}
+@media (min-width: 600px) {
+  .description {
+    width: 50%;
+    margin-right: 50%;
+  }
+}
+.description p {
+  font-family: 'Playfair Display', serif;
+}
+
+.image-one {
+  width: 80%;
+  float: left;
+  margin-right: 50%;
+  margin-bottom: 50px;
+}
+@media (min-width: 600px) {
+  .image-one {
+    width: 50%;
+  }
+}
+
+.image-two {
+  width: 90%;
+  float: left;
+  margin-left: 10%;
+  margin-bottom: 50px;
+}
+@media (min-width: 600px) {
+  .image-two {
+    width: 75%;
+    margin-left: 25%;
+  }
+}
+
+.hidden {
+  position: absolute;
+  top: 0;
+  left: -9999999px;
+}
+
+#menu {
+  z-index: 10;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  list-style: none;
+  padding: 10px;
+}
+#menu li {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  margin-bottom: 10px;
+}
+#menu li.active a {
+  opacity: 1;
+}
+#menu li.active a:before {
+  width: 30px;
+  height: 30px;
+}
+#menu a, #menu a:visited {
+  opacity: 0.5;
+  transition: all 500ms ease-in-out;
+}
+#menu a:after, #menu a:visited:after {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 1;
+}
+#menu a:before, #menu a:visited:before {
+  content: "";
+  height: 5px;
+  width: 5px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: all 500ms ease-in-out;
+}
+#menu .active {
+  color: red;
+}
+
+#bg {
+  z-index: -1;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+#bg img {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -40%);
+          transform: translate(-50%, -40%);
+  max-width: 900px;
+}
+
+.inspiration-button {
+  position: fixed;
+  display: inline-block;
+  z-index: 100;
+  bottom: 1rem;
+  right: 5%;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 80px;
+  background: transparent;
+  border: 1px solid white;
+  opacity: 0.5;
+  transition: all 500ms ease;
+}
+.inspiration-button:hover, .inspiration-button:focus, .inspiration-button:active {
+  background-color: white;
+  color: black;
+  opacity: 1;
+}
+
+</style>
+<script>
+    $(document).ready(function() {
+	$("#fullpage").fullpage({
+		anchors: ["firstPage", "secondPage", "thirdPage", "fourthPage"],
+		menu: "#menu",
+		autoScrolling:false
+		// responsiveWidth: 750
+	});
+});
+
+// ScrollMagic: init controller
+var controller = new ScrollMagic.Controller();
+
+// Tween - Section 2
+var scene = new ScrollMagic.Scene({
+	triggerElement: "#section2"
+})
+// animate color and top border in relation to scroll position
+.setTween("#bg img", {
+	maxWidth: "1200px",
+	top: "30%",
+	left: "80%",
+	opacity: 0.25
+}) // the tween durtion can be omitted and defaults to 1
+// .addIndicators({ name: "2 (duration: 100)" }) // add indicators (requires plugin)
+.addTo(controller);
+
+// Tween - Section 3
+var scene = new ScrollMagic.Scene({
+	triggerElement: "#section3",
+	duration: 300
+})
+// animate color and top border in relation to scroll position
+.setTween("#bg img", {
+	top: "20%"
+}) // the tween durtion can be omitted and defaults to 1
+// .addIndicators({ name: "3" }) // add indicators (requires plugin)
+.addTo(controller);
+
+</script>
+    </head>
+    <body>
+<div id="fullpage">
+	<div class="section" id="section1">
+		<div class="contain">
+			<div class="hero-text">
+				<div class="hero-title">
+					<span class="cat">A Collection</span>
+					<h1>Chris Colabrese</h1>
+				</div>
+				<div class="hero-suplimentary">
+					<span class="cat">Status</span>
+					<h3>Endangered</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section fp-auto-height" id="section2">
+		<div class="contain">
+			<div class="description">
+				<span class="cat">Description</span>
+				<p>Etiam porta sem malesuada magna mollis euismod. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+			</div>
+			<span class="cat margin-bottom">Gallery</span>
+			<div class="image-one">
+				<img src="https://images.unsplash.com/photo-1470848051974-964b789cb6fa?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=303969854ff9db20204eb7101b8db542" alt="">
+			</div>
+			
+		</div>
+	</div>
+	<div class="section fp-auto-height" id="section3">
+		<div class="contain">
+			<div class="image-two">
+				<img src="https://images.unsplash.com/photo-1504616516087-fca44d1f8737?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=9278b0b93e84d52133b329f75f8b05d0" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+<div id="bg">
+	<img src="https://images.unsplash.com/photo-1523973814736-0ac95210c2fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d9229c4474132f4768fa5e92a8e3c3b&auto=format&fit=crop&w=2734&q=80" alt="rarrrrr">
+	
+</div>
+<ul id="menu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage"><span class="hidden">First section</span></a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage"><span class="hidden">Second section</span></a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage"><span class="hidden">Third section</span></a></li>
+</ul>
+<a class="inspiration-button" href="https://dribbble.com/shots/4537300-WWF-Header-Transition
+" target="_blank">Inspiration</a>
+<a class="inspiration-button" href="https://dribbble.com/shots/4537300-WWF-Header-Transition
+" target="_blank">Inspiration</a>
+    </body>
+</html>

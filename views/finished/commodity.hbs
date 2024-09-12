@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{description}}</title>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+     <p class="statement-title" >{{description}}</p>
+    <p><strong>Most Recent Observation:</strong> Date: {{mostRecentObservation.date}}, Value: {{mostRecentObservation.value}}</p>
+    <p><strong>Highest Value (Last Year):</strong> {{highestValue}}</p>
+    <p><strong>Lowest Value (Last Year):</strong> {{lowestValue}}</p>
+    <p><strong>Standard Deviation:</strong> {{standardDeviation}}</p>
+
+    <div id="chartdiv"></div>
+
+<script>
+    // Create chart instance
+    am4core.useTheme(am4themes_animated);
+    var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+    // Parse the observations passed as JSON
+    var observations = JSON.parse('{{{observations}}}');
+
+    // Add data to the chart
+    chart.data = observations.map(obs => {
+        return {
+            date: new Date(obs.date),
+            value: parseFloat(obs.value)
+        };
+    });
+
+    // Set theme to dark
+    chart.colors.list = [am4core.color("#37EFBA")]; // Adjust to your primary color
+    chart.background.fill = am4core.color("#FFFFFF00"); // Transparent background
+    chart.responsive.enabled = true;
+    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+    // Create axes
+    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+    dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+    dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity
+    dateAxis.renderer.labels.template.fontSize = 12;
+
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+    valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+    valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity
+    valueAxis.renderer.labels.template.fontSize = 12;
+
+    // Create series
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = "value";
+    series.dataFields.dateX = "date";
+    series.tooltipText = "{dateX}: [bold]{valueY}[/]";
+    series.name = "{{description}}"; // Set the series name to the description
+
+    // Smooth curve
+    series.tensionX = 0.8; // Adjust tension for smoothing
+    series.strokeWidth = 2;
+    series.tooltip.getFillFromObject = false;
+    series.tooltip.background.fill = am4core.color("#333333");
+    series.tooltip.label.fill = am4core.color("#FFFFFF");
+    series.tooltip.label.fontSize = 12;
+    series.tooltip.pointerOrientation = "vertical";
+
+    // Add cursor with zoom functionality
+    var cursor = new am4charts.XYCursor();
+    cursor.behavior = "zoomX"; // Enable zooming with the cursor
+    chart.cursor = cursor;
+
+    // Remove the horizontal scrollbar
+    chart.scrollbarX = null;
+
+    // Add and style legend
+    var legend = new am4charts.Legend();
+    legend.labels.template.fill = am4core.color("#888888"); // Set legend text color to gray
+    legend.fontSize = 12;
+    chart.legend = legend;
+
+    // Add title
+    var title = chart.titles.create();
+    title.text = "{{description}}"; // Title dynamically set to description
+    title.fontSize = 20;
+    title.marginBottom = 10;
+    title.fill = am4core.color("#37EFBA"); // Title color
+</script>
+
+
+</body>
+
+</html>

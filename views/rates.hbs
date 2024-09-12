@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rates and Yields</title>
+    <style>
+        #example {
+            width: 100%;
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        .chart-container {
+            display: none;
+            margin-top: 20px;
+            position: relative;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 999;
+        }
+
+        .popup-chart {
+            width: 100%;
+            height: 300px;
+            /* Adjust height as needed */
+            background: #292930;
+            /* Chart background color */
+        }
+
+        .chart-title {
+            font-size: 16px;
+            /* Adjust title font size if needed */
+            color: #37E38B;
+            /* Chart title color */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+    <!-- Include amCharts core and charts library -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+</head>
+
+<body>
+    <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="margin: 0 auto;">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>FRED Symbol</th>
+                <th>Rate</th>
+                <th id="sortByChange">30-Day Change (%)</th>
+                <th>YTD Change (%)</th>
+                <th>Add to your Portfolio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td class="description" data-symbol="{{this.symbol}}" data-chart-data="{{json this.chartData}}">
+                    <a href="/rates/{{this.symbol}}" style="color: #37EFBA;">
+                        {{@key}}
+                    </a>
+                </td>
+                <td>{{this.symbol}}</td>
+                <td>
+                    {{#if this.observation}}
+                    {{this.observation.value}}
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <td style="text-align: center">
+                    {{#if this.performance30Day}}
+                    {{this.performance30Day}}%
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <td style="text-align: center">
+                    {{#if this.performanceYTD}}
+                    {{this.performanceYTD}}%
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <td style="text-align:center !important">
+                    <i class="material-icons checkmark-icon"
+                        style="display: none; color: #37E38B; text-align: center !important;">check_circle</i>
+                    <button class="mdl-button mdl-js-button mdl-button--icon header-icon add-stock-button"
+                        data-symbol="{{ticker}}">
+                        <i class="material-icons">add</i>
+                    </button>
+                </td>
+
+
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <!-- Chart Container -->
+    <div id="chart-container" class="chart-container">
+        <div id="chart-title" class="chart-title"></div>
+        <div id="chart" class="popup-chart"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const table = document.getElementById('example');
+            const th = document.getElementById('sortByChange');
+            const chartContainer = document.getElementById('chart-container');
+            const chartTitle = document.getElementById('chart-title');
+            const chartDiv = document.getElementById('chart');
+            let currentChart = null;
+
+            // Sort table by 30-Day Change
+            th.addEventListener('click', () => {
+                const rows = Array.from(table.querySelectorAll('tbody tr'));
+                const sortedRows = rows.sort((a, b) => {
+                    const aValue = parseFloat(a.cells[4].textContent.replace('%', '')) || 0;
+                    const bValue = parseFloat(b.cells[4].textContent.replace('%', '')) || 0;
+                    return bValue - aValue; // Descending order
+                });
+                const tbody = table.querySelector('tbody');
+                tbody.innerHTML = '';
+                sortedRows.forEach(row => tbody.appendChild(row));
+            });
+
+            // Show chart on hover
+            table.addEventListener('mouseover', async (event) => {
+                if (event.target.classList.contains('description')) {
+                    const symbol = event.target.getAttribute('data-symbol');
+                    const chartData = JSON.parse(event.target.getAttribute('data-chart-data'));
+                    const description = event.target.textContent.trim();
+
+                    // Update chart title
+                    chartTitle.textContent = description;
+
+                    // Dispose previous chart
+                    if (currentChart) {
+                        currentChart.dispose();
+                    }
+
+                    // Create chart instance
+                    const chart = am4core.create(chartDiv, am4charts.XYChart);
+                    chart.hiddenState.properties.opacity = 0; // Setting initial opacity to 0
+
+                    // Set chart data
+                    chart.data = chartData;
+
+                    // Create date axis
+                    const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                    dateAxis.renderer.grid.template.location = 0;
+                    dateAxis.renderer.labels.template.fontSize = 8;
+                    dateAxis.renderer.labels.template.fill = am4core.color("#FFFFFF");
+
+                    // Create value axis
+                    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    valueAxis.renderer.labels.template.fontSize = 8;
+                    valueAxis.renderer.labels.template.fill = am4core.color("#FFFFFF");
+
+                    // Create main series for the chart
+                    const series = chart.series.push(new am4charts.LineSeries());
+                    series.dataFields.dateX = "date";
+                    series.dataFields.valueY = "value";
+                    series.strokeWidth = 2;
+                    series.stroke = am4core.color("#37EFBA");
+                    series.tooltipText = "{valueY}";
+
+                    // Add cursor
+                    chart.cursor = new am4charts.XYCursor();
+                    chart.cursor.xAxis = dateAxis;
+
+                    // Add legend
+                    const legend = chart.legend = new am4charts.Legend();
+                    legend.fontSize = 18; // Set font size for legend
+
+                    // Calculate the average value of the chart data
+                    const averageValue = chartData.reduce((acc, item) => acc + item.value, 0) / chartData.length;
+
+                    // Create trendline data (a straight line with the average value)
+                    const trendlineData = chartData.map(data => ({
+                        date: data.date,
+                        value: averageValue
+                    }));
+
+                    // Create series for the average trendline
+                    const trendlineSeries = chart.series.push(new am4charts.LineSeries());
+                    trendlineSeries.dataFields.dateX = "date";
+                    trendlineSeries.dataFields.valueY = "value";
+                    trendlineSeries.strokeWidth = 2;
+                    trendlineSeries.stroke = am4core.color("#FF5733"); // Color for trendline
+                    trendlineSeries.strokeDasharray = "3,3"; // Dashed line for trendline
+                    trendlineSeries.data = trendlineData;
+                    trendlineSeries.tooltipText = "Avg: {valueY}";
+
+                    // Show the chart container
+                    chartContainer.style.display = 'block';
+                    currentChart = chart;
+                }
+            });
+
+            // Hide chart when not hovering
+            chartContainer.addEventListener('mouseleave', () => {
+                chartContainer.style.display = 'none';
+                if (currentChart) {
+                    currentChart.dispose();
+                    currentChart = null;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

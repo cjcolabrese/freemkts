@@ -1,0 +1,699 @@
+
+
+<style>
+    .popup {
+        display: none;
+        position: absolute;
+        background-color: #24242D;
+        border: none;
+        padding: 20px; /* Increase padding for larger popup */
+        z-index: 1000;
+        color: #abadad;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .popup .chartDiv {
+        width: 100%;
+        height: 500px; /* Adjust height as needed for your chart */
+    }
+    #return {
+        margin: 0 auto;
+        text-align: center;
+    }
+    #wacc {
+        margin: 0 auto;
+        text-align: center;
+    }
+</style>
+{{#each combinedData.profilePage}}
+<title>{{companyName}}</title>
+{{/each}}
+<div class="mdl-cell mdl-cell--6-col">
+
+    {{#each combinedData.profilePage}}
+        <button id="addStockBtn" class="mdl-button mdl-js-button mdl-button--icon header-icon add-stock-button" data-symbol="{{symbol}}">
+            <i class="material-icons">add</i>
+        </button>
+
+    {{/each}}
+</div>
+<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col">
+     {{#each combinedData.profilePage}}
+      <a href="/stocks/income-statement/{{symbol}}"  class="statement-title" style="float: left;">Income Statement</a><br>
+       <a href="/stocks/balance-sheet/{{symbol}}"  class="statement-title" style="float: left;">Balance Sheet</a><br>
+       <a href="/stocks/cashflow-statement/{{symbol}}" class="statement-title" style="float: left;">Cashflow-Statement</a>
+  {{/each}}
+  </div>
+  <div class="mdl-cell mdl-cell--4-col">{{#each combinedData.profilePage}}
+    <img class="corpLogo" style="height: 80px; width: 80px; margin: 0 auto;" src="{{image}}">
+{{/each}}
+{{#each combinedData.profilePage}}
+    <h2 class="desc-text mdl-card__title-text" style="width: 100%;">{{companyName}}: {{symbol}}</h2>
+    <h2 id="return" style="font-size: 18px; margin: 0 auto !important;"></h2>
+    <div id="wacc">Loading WACC...</div>
+{{/each}}</div>
+  <div class="mdl-cell mdl-cell--4-col">
+    {{#each combinedData.profilePage}}
+
+    
+     {{/each}}
+  </div>
+</div>
+<div class="loader"></div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    function updateReturnValue(value) {
+        const returnElement = document.getElementById('return');
+        console.log('Return element:', returnElement); // Debug line
+        returnElement.textContent = value;
+        console.log('Value:', value); // Debug line
+
+        if (value < 0) {
+            returnElement.style.color = 'red';
+            console.log('Color set to red'); // Debug line
+        } else {
+            returnElement.style.color = 'green';
+            console.log('Color set to green'); // Debug line
+        }
+    }
+
+    // Example usage:
+
+</script>
+
+
+
+
+
+
+
+
+<div class="mdl-grid">
+
+    {{#each combinedData.profilePage}}
+        <div class="mdl-cell mdl-cell--4-col" style="color:#A5A4A4 line-height: 1.6; color: #A5A4A4;">
+            <p class="statement-title">Description</p>
+            <hr>
+            {{description}}
+        </div>
+        <div class="mdl-cell mdl-cell--8-col">
+            <div id="chartDiv" style="width: 100%; height: 600px;"></div>
+        </div>
+    {{/each}}
+</div>
+<hr style="opacity: .5}">
+
+
+
+
+<div class="mdl-grid" style="padding: 0; margin: 0 auto;">
+
+    <div class="mdl-cell mdl-cell--6-col" style="color: #A5A4A4">
+        <p class="statement-title">Headlines</p>
+        <ul class="demo-list-two mdl-list" style="color: #A5A4A4; width: 70% !important, margin-right: 20px !important;">
+            {{#each combinedData.headlines}}
+                <li class="mdl-list__item mdl-list__item--two-line" style="color: #A5A4A4">
+        <span class="mdl-list__item-primary-content">
+          <!-- <i class="material-icons mdl-list__item-avatar"></i>  -->
+          <span>{{headline}}</span>
+          <span class="mdl-list__item-sub-title" style="color: #757575;">
+              {{description}}
+          </span>
+        </span>
+                    <span class="mdl-list__item-secondary-content">
+          <span class="mdl-list__item-secondary-info"></span>
+          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons" style="color:rgb(51, 221, 179) !important">
+            <a href="{{url}}">  <span class="material-symbols-outlined" style="color:rgb(51, 221, 179) !important">
+                view_timeline
+              </span></a>
+            </i>
+          </a>
+        </span>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+
+
+    <div class="mdl-cell mdl-cell--6-col">
+
+        {{#each combinedData.peers}}
+
+            <p class="statement-title">Peers</p>
+            <br>
+            <a class="statement-title" href="/stocks/{{slug}}">{{company}} </a><div style="margin-right: 0; float: right; color: white;">YTD Return:<span  class="peer-return" id="return_{{slug}}"></span></div>
+            <div id="chartDiv_{{slug}}" class="chartDiv" style="height: 200px; width: 100%"></div>
+            <br>
+
+            <script>
+                $(document).ready(function () {
+                    const slug = "{{slug}}";
+                    const apiKey = "010e466600dc4f32ab787125e9a0e701";
+                    const startDate = "2024-01-01";
+
+                    // Fetch historical data
+                    fetch(`https://api.twelvedata.com/time_series?symbol=${slug}&interval=1day&start_date=${startDate}&outputsize=5000&apikey=${apiKey}&order=asc`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Ensure data is available
+                                if (data.values && data.values.length > 0) {
+                                    const values = data.values;
+                                    const startPrice = parseFloat(values[0].close); // Price on startDate
+                                    const lastPrice = parseFloat(values[values.length - 1].close); // Last recorded price
+                                    const returnPercentage = ((lastPrice - startPrice) / startPrice) * 100;
+
+                                    // Display return percentage
+                                    document.getElementById(`return_${slug}`).innerText = `${returnPercentage.toFixed(2)}%`;
+
+                                    // Create chart instance
+                                    var chart = am4core.create(`chartDiv_${slug}`, am4charts.XYChart);
+
+                                    // Set theme to dark
+                                    chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+                                    chart.background.fill = am4core.color("#FFFFFF00"); // Transparent background
+                                    chart.responsive.enabled = true;
+                                    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+                                    // Create axes
+                                    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                                    dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+                                    dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+                                    dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+                                    dateAxis.renderer.labels.template.fontSize = 12;
+
+                                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                                    valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+                                    valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+                                    valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+                                    valueAxis.renderer.labels.template.fontSize = 12;
+
+                                    // Create series
+                                    var series = chart.series.push(new am4charts.LineSeries());
+                                    series.dataFields.valueY = "close";
+                                    series.dataFields.dateX = "datetime";
+                                    series.strokeWidth = 2;
+                                    series.tooltipText = "{valueY}";
+                                    series.tooltip.getFillFromObject = false;
+                                    series.tooltip.background.fill = am4core.color("#333333");
+                                    series.tooltip.label.fill = am4core.color("#FFFFFF");
+                                    series.tooltip.label.fontSize = 12;
+                                    series.tooltip.pointerOrientation = "vertical";
+
+                                    // Set data
+                                    chart.data = values;
+
+                                    // Add cursor
+                                    chart.cursor = new am4charts.XYCursor();
+
+                                    // Add title
+                                    var title = chart.titles.create();
+                                    title.text = "{{company}} Stock Price"; // Title dynamically set to company name
+                                    title.fontSize = 20;
+                                    title.marginBottom = 10;
+                                    title.fill = am4core.color("#37EFBA");
+
+                                    // Add legend
+                                    chart.legend = new am4charts.Legend();
+                                    chart.legend.labels.template.fill = am4core.color("#FFFFFF"); // Legend text color
+                                    chart.legend.fontSize = 12;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching data:', error);
+                            });
+                });
+            </script>
+
+        {{/each}}
+
+
+    </div>
+
+</div>
+       <p class="statement-title">Financials</p>
+       <style>
+    .mdl-grid {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .mdl-cell {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .mdl-data-table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .mdl-cell table {
+        margin: 0 !important;
+    }
+</style>
+<div class="mdl-grid" style="padding: 0">
+
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+        {{#each combinedData.incomeStatement}}
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example">
+            <thead>
+                <tr>
+                    <th>Income Statement Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Revenue</td>
+                    <td class="contribution">{{revenue}}</td>
+                </tr>
+                <tr>
+                    <td>Cost of Revenue</td>
+                    <td class="contribution">{{costOfRevenue}}</td>
+                </tr>
+                <tr>
+                    <td>R&D Expenses</td>
+                    <td class="contribution">{{researchAndDevelopmentExpenses}}</td>
+                </tr>
+                <tr>
+                    <td>Selling and Admin Expense</td>
+                    <td class="contribution">{{sellingGeneralAndAdministrativeExpenses}}</td>
+                </tr>
+                <tr>
+                    <td>Operating Expenses</td>
+                    <td class="contribution">{{operatingExpenses}}</td>
+                </tr>
+                <tr>
+                    <td>Interest Income</td>
+                    <td class="contribution">{{interestIncome}}</td>
+                </tr>
+                <tr>
+                    <td>Operating Income</td>
+                    <td class="contribution">{{operatingIncome}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{/each}}
+    </div>
+
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+        {{#each combinedData.cashFlow}}
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example">
+            <thead>
+                <tr>
+                    <th>Cash Flow Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Net Income</td>
+                    <td class="contribution">{{netIncome}}</td>
+                </tr>
+                <tr>
+                    <td>Depreciation and Amortization</td>
+                    <td class="contribution">{{depreciationAndAmortization}}</td>
+                </tr>
+                <tr>
+                    <td>Change in Working Capital</td>
+                    <td class="contribution">{{changeInWorkingCapital}}</td>
+                </tr>
+                <tr>
+                    <td>Cash from Operations</td>
+                    <td class="contribution">{{netCashProvidedByOperatingActivities}}</td>
+                </tr>
+                <tr>
+                    <td>Total Investing Activities</td>
+                    <td class="contribution">{{otherInvestingActivites}}</td>
+                </tr>
+                <tr>
+                    <td>Net Cash for Investing Activities</td>
+                    <td class="contribution">{{netCashUsedForInvestingActivites}}</td>
+                </tr>
+                <tr>
+                    <td>Free Cash Flow</td>
+                    <td class="contribution">{{freeCashFlow}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{/each}}
+    </div>
+
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+        {{#each combinedData.balanceSheet}}
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example">
+            <thead>
+                <tr>
+                    <th>Balance Sheet Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cash, Short Term Investments</td>
+                    <td class="contribution">{{cashAndShortTermInvestments}}</td>
+                </tr>
+                <tr>
+                    <td>Inventory</td>
+                    <td class="contribution">{{inventory}}</td>
+                </tr>
+                <tr>
+                    <td>Plant Propert Equipment</td>
+                    <td class="contribution">{{propertyPlantEquipmentNet}}</td>
+                </tr>
+                <tr>
+                    <td>Long Term Investments</td>
+                    <td class="contribution">{{longTermInvestments}}</td>
+                </tr>
+                <tr>
+                    <td>Total Liabilities</td>
+                    <td class="contribution">{{totalLiabilities}}</td>
+                </tr>
+                <tr>
+                    <td>Retained Earnings</td>
+                    <td class="contribution">{{retainedEarnings}}</td>
+                </tr>
+                <tr>
+                    <td>Total Liabilities and Stockholders Equity</td>
+                    <td class="contribution">{{totalLiabilitiesAndStockholdersEquity}}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        {{/each}}
+        
+    </div>
+<hr>
+</div>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- ADD STOCK VIA ADD-STOCK BUTTON -->
+<script>
+    $(document).ready(function() {
+        $('#addStockBtn').click(function() {
+            var symbol = $(this).data('symbol');
+            console.log('Button clicked. Symbol:', symbol);
+
+            $.ajax({
+                type: 'POST',
+                url: '/stocks/user-stocks',
+                data: { search: symbol },
+                success: function(response) {
+                    console.log('Stock added successfully:', response);
+
+                    var snackbarContainer = document.querySelector('#snackbar');
+                    var data = {
+                        message: symbol + ' added successfully',
+                        timeout: 3000, // Display for 3 seconds
+                        actionText: 'View',
+                        actionHandler: function() {
+                            // Handle action, e.g., navigate to a page
+                            {{#each combinedData.profilePage}}
+                                window.location.href = '/stocks/{{symbol}}';
+                            {{/each}} // Redirect to user stocks page
+                        }
+                    };
+                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
+                    // Hide the add button after successful addition
+                    $('#addStockBtn').hide();
+                },
+                error: function(error) {
+                    console.error('Error adding stock:', error);
+
+                    var errorMessage = error.responseJSON && error.responseJSON.error ? error.responseJSON.error : 'Error adding stock';
+
+                    var snackbarContainer = document.querySelector('#snackbar');
+                    var data = {
+                        message: errorMessage,
+                        timeout: 3000 // Display error message for 3 seconds
+                    };
+                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                }
+            });
+        });
+    });
+</script>
+
+<!------------------------MAIN CHART-------------------------->
+<script>
+    const apiKey = '010e466600dc4f32ab787125e9a0e701';
+
+    {{#each combinedData.profilePage}}
+    fetch(`https://api.twelvedata.com/time_series?symbol={{symbol}}&interval=1week&start_date=2020-01-01&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create chart instance
+            var chart = am4core.create("chartDiv", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1E1F26"); // Updated background color
+            chart.background.fillOpacity = 1; // Ensures the background color is fully opaque
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "datetime";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = data.values;
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "{{companyName}} Stock Price";
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+            title.fontFamily = "Montserrat"; 
+
+            // Add legend
+            chart.legend = new am4charts.Legend();
+            chart.legend.labels.template.fill = am4core.color("#FFFFFF"); // Legend text color
+            chart.legend.fontSize = 12;
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    {{/each}}
+</script>
+
+<!------------------------FORMATING TO DOLLARS---------------->
+<script>
+
+    $(document).ready(function () {
+        $(".contribution").each(function () { $(this).html(parseFloat($(this).text()).toLocaleString('en-US', { style: 'currency', currency: 'USD' })); })
+    })
+
+</script>
+
+<!-----------------------LOADER----------------------------->
+
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.querySelector(".loader");
+
+        loader.classList.add("loader--hidden");
+
+        loader.addEventListener("transitionend", () => {
+            document.body.removeChild(loader);
+        });
+    });
+
+</script>
+
+
+
+<!-------------------------FORMAT NEGATIVE NUMBER COLOR--------------------->
+<script>
+    $(document).ready(function () {
+
+        $('td').each(function () {
+
+            var cellvalue = $.trim($(this).text());
+            if (cellvalue.substring(0, 1) == '-') {
+                $(this).wrapInner('<p class="colorred"></p>');
+            }
+        });
+
+    });
+
+</script>
+
+
+
+<!------------------------------RETURN FORMULA------------------------------  -->
+{{#each combinedData.profilePage}}
+    <script>
+        $(document).ready(function () {
+            // Assuming symbol is provided in the Handlebars context
+            const symbol = "{{symbol}}";
+            console.log('Fetching data from ' + symbol);
+            console.log(symbol); // Replace with your actual symbol or use a dynamic value
+
+            const apiKey = '3a4f0ed0ef304deaba01ea10ec5abc0b'; // Replace with your 12data API key
+
+            // Fetch historical stock data
+            $.ajax({
+                url: `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&start_date=2024-01-01&outputsize=5000&apikey=${apiKey}&order=asc`,
+                method: 'GET',
+                success: function (data) {
+                    if (data && data.values && data.values.length > 0) {
+                        // Extract the first and most recent prices
+                        const firstPrice = parseFloat(data.values[0].close);
+                        console.log('First Price:', firstPrice);
+                        const mostRecentPrice = parseFloat(data.values[data.values.length - 1].close);
+                        console.log('Most Recent Price:', mostRecentPrice);
+
+                        // Calculate the return
+                        const returnValue = (mostRecentPrice - firstPrice) / firstPrice;
+
+                        // Display the return value
+                        $('#return').text(`YTD Return: ${(returnValue * 100).toFixed(2)}%`);
+                    } else {
+                        $('#return').text('No data available for the specified symbol.');
+                    }
+                },
+                error: function () {
+                    $('#return').text('Error fetching data');
+                }
+            });
+        });
+    </script>
+{{/each}}
+
+<!--------------------------------WACC------------------------->
+{{#each combinedData.profilePage}}
+    <script>
+        async function fetchFinancialData(url) {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch data: ${response.statusText}`);
+            }
+            return response.json();
+        }
+
+        async function calculateWACC() {
+            const apiKey = 'vGUG0vEZx4BwUtU7Zdg4KR2rNVqHWXbp'; // Replace with your FMP API key
+            const symbol = '{{symbol}}';
+
+            try {
+                const profileUrl = `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${apiKey}`;
+                const incomeStatementUrl = `https://financialmodelingprep.com/api/v3/income-statement/${symbol}?apikey=${apiKey}&limit=1`;
+                const balanceSheetUrl = `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?apikey=${apiKey}&limit=1`;
+
+                const [profile, incomeStatement, balanceSheet] = await Promise.all([
+                    fetchFinancialData(profileUrl),
+                    fetchFinancialData(incomeStatementUrl),
+                    fetchFinancialData(balanceSheetUrl),
+                ]);
+
+                if (!profile.length || !incomeStatement.length || !balanceSheet.length) {
+                    throw new Error('Incomplete data fetched from APIs.');
+                }
+
+                const marketCap = profile[0].mktCap;
+                const totalDebt = balanceSheet[0].totalDebt;
+                const riskFreeRate = 0.02; // Assume a risk-free rate of 2%
+                const beta = profile[0].beta;
+                const marketRiskPremium = 0.05; // Assume a market risk premium of 5%
+                const interestExpense = incomeStatement[0].interestExpense;
+                const ebitda = incomeStatement[0].ebitda; // Using EBITDA
+                const depreciationAndAmortization = incomeStatement[0].depreciationAndAmortization;
+                const incomeTaxExpense = incomeStatement[0].incomeTaxExpense;
+
+                if (ebitda === undefined || ebitda === 0) {
+                    throw new Error('EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization) is missing or zero.');
+                }
+
+                if (depreciationAndAmortization === undefined) {
+                    throw new Error('Depreciation and Amortization data is missing.');
+                }
+
+                const ebit = ebitda - depreciationAndAmortization; // Calculate EBIT
+                const taxRate = incomeTaxExpense ? (incomeTaxExpense / ebit) : 0;
+
+                if (!marketCap || !totalDebt || !interestExpense) {
+                    throw new Error('One or more required financial metrics are missing.');
+                }
+
+                const costOfEquity = riskFreeRate + beta * marketRiskPremium;
+                const costOfDebt = interestExpense / totalDebt;
+                const totalValue = marketCap + totalDebt;
+
+                if (!totalValue) {
+                    throw new Error('Total value (market cap + total debt) is zero.');
+                }
+
+                const wacc = (marketCap / totalValue) * costOfEquity + (totalDebt / totalValue) * costOfDebt * (1 - taxRate);
+
+                // Multiply WACC by 100 to get percentage and update the DOM element
+                const waccPercentage = (wacc * 100).toFixed(2); // Two decimal places
+
+                document.getElementById('wacc').textContent = `WACC: ${waccPercentage}%`;
+            } catch (error) {
+                console.error('Error calculating WACC:', error);
+                document.getElementById('wacc').textContent = 'Error calculating WACC';
+            }
+        }
+
+        // Call the function when the script loads
+        window.onload = calculateWACC;
+    </script>
+
+{{/each}}

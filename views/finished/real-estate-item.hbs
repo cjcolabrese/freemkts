@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Data</title>
+    <!-- Include amCharts libraries -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+    <style>
+        /* Optional: Style adjustments */
+        body {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    {{#each items}}
+        <p style="color:rgb(72, 248, 145)">{{this.item}}</p>
+        <p>{{this.description}}</p>
+    {{/each}}
+
+    <!-- Chart Container -->
+    <div id="chartdiv"></div>
+
+    <!-- Data Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+                <tr>
+                    <td>{{this.date}}</td>
+                    <td class="contribution">{{this.value}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <!-- amCharts Script -->
+    <script>
+        am4core.ready(function() {
+
+            // Use themes
+            am4core.useTheme(am4themes_dark);
+            am4core.useTheme(am4themes_animated);
+
+            // Create chart instance
+            var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+            // Add data
+            chart.data = {{{json data}}};
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "{{#each items}}{{this.item}}{{/each}}";
+            title.fontSize = 25;
+            title.marginBottom = 20;
+            title.fill = am4core.color("#ffffff");
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.grid.template.strokeOpacity = 0.2; // Gridlines for the date axis
+            dateAxis.renderer.labels.template.fill = am4core.color("#ffffff");
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.grid.template.strokeOpacity = 0.2; // Gridlines for the value axis
+            valueAxis.renderer.labels.template.fill = am4core.color("#ffffff");
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "value";
+            series.dataFields.dateX = "date";
+            series.strokeWidth = 2;
+            series.minBulletDistance = 10;
+            series.tooltipText = "{dateX}: [b]{valueY}[/]";
+            series.tooltip.background.cornerRadius = 5;
+            series.tooltip.background.fillOpacity = 0.5;
+            series.tooltip.label.padding(12,12,12,12);
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+            chart.cursor.lineX.stroke = am4core.color("#ffffff");
+            chart.cursor.lineY.stroke = am4core.color("#ffffff");
+
+            // Add scrollbar
+    
+
+        }); // end am4core.ready()
+    </script>
+<script>
+        $(document).ready(function () {
+        $(".contribution").each(function () {
+            $(this).html(parseFloat($(this).text()).toLocaleString());
+        });
+    });
+</script>
+</body>
+</html>

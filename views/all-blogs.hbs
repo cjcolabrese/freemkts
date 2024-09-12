@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blogs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">All Blogs</h1>
+        <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each blogs}}
+                <tr data-id="{{this._id}}">
+                    <td>{{@index}}</td>
+                    <td><a href="{{this._id}}">{{this._id}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.author}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td><span class="material-symbols-outlined trash-icon" style="cursor:pointer;">delete</span></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Listen for click events on trash icons
+            $('.trash-icon').click(function() {
+                // Get the blog ID from the row's data attribute
+                const blogId = $(this).closest('tr').data('id');
+
+                // Confirm before deleting
+                if (confirm('Are you sure you want to delete this blog?')) {
+                    // Send DELETE request to the server
+                    $.ajax({
+                        url: `/blogs/${blogId}`,
+                        type: 'DELETE',
+                        success: function(result) {
+                            // On success, remove the row from the table
+                            $(`tr[data-id='${blogId}']`).remove();
+                            alert('Blog deleted successfully.');
+                        },
+                        error: function(err) {
+                            console.error(err);
+                            alert('An error occurred while deleting the blog.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

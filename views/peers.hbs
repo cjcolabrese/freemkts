@@ -1,0 +1,113 @@
+<h1>Peers for {{symbol}}</h1>
+{{#if peers.length}}
+<div class="peers-container">
+    {{#each peers}}
+    <div class="peer-card">
+        <h2>{{name}}</h2>
+        <p><strong>Symbol:</strong> {{slug}}</p>
+        <p><strong>Exchange:</strong> {{exchange}}</p>
+        <p><strong>Company:</strong> {{company}}</p>
+        <p><strong>Followers Count:</strong> {{followersCount}}</p>
+        <p><strong>Articles Count:</strong> {{articleRtaCount}}</p>
+        <p><strong>News Count:</strong> {{newsRtaCount}}</p>
+        <div id="chartDiv_{{slug}}" class="chartDiv" style="height: 200px;"></div>
+        <p id="return_{{slug}}"></p> <!-- To show the return percentage -->
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<p>No peers found for the given symbol.</p>
+{{/if}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<script>
+$(document).ready(function () {
+    const apiKey = "4216929bd9ab486f8777c3967fd35abf";
+    const startDate = "2024-01-01";
+
+    {{#each peers}}
+    const slug = {{slug}}; // Ensure slug is a string
+
+    // Fetch historical data
+    fetch(`https://api.twelvedata.com/time_series?symbol=aapl&interval=1day&start_date=${startDate}&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Ensure data is available
+            if (data.values && data.values.length > 0) {
+                const values = data.values;
+                const startPrice = parseFloat(values[0].close); // Price on startDate
+                const lastPrice = parseFloat(values[values.length - 1].close); // Last recorded price
+                const returnPercentage = ((lastPrice - startPrice) / startPrice) * 100;
+
+                // Display return percentage
+                document.getElementById(`return_${slug}`).innerText = `${returnPercentage.toFixed(2)}%`;
+
+                // Create chart instance
+                var chart = am4core.create(`chartDiv_${slug}`, am4charts.XYChart);
+
+                // Set theme to dark
+                chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+                chart.background.fill = am4core.color("#FFFFFF00"); // Transparent background
+                chart.responsive.enabled = true;
+                chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+                // Create axes
+                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+                dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+                dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity
+                dateAxis.renderer.labels.template.fontSize = 12;
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+                valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+                valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity
+                valueAxis.renderer.labels.template.fontSize = 12;
+
+                // Create series
+                var series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.valueY = "close";
+                series.dataFields.dateX = "datetime";
+                series.strokeWidth = 2;
+                series.tooltipText = "{valueY}";
+                series.tooltip.getFillFromObject = false;
+                series.tooltip.background.fill = am4core.color("#333333");
+                series.tooltip.label.fill = am4core.color("#FFFFFF");
+                series.tooltip.label.fontSize = 12;
+                series.tooltip.pointerOrientation = "vertical";
+
+                // Set data
+                chart.data = values;
+
+                // Add cursor
+                chart.cursor = new am4charts.XYCursor();
+
+                // Add title
+                var title = chart.titles.create();
+                title.text = "{{company}} Stock Price"; // Title dynamically set to company name
+                title.fontSize = 20;
+                title.marginBottom = 10;
+                title.fill = am4core.color("#37EFBA");
+
+                // Add legend
+                chart.legend = new am4charts.Legend();
+                chart.legend.labels.template.fill = am4core.color("#FFFFFF"); // Legend text color
+                chart.legend.fontSize = 12;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    {{/each}}
+});
+</script>

@@ -1,0 +1,604 @@
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+ <style>
+
+  #chartdiv {
+    height: 250px;
+    width: 700px;
+    margin: 20px;
+  }
+  #chartdiv2 {
+    height: 250px;
+  width: 700px;
+    margin: 20px;
+  }
+   #chartdiv3 {
+    height: 250px;
+    margin: 20px;
+  width: 700px;
+  }
+    #chartdiv4 {
+    height: 250px;
+    margin: 20px;
+  width: 700px;
+  }
+      #chartdiv5 {
+    height: 250px;
+    margin: 20px;
+ width: 700px;
+  }
+      #chartdiv6 {
+    height: 250px;
+    margin: 20px;
+   width: 700px;
+  }
+        #chartdiv7 {
+    height: 250px;
+    margin: 20px;
+  width: 700px;
+  margin: 0
+  }
+</style>
+ <script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/stlfsi.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+  
+  //TITLES
+  var title = chart.titles.create();
+  title.text = "St. Louis Financial Stress Index";
+  title.fontSize = 18;
+  title.marginBottom = 30;
+
+  
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 20;
+  series.tooltip.label.minHeight = 20;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 2;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+
+categoryAxis.events.on("startchanged", categoryAxisZoomed);
+categoryAxis.events.on("endchanged", categoryAxisZoomed);
+categoryAxis.events.on("startchanged", categoryAxisZoomed);
+categoryAxis.events.on("endchanged", categoryAxisZoomed);
+function categoryAxisZoomed(ev) {
+  var axis = ev.target;
+  var start = axis.getPositionLabel(axis.start);
+  var end = axis.getPositionLabel(axis.end);
+  console.log("New range: " + start + " -- " + end);
+}
+</script>
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv2", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/VXDCLS.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+
+  var title = chart.titles.create();
+  title.text = "CBOE DJIA Volatility Index";
+  title.fontSize = 18;
+  title.marginBottom = 30;
+
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+  // Create vertical scrollbar and place it before the value axis
+
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+</script>
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv3", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/VXVCLS.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+
+  var title = chart.titles.create();
+  title.text = "CBOE S&P 500 3-Month Volatility Index ";
+  title.fontSize = 18;
+  title.marginBottom = 30;
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+  // Create vertical scrollbar and place it before the value axis
+
+
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+</script>
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv4", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/sp500.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+
+  var title = chart.titles.create();
+  title.text = "Standard & Poor's 500 Index";
+  title.fontSize = 18;
+  title.marginBottom = 30;
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+  // Create vertical scrollbar and place it before the value axis
+
+
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+</script>
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv5", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/djia.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+
+  var title = chart.titles.create();
+  title.text = "Dow Jones Industrial Average";
+  title.fontSize = 18;
+  title.marginBottom = 30;
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+  // Create vertical scrollbar and place it before the value axis
+
+
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+</script>
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv6", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/NASDAQCOM.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+
+  var title = chart.titles.create();
+  title.text = "NASDAQ Composite";
+   title.fontSize = 18;
+  title.marginBottom = 30;
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+  // Create vertical scrollbar and place it before the value axis
+
+
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+</script>
+<script>
+
+
+
+  // Themes begin
+  am4core.useTheme(am4themes_dark);
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  // Create chart instance
+  var chart = am4core.create("chartdiv7", am4charts.XYChart);
+
+  chart.dataSource.url = "/public/data/econ/NFCI.json";
+  chart.dataSource.parser = new am4core.JSONParser();
+
+  var title = chart.titles.create();
+  title.text = "Chicago Fed National Financial Conditions Index";
+  title.fontSize = 18;
+  title.marginBottom = 30;
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 1;
+  series.minBulletDistance = 15;
+
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = .5;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+
+  // Create vertical scrollbar and place it before the value axis
+
+
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+
+
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+
+</script>
+
+<br>
+<script>
+  window.addEventListener("load", () => {
+  const loader = document.querySelector(".loader");
+
+  loader.classList.add("loader--hidden");
+
+  loader.addEventListener("transitionend", () => {
+    document.body.removeChild(loader);
+  });
+});
+
+</script>
+
+<div class="three">
+
+
+
+</div>
+
+
+<div class="wrapper">
+ 
+  <div class="one">{{#each body.attributes}}
+{{title}}
+    {{/each}}
+  </div>
+
+  <div class="three">
+  <div class="chart-cell mdl-cell mdl-cell--4-col">    <div id="chartdiv"></div></div>
+  <div class="chart-cell mdl-cell mdl-cell--4-col">   <div id="chartdiv2"></div></div>
+  <div class="chart-cell mdl-cell mdl-cell--4-col"><div id="chartdiv3"></div></div>
+
+
+
+  <div class="chart-cell mdl-cell mdl-cell--4-col"> <div id="chartdiv4"></div></div>
+  <div class="chart-cell mdl-cell mdl-cell--4-col"> <div id="chartdiv5"></div></div>
+  <div class="chart-cell mdl-cell mdl-cell--4-col"> <div id="chartdiv6"></div></div>
+
+
+  <div class="chart-cell mdl-cell mdl-cell--4-col"> <div id="chartdiv7"></div></div>
+
+
+  </div>
+   <div class="four">four</div>
+  <div class="five">Five</div>
+  <div class="six">Six</div>
+    <div class="seven">Seven</div>
+  <div class="two">
+<div class="two-header"><h3>News Feed</h3></div>
+ <ul class="demo-list-three mdl-list">
+      {{#each response.articles}}
+  <li class="three-line mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <a href="{{url}}"><i class="material-icons mdl-list__item-avatar">language</i></a>
+      <span></span>
+      <span class="list-title mdl-list__item-text-body">
+     {{title}}
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons" style="color: #37efba; ">article</i></a>
+    </span>
+  </li>
+ {{/each}}
+</ul>
+    </div>
+ 
+</div>
+    
+
+  
+
+    
+
+
+   

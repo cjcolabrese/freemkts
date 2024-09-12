@@ -1,0 +1,67 @@
+[
+    {
+        "code": "HOSINVUSM495N",
+        "item": "Existing Home Sales: Housing Inventory",
+        "description": "Inventory indicates the number of properties marked as \"\"active\"\" on the market or those pending sales. When a seller lists a property, it becomes counted as inventory."
+    },
+    {
+        "code": "FIXHAI",
+        "item": "Housing Affordability Index (Fixed) (FIXHAI)",
+        "description": "Measures the degree to which a typical family can afford the monthly mortgage payments on a typical home. Value of 100 means that a family with the median income has exactly enough income to qualify for a mortgage on a median-priced home. An index above 100 signifies that family earning the median income has more than enough income to qualify for a mortgage loan on a median-priced home, assuming a 20 percent down payment. This index is calculated for fixed mortgages."
+    },
+    {
+        "code": "ACTLISCOUUS",
+        "item": "Housing Inventory: Active Listing Count in the United States",
+        "description": "The count of active single-family and condo/townhome listings for a given market during the specified month (excludes pending listings). With the release of its September 2022 housing trends report, Realtor.com® incorporated a new and improved methodology for capturing and reporting housing inventory trends and metrics. The new methodology updates and improves the calculation of time on market and improves handling of duplicate listings. Most areas across the country will see minor changes with a smaller handful of areas seeing larger updates. As a result of these changes, the data released since October 2022 will not be directly comparable with previous data releases (files downloaded before October 2022) and Realtor.com® economics blog posts. However, future data releases, including historical data, will consistently apply the new methodology. More details are available at the source's Real Estate Data Library."
+    },
+    {
+        "code": "EXHOSLUSM495S",
+        "item": "Existing Home Sales",
+        "description": "The National Association of Realtors monthly housing indicators are based on a representative sample of local boards and multiple listing services. Sales volume, inventory, and price levels for existing homes are measured for the US in aggregate and by census region. Existing homes, unlike new homes, are homes that are owned and occupied before coming onto the market. Existing-home sales measures the transaction volume of existing single-family homes, condos, and co-ops."
+    },
+    {
+        "code": "TDSP",
+        "item": "Household Debt Service Payments as a Percent of Disposable Personal Income",
+        "description": "The Household Debt Service Ratio (DSR) is the ratio of total required household debt payments to total disposable income. The DSR is divided into two parts. The Mortgage DSR (MDSP) is total quarterly required mortgage payments divided by total quarterly disposable personal income. The Consumer DSR (CDSP) is total quarterly scheduled consumer debt payments divided by total quarterly disposable personal income. The Mortgage DSR and the Consumer DSR sum to the DSR."
+    },
+    {
+        "code": "FIXHAI",
+        "item": "Housing Affordability Index",
+        "description": "Measures the degree to which a typical family can afford the monthly mortgage payments on a typical home. Value of 100 means that a family with the median income has exactly enough income to qualify for a mortgage on a median-priced home. An index above 100 signifies that family earning the median income has more than enough income to qualify for a mortgage loan on a median-priced home, assuming a 20 percent down payment. This index is calculated for fixed mortgages."
+    },
+    {
+        "code": "RHORUSQ156N",
+        "item": "Homeownership Rate in the United States",
+        "description": "The homeownership rate is the proportion of households that is owner-occupied."
+    },
+    {
+        "code": "HOSINVUSM495N",
+        "item": "Existing Home Sales: Housing Inventory",
+        "description": "The National Association of Realtors monthly housing indicators are based on a representative sample of local boards and multiple listing services. Sales volume, inventory, and price levels for existing homes are measured for the US in aggregate and by census region. Existing homes, unlike new homes, are homes that are owned and occupied before coming onto the market."
+    },
+    {
+        "code": "RRVRUSQ156N",
+        "item": "Rental Vacancy Rate in the United States ",
+        "description": "The rental vacancy rate is the proportion of the rental inventory that is vacant for rent."
+    },
+    {
+        "code": "MEDDAYONMARUS",
+        "item": "Housing Inventory: Median Days on Market in the United States",
+        "description": "The median number of days property listings spend on the market in a given geography during the specified month (calculated from list date to closing, pending, or off-market date depending on data availability). With the release of its September 2022 housing trends report, Realtor.com® incorporated a new and improved methodology for capturing and reporting housing inventory trends and metrics. The new methodology updates and improves the calculation of time on market and improves handling of duplicate listings. Most areas across the country will see minor changes with a smaller handful of areas seeing larger updates. As a result of these changes, the data released since October 2022 will not be directly comparable with previous data releases (files downloaded before October 2022) and Realtor.com® economics blog posts. However, future data releases, including historical data, will consistently apply the new methodology. More details are available at the source's Real Estate Data Library. With the release of its November 2021 housing trends report, Realtor.com® incorporated a new and improved methodology for capturing and reporting housing inventory trends and metrics. The new methodology uses the latest and most accurate data mapping of listing statuses to yield a cleaner and more consistent measurement of active listings at both the national and local level. The methodology has also been adjusted to better account for missing data in some fields including square footage. Most areas across the country will see minor changes with a smaller handful of areas seeing larger updates. As a result of these changes, the data released since December 2021 will not be directly comparable with previous data releases (files downloaded before December 2021) and Realtor.com® economics blog posts. However, future data releases, including historical data, will consistently apply the new methodology. More details are available at the source's Real Estate Data Library."
+    },
+    {
+        "code": "HOSSUPUSM673N",
+        "item": "Existing Home Sales: Months Supply",
+        "description": "Months' supply refers to the number of months it would take for the current inventory of homes on the market to sell given the current sales pace."
+    },
+    {
+        "code": "HOUST",
+        "item": "New Privately-Owned Housing Units Started: Total Units",
+        "description": "As provided by the Census, start occurs when excavation begins for the footings or foundation of a building. All housing units in a multifamily building are defined as being started when this excavation begins. Beginning with data for September 1992, estimates of housing starts include units in structures being totally rebuilt on an existing foundation."
+    },
+    {
+        "code": "MORTGAGE30US",
+        "item": "30-Year Fixed Rate Mortgage Average in the United States",
+        "description": "On November 17, 2022, Freddie Mac changed the methodology of the Primary Mortgage Market Survey® (PMMS®). The weekly mortgage rate is now based on applications submitted to Freddie Mac from lenders across the country. For more information regarding Freddie Mac’s enhancement, see their research note."
+    }
+]

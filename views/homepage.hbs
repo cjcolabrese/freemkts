@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Playfair+Display:400,700|Poppins:100i,400" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css'><link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins+Abril+Fatface&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway+Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js'></script><script  src="./script.js"></script>
+<style>
+	html {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #232528;
+}
+
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.section {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Noto Sans', cursive;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+h1 {
+    font-size: 6.2em;
+    line-height: 0.9;
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    color: #cac9c9;
+    padding: 24px 0;
+    border-bottom: none;
+    border-top: none;
+}
+
+.cat {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #B1B3B2;
+}
+.cat.margin-bottom {
+  margin-bottom: 1rem;
+}
+.cat:after {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  content: "";
+  width: 50px;
+  height: 1px;
+  background-color: #B1B3B2;
+  margin-left: 5px;
+}
+
+.contain {
+  margin: 0 10%;
+}
+
+.hero-text {
+  width: 80%;
+  float: left;
+}
+@media (min-width: 600px) {
+  .hero-text {
+    width: 50%;
+  }
+}
+
+.description {
+  letter-spacing: 1px;
+  width: 100%;
+  float: left;
+  margin-bottom: 1rem;
+}
+@media (min-width: 600px) {
+  .description {
+    width: 50%;
+    margin-right: 50%;
+  }
+}
+.description p {
+  font-family: 'Playfair Display', serif;
+}
+
+.image-one {
+  width: 80%;
+  float: left;
+  margin-right: 50%;
+  margin-bottom: 50px;
+}
+@media (min-width: 600px) {
+  .image-one {
+    width: 50%;
+  }
+}
+
+.image-two {
+  width: 90%;
+  float: left;
+  margin-left: 10%;
+  margin-bottom: 50px;
+}
+@media (min-width: 600px) {
+  .image-two {
+    width: 75%;
+    margin-left: 25%;
+  }
+}
+
+.hidden {
+  position: absolute;
+  top: 0;
+  left: -9999999px;
+}
+
+#menu {
+  z-index: 10;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  list-style: none;
+  padding: 10px;
+}
+#menu li {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  margin-bottom: 10px;
+}
+#menu li.active a {
+  opacity: 1;
+}
+#menu li.active a:before {
+  width: 30px;
+  height: 30px;
+}
+#menu a, #menu a:visited {
+  opacity: 0.5;
+  transition: all 500ms ease-in-out;
+}
+#menu a:after, #menu a:visited:after {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+#menu a:before, #menu a:visited:before {
+  content: "";
+  height: 5px;
+  width: 5px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: all 500ms ease-in-out;
+}
+#menu .active {
+  color: red;
+}
+
+#bg {
+  z-index: -1;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+#bg img {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  max-width: 900px;
+}
+
+.inspiration-button {
+  position: fixed;
+  display: inline-block;
+  z-index: 100;
+  bottom: 1rem;
+  right: 5%;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 80px;
+  background: transparent;
+  border: 1px solid white;
+  opacity: 0.5;
+  transition: all 500ms ease;
+}
+.inspiration-button:hover, .inspiration-button:focus, .inspiration-button:active {
+  background-color: white;
+  color: black;
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="fullpage">
+	<div class="section" id="section1">
+		<div class="contain">
+			<div class="hero-text">
+				<div class="hero-title">
+					<span class="cat" style="font-family: Abril Fatface;">Name</span>
+					<h1 style="font-weight: 200;font-family: Poppins">FREEMKTS</h1>
+				</div>
+				<div class="hero-suplimentary">
+					<span class="cat">FREEMKTS BLOG</span>
+					<h3 style="font-family: Poppins"><a style="text-decoration: none;color: white;" href="/user/blog">Blog</a></h3>
+				</div>
+        <div class="hero-suplimentary">
+					<span class="cat">FREEMKTS APP</span>
+					<h3 style="font-family: Poppins"><a style="text-decoration: none;color: white;" href="/user/login">FREEMKTS</a></h3>
+				</div>
+        <div class="hero-suplimentary">
+					<span class="cat">Description</span>
+					<p style="font-family: Poppins">This is my personal site. It includes both a blog and an app that I created, rapidmkts.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section fp-auto-height" id="section2">
+		<div class="contain">
+			<div class="description">
+			
+				<p></p>
+			</div>
+			<span class="cat margin-bottom"></span>
+			<div class="image-one">
+				<img src="" alt="">
+			</div>
+			
+		</div>
+	</div>
+<!--	<div class="section fp-auto-height" id="section3">
+		<div class="contain">
+			<div class="image-two">
+				<img src="https://images.unsplash.com/photo-1458014854819-1a40aa70211c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+			</div>
+		</div>
+	</div>
+</div>-->
+<div id="bg">
+	<img src="https://images.unsplash.com/photo-1523973814736-0ac95210c2fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d9229c4474132f4768fa5e92a8e3c3b&auto=format&fit=crop&w=2734&q=80" alt="rarrrrr">
+	
+</div>
+
+
+<!-- partial -->
+
+
+<script>
+  $(document).ready(function() {
+    $("#fullpage").fullpage({
+      anchors: ["firstPage", "secondPage", "thirdPage", "fourthPage"],
+      menu: "#menu",
+      autoScrolling: false
+    });
+  });
+
+  // ScrollMagic: init controller
+  var controller = new ScrollMagic.Controller();
+
+  // Tween for background zoom - Starts on page scroll
+  var scene = new ScrollMagic.Scene({
+    triggerElement: "body",  // Trigger on body to start zooming immediately
+    duration: $(window).height() * 2 // Duration for zooming effect
+  })
+  .setTween("#bg img", {
+    scale: 1.5,  // Zoom the image
+    top: "10%",  // Adjust top positioning during zoom
+    left: "50%",
+    opacity: 0.25
+  })
+  .addTo(controller);
+
+</script>
+
+
+</body>
+</html>

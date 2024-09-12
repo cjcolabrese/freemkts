@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Dashboard</title>
+  <style>
+    body {
+      background-color: #33333D;
+    }
+    .mini-price {
+      color: white;
+    }
+    .mini-popup {
+      display: none;
+      position: absolute;
+      height: 250px;
+      width: 450px;
+      background-color: black;
+      z-index: 1000;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .chart-container {
+      height: 200px;
+      width: 400px;
+    }
+  </style>
+  <script src="https://www.amcharts.com/lib/4/core.js"></script>
+  <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="mdl-grid" id="dashboard-grid">
+    {{#each stocks}}
+    <div class="mini-price mdl-cell--2-col center-items" style="margin-top: 5px;" data-symbol="{{symbol}}" data-company="{{companyName}}">
+      <a class="mini-link" href="/stocks/{{symbol}}">
+        <img class="micro-image" style="height: 30px; width: 30px; margin: 10px;" src="{{image}}" />
+      </a>
+      {{name}}
+      <hr style="margin: 0;">
+      ${{price}}
+    </div>
+    {{/each}}
+  </div>
+  <div class="mini-popup" id="chart-popup" style="background-color: #1B1B1F; height: 200px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);">
+    <div id="chartdiv" class="chart-container"></div>
+  </div>
+
+
+</body>
+</html>

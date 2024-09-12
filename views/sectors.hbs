@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sectors</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
+  <style>
+    .popup {
+      display: none;
+      position: absolute;
+      background-color: #24242D;
+      border: none;
+      padding: 10px;
+      z-index: 1000;
+      color: #abadad;
+      ;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+  </style>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="container pt-10">
+    <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+      <thead style=" font-size: 18px; font-family: Poppins; font-weight: 200;">
+        <tr>
+          <th style=" font-size: 18px; font-family: Poppins">Sector</th>
+          <th  style=" font-size: 18px;">Change %</th>
+          <th  style="font-size: 18px;">Add Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each obj}}
+          <tr>
+            <td>{{sector}}</td>
+            <td>{{changesPercentage}}</td>
+            <td>
+
+              <button class="add-note-button mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">description</i>
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <div class="popup" id="stock-popup"></div>
+  </div>
+
+  <div class="form-container" style="background-color: #1B1B1F">
+    <button id="closeForm" class="close-button">
+      <span class="material-symbols-outlined">
+        close</span>
+    </button>
+    <h2>Add Note</h2>
+    <form id="noteForm">
+
+      <select id="symbol" name="symbol" class="mdl-select-workaround">
+         <option selected>--Please Select an Option</option>
+        {{#each obj}}
+
+          <option value="{{sector}}">{{sector}}</option>
+        {{/each}}
+
+      </select>
+      <select id="status" name="status" class="mdl-select-workaround">
+        <option value="Private">Private</option>
+        <option value="Public">Public</option>
+
+      </select>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <textarea id="title" name="title" rows="1" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="note">Note:</label>
+        <textarea id="note" name="note" rows="6" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div id="snackbar"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+   <script>
+     $('select option:nth-child(1)')
+       </script>
+    <script>
+        $("#symbol").append($("#symbol option").remove().sort(function (a, b) {
+            var at = $(a).text(), bt = $(b).text();
+            return (at > bt) ? 1 : ((at < bt) ? -1 : 0);
+        }));
+    </script>
+    <script>
+        $("#status").append($("#status option").remove().sort(function (a, b) {
+            var at = $(a).text(), bt = $(b).text();
+            return (at > bt) ? 1 : ((at < bt) ? -1 : 0);
+        }));
+    </script>
+  <!-- COLOR RED FOR NEGATIVE NUMBERS -->
+  <script>
+    $(document).ready(function () {
+
+      $('td').each(function () {
+
+        var cellvalue = $.trim($(this).text());
+        if (cellvalue.substring(0, 1) == '-') {
+          $(this).wrapInner('<p class="colorred"></p>');
+        }
+      });
+
+    });
+
+  </script>
+
+  <!-- POPULATE OR CLOSE NOTE FORM -->
+  <script>
+    $('.add-note-button').on('click', function () {
+      $('.form-container').show();
+    });
+    $('#closeForm').on('click', function () {
+      $('.form-container').hide(); // Hide the form container
+    });
+  </script>
+
+
+
+  <script>
+    $(document).ready(function () {
+      // Close button click handler
+
+      // Form submission handler (simulated)
+      $('#noteForm').on('submit', function (e) {
+        e.preventDefault();
+        var symbol = $('#symbol').val();
+        var note = $('#note').val();
+        var title = $('#title').val();
+        // Simulated AJAX request
+        console.log("Submitting note for symbol:", symbol, "with note:", note);
+
+        // Close modal (simulated)
+        $('.form-container').hide();
+      });
+
+      // Show form container when clicking on Add Note button
+      $('.add-note-button').on('click', function () {
+        $('.form-container').show();
+      });
+    });
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('#noteForm').on('submit', function (e) {
+        e.preventDefault();
+        var symbol = $('#symbol').val();
+        var status = $('#status').val();
+        var note = $('#note').val();
+        var title = $('#title').val();
+        var date = Date.now();
+        console.log(date)
+        // Post the note to the server
+        $.ajax({
+          type: 'POST',
+          url: '/stocks/add-note',  // Update this URL to your actual endpoint
+          data: { symbol: symbol, note: note, title: title, status: status, date: date },
+          success: function (response) {
+            // Show snackbar on success
+            showSnackbar('Note added successfully!');
+            $('#symbol').val('');
+            $('#note').val('');
+            $('#status').val('');
+          },
+          error: function (error) {
+            // Show snackbar on error
+            showSnackbar('Error adding note.', true);
+            console.log(error) // Passing true to indicate an error
+          }
+        });
+      });
+
+      // Function to display snackbar
+      function showSnackbar(message, isError = false) {
+        var snackbar = $('#snackbar');
+        snackbar.text(message);
+        snackbar.removeClass('error');
+        if (isError) {
+          snackbar.addClass('error');
+        }
+        snackbar.addClass('show');
+        setTimeout(function () {
+          snackbar.removeClass('show');
+        }, 3000); // Hide after 3 seconds
+      }
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+  // Show form container when clicking on Add Note button
+  $('.add-note-button').on('click', function () {
+    // Get the company name from the row where the button was clicked
+    var companyName = $(this).closest('tr').find('td').eq(0).text().trim();
+
+    // Set the selected value of the symbol dropdown to the company name
+    $('#symbol').val(companyName);
+
+    // Show the form container
+    $('.form-container').show();
+  });
+
+  // Close button click handler
+  $('#closeForm').on('click', function () {
+    $('.form-container').hide(); // Hide the form container
+  });
+
+  // Form submission handler
+  $('#noteForm').on('submit', function (e) {
+    e.preventDefault();
+    var symbol = $('#symbol').val();
+    var status = $('#status').val();
+    var note = $('#note').val();
+    var title = $('#title').val();
+    var date = Date.now();
+
+    // Post the note to the server
+    $.ajax({
+      type: 'POST',
+      url: '/user/add-note',  // Update this URL to your actual endpoint
+      data: { symbol: symbol, note: note, title: title, status: status, date: date },
+      success: function (response) {
+        // Show snackbar on success
+        showSnackbar('Note added successfully!');
+        $('#symbol').val('');
+        $('#note').val('');
+        $('#status').val('');
+      },
+      error: function (error) {
+        // Show snackbar on error
+        showSnackbar('Error adding note.', true);
+        console.log(error); // Passing true to indicate an error
+      }
+    });
+  });
+
+  // Function to display snackbar
+  function showSnackbar(message, isError = false) {
+    var snackbar = $('#snackbar');
+    snackbar.text(message);
+    snackbar.removeClass('error');
+    if (isError) {
+      snackbar.addClass('error');
+    }
+    snackbar.addClass('show');
+    setTimeout(function () {
+      snackbar.removeClass('show');
+    }, 3000); // Hide after 3 seconds
+  }
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <style>
+        .hover-chart {
+            position: absolute;
+       
+           margin-top: 0;
+            display: none;
+            width: 50%;
+            height: 300px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+      
+              box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+          th:hover, td:hover {
+            cursor: pointer;
+            background-color: #2D2D37;
+        }
+    </style>
+        <button class="export-btn" onclick="exportToExcel()">Export to Excel</button>
+<table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+  <tr>
+     <td style="background-color: #1B1B1F;"> <p class="statement-title">Income Statement</p></td>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <th style="margin-left: 30px; color: #37ECB1;" scope="col">{{date}}</th>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+     <th scope="row"class="chart-hover-link">Revenue</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{revenue}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Cost of Revenue</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{costOfRevenue}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">R&D Expenses</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{researchAndDevelopmentExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+    <th scope="row"class="chart-hover-link">General Administration</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{generalAndAdministrativeExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Selling & Marketing</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{sellingAndMarketingExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Selling General & Admin</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{sellingGeneralAndAdministrativeExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+   <th scope="row"class="chart-hover-link">Other Expenses</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{otherExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+    <th scope="row"class="chart-hover-link">Operating Expenses</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{operatingExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">General Cost & Expenses</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{otherExpenses}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+    <th scope="row"class="chart-hover-link">Interest Income</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{interestIncome}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Interest Expense</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{interestExpense}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">EBITDA</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{ebitda}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Deprection and Amortization</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{depreciationAndAmortization}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Income Before Tax</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{ebitda}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Operating Income</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{operatingIncome}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+  <th scope="row"class="chart-hover-link">Total Other Income and Expenses</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style="margin: 30px;" class="contribution">{{totalOtherIncomeExpensesNet}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <hr>
+  <tr style="border: 1px white;">
+  <th scope="row"class="chart-hover-link">Net Income</th>
+    {{#if incomeStatement}}
+      {{#each incomeStatement}}
+        <td style=" border-top: 1px solid white; color: #37ECB1" class="contribution">{{netIncome}}</td>
+      {{/each}}
+    {{/if}}
+  </tr>
+  <tr>
+        <th scope="row" class="chart-hover-link">Total Liabilities and Shareholder Equity</th>
+        {{#if incomeStatement}}
+            {{#each incomeStatement}}
+                <td style="border-right: 1px grey; border-top: 1px solid white; color: #0d36ee">
+                         <a style="color: #0d36ee" href="/stocks/sec/{{cik}}">Go to SEC</a>
+                </td>
+            {{/each}}
+        {{/if}}
+    </tr>
+</table>
+<hr>
+
+<div id="hover-chart" class="hover-chart" style="color: white;"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+  $(document).ready(function () {
+    $(".contribution").each(function () { $(this).html(parseFloat($(this).text()).toLocaleString('en-US', { style: 'currency', currency: 'USD' })); })
+  })
+
+</script>
+
+ <script>
+        $(document).ready(function () {
+            $(".contribution").each(function () { 
+                const value = parseFloat($(this).text().replace(/[$,]/g, ''));
+                $(this).data('raw-value', value);
+                $(this).html(value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })); 
+            });
+        });
+
+        function exportToExcel() {
+            const table = document.getElementById('example');
+            const worksheet = XLSX.utils.table_to_sheet(table);
+            const workbook = XLSX.utils.book_new();
+
+            // Iterate through all the cells and convert the formatted currency text back to numbers
+            for (let cell in worksheet) {
+                if (worksheet[cell].t === 's' && worksheet[cell].v && worksheet[cell].v.includes('$')) {
+                    worksheet[cell].v = parseFloat(worksheet[cell].v.replace(/[$,]/g, ''));
+                    worksheet[cell].t = 'n'; // Change the cell type to number
+                }
+            }
+
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Income Statement');
+            XLSX.writeFile(workbook, 'Income_Statement.xlsx');
+        }
+    </script>
+<script>
+        $(document).ready(function () {
+            $(".contribution").each(function () { 
+                const value = parseFloat($(this).text().replace(/[$,]/g, ''));
+                $(this).data('raw-value', value);
+                $(this).html(value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })); 
+            });
+        });
+
+        function exportToExcel() {
+            const table = document.getElementById('example');
+            const worksheet = XLSX.utils.table_to_sheet(table);
+            const workbook = XLSX.utils.book_new();
+
+            // Iterate through all the cells and convert the formatted currency text back to numbers
+            for (let cell in worksheet) {
+                if (worksheet[cell].t === 's' && worksheet[cell].v && worksheet[cell].v.includes('$')) {
+                    worksheet[cell].v = parseFloat(worksheet[cell].v.replace(/[$,]/g, ''));
+                    worksheet[cell].t = 'n'; // Change the cell type to number
+                }
+            }
+
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Income Statement');
+            XLSX.writeFile(workbook, 'Income_Statement.xlsx');
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.chart-hover-link');
+            const hoverChartDiv = document.getElementById('hover-chart');
+
+            links.forEach(link => {
+                link.addEventListener('mouseenter', event => {
+                    const cells = event.currentTarget.closest('tr').querySelectorAll('td');
+                    const data = Array.from(cells).map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')));
+
+                    // Assuming netIncomeData is available
+                    const netIncomeData = [5, 10, 15, 20, 25]; // Replace with actual net income data
+
+                    showChart(event.currentTarget.innerText, data, netIncomeData);
+                    hoverChartDiv.style.display = 'block';
+                    hoverChartDiv.style.top = `${event.clientY + window.scrollY}px`;
+                    hoverChartDiv.style.left = `${event.clientX + window.scrollX}px`;
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    hoverChartDiv.style.display = 'none';
+                    if (window.hoverChart) {
+                        window.hoverChart.dispose();
+                        window.hoverChart = null;
+                    }
+                });
+            });
+
+            function showChart(title, data, netIncomeData) {
+                am4core.ready(function() {
+                    if (window.hoverChart) {
+                        window.hoverChart.dispose();
+                    }
+
+                    var chart = am4core.create("hover-chart", am4charts.XYChart);
+                    window.hoverChart = chart;
+
+                    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                    chart.data = [
+                        { year: "2019", value: data[0], netIncome: netIncomeData[0] },
+                        { year: "2020", value: data[1], netIncome: netIncomeData[1] },
+                        { year: "2021", value: data[2], netIncome: netIncomeData[2] },
+                        { year: "2022", value: data[3], netIncome: netIncomeData[3] },
+                        { year: "2023", value: data[4], netIncome: netIncomeData[4] }
+                    ];
+
+                    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                    categoryAxis.dataFields.category = "year";
+                    categoryAxis.renderer.grid.template.location = 0;
+                    categoryAxis.renderer.labels.template.rotation = 45;
+                    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+                    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+                    categoryAxis.renderer.labels.template.fill = am4core.color("#888888"); // Grey color for axis labels
+
+                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    valueAxis.renderer.minWidth = 35;
+                    valueAxis.renderer.labels.template.fill = am4core.color("#888888"); // Grey color for value labels
+
+                    // Secondary Y-axis for net income
+                    var valueAxis2 = chart.yAxes.push(new am4charts.ValueAxis());
+                    valueAxis2.renderer.opposite = true;
+                    valueAxis2.renderer.grid.template.disabled = true;
+                    valueAxis2.renderer.labels.template.fill = am4core.color("#888888"); // Grey color for secondary axis labels
+
+                    // Bar series
+                    var columnSeries = chart.series.push(new am4charts.ColumnSeries());
+                    columnSeries.name = title;
+                    columnSeries.dataFields.valueY = "value";
+                    columnSeries.dataFields.categoryX = "year";
+                    columnSeries.tooltipText = "{name}: [bold]{valueY}[/]";
+                    columnSeries.columns.template.adapter.add("fill", function(fill, target) {
+                        return am4core.color("#37E59E"); // Set bar color to #37E59E
+                    });
+
+                    // Line series for net income
+                    var lineSeries = chart.series.push(new am4charts.LineSeries());
+                    lineSeries.name = "Net Income";
+                    lineSeries.dataFields.valueY = "netIncome";
+                    lineSeries.dataFields.categoryX = "year";
+                    lineSeries.yAxis = valueAxis2;
+                    lineSeries.stroke = am4core.color("#FF5733"); // Color for line
+                    lineSeries.strokeWidth = 3;
+                    lineSeries.tooltipText = "{name}: [bold]{valueY}[/]";
+                    lineSeries.bullets.push(new am4charts.CircleBullet());
+
+                    chart.cursor = new am4charts.XYCursor();
+                    chart.cursor.lineY.opacity = 0;
+
+                    var legend = chart.legend = new am4charts.Legend();
+                    legend.labels.template.fill = am4core.color("#888888"); // Grey color for legend text
+                    legend.markers.template.fill = am4core.color("#888888"); // Grey color for legend symbols
+
+                    // Add title to the chart
+                    var chartTitle = chart.titles.create();
+                    chartTitle.text = title;
+                    chartTitle.fontSize = 20;
+                    chartTitle.marginBottom = 10;
+                    chartTitle.fill = am4core.color("#888888"); // Grey color for the title
+                    chartTitle.fontFamily = "Montserrat";
+
+                    chart.responsive.enabled = true;
+                });
+            }
+        });
+    </script>

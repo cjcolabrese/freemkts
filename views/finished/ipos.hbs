@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPOs List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* semi-transparent background */
+            z-index: 1000;
+            /* higher z-index to ensure it's above other elements */
+            overflow: auto;
+            /* allow scrolling if content exceeds viewport */
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            top: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            display: none;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .colorred {
+            color: rgb(197, 55, 55);
+            font-weight: 200;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+        }
+
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-button:hover {
+            color: #000;
+        }
+
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            position: absolute z-index: 999;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        #snackbar.error {
+            background-color: #f44336;
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        .mdl-select-workaround {
+            border-style: solid;
+            border-color: #e0e0e0;
+            border-width: 0 0 1px 0;
+            color: #525151;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.4em;
+            font-weight: 400;
+            outline: 0;
+            margin-top: 1.4em;
+            margin-left: 0;
+            width: 250px;
+            text-transform: capitalize;
+        }
+
+        .active {
+            color: #424242;
+        }
+
+        .colorred {
+            color: red;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            top: 60px;
+            bottom: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            display: none;
+            z-index: 1000;
+            overflow: hidden;
+            height: 700px;
+            backdrop-filter: blur(10px);
+            /* Ensure positioning context for absolute positioning of close button */
+        }
+
+
+
+        #symbol {
+            width: 50%;
+            border-radius: 5px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        #status {
+            width: 50%;
+            border-radius: 5px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        #note {
+            width: 100%;
+            border-radius: 5px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        #title {
+            width: 100%;
+            border-radius: 5px;
+            ;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        .add-note-button:hover {
+            color: #37E38B;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: #24242D;
+            border: none;
+            padding: 10px;
+            z-index: 1000;
+            color: #abadad;
+            ;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+
+
+
+
+        tbody tr:nth-child(odd) {
+            background-color: #2E2E38 !important;
+            border: none
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #2A2A35;
+            border: none;
+        }
+
+        #example td {
+            border: none;
+            color: rgb(188, 189, 190);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left !important;
+            font-family: 'Poppins';
+        }
+
+        #example th {
+            color: white;
+            text-align: left !important;
+            font-family: 'Poppins';
+        }
+
+        #example thead {
+            background-color: #24242D;
+            color: white;
+        }
+
+        #example {
+            border-radius: 0;
+            border-style: none;
+        }
+
+        #example a {
+            text-decoration: none;
+            color: #14fa74;
+            font-weight: 400;
+        }
+
+        #example tr:hover {
+            background-color: #24242D;
+        }
+
+        green {
+            color: #14fa74
+        }
+
+
+        .add-note-button i.green {
+            color: green;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company</th>
+                <th>Date</th>
+                <th>Issuance Price</th>
+                <th>Current</th>
+                <th>Return</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each tableData}}
+            <tr>
+
+
+                <td><a href="/stocks/{{company}}">{{company}}</a></td>
+                <td>{{symbol}}</td>
+                <td>{{date}}</td>
+                <td>{{price}}</td>
+                <td>{{current}}</td>
+                <td>{{return}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+
+</html>

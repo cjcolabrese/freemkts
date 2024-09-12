@@ -1,0 +1,860 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<style>
+    body {
+        background-color: #1E1F26;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+        margin: 0 auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin: 0 auto;
+    }
+
+    table,
+    th,
+    td {
+        border: none;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+    }
+
+    th {
+        background-color: #202020;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #2E2E38;
+        color: white;
+    }
+
+    th {
+        cursor: pointer;
+    }
+
+    .statistic-table,
+    .stat-description-table {
+        margin-top: 20px;
+    }
+
+    .tooltip {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 12px;
+    }
+</style>
+
+
+<style>
+    .popup {
+        display: none;
+        position: absolute;
+        background-color: #24242D;
+        border: none;
+        padding: 20px;
+        /* Increase padding for larger popup */
+        z-index: 1000;
+        color: #abadad;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .popup .chartDiv {
+        width: 100%;
+        height: 500px;
+        /* Adjust height as needed for your chart */
+    }
+
+    #return {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #wacc {
+        margin: 0 auto;
+        text-align: center;
+    }
+</style>
+{{#each combinedData.profilePage}}
+<title>{{companyName}}</title>
+{{/each}}
+<div class="mdl-cell mdl-cell--6-col">
+
+
+</div>
+<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+
+
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">{{#each combinedData.profilePage}}
+        <img class="corpLogo" style="height: 80px; width: 80px; margin: 0 auto;" src="{{image}}">
+        {{/each}}
+        {{#each combinedData.profilePage}}
+        <h2 class="desc-text mdl-card__title-text" style="width: 100%; margin: 20px;">{{companyName}}: {{symbol}}</h2>
+        <h2 id="return" style="font-size: 18px; margin: 0 auto !important;"></h2>
+        <div id="wacc">Loading WACC...</div>
+        {{/each}}
+
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        {{#each combinedData.profilePage}}
+
+
+        {{/each}}
+    </div>
+</div>
+
+<div class="loader"></div>
+
+
+
+
+<script>
+    function updateReturnValue(value) {
+        const returnElement = document.getElementById('return');
+        console.log('Return element:', returnElement); // Debug line
+        returnElement.textContent = value;
+        console.log('Value:', value); // Debug line
+
+        if (value < 0) {
+            returnElement.style.color = 'red';
+            console.log('Color set to red'); // Debug line
+        } else {
+            returnElement.style.color = 'green';
+            console.log('Color set to green'); // Debug line
+        }
+    }
+
+    // Example usage:
+
+</script>
+
+
+
+
+
+
+
+
+<div class="mdl-grid">
+
+    {{#each combinedData.profilePage}}
+    <div class="mdl-cell mdl-cell--4-col" style="color:#A5A4A4 line-height: 1.6; color: #A5A4A4;">
+        <p class="statement-title">Description</p>
+        <hr>
+        {{description}}
+    </div>
+    <div class="mdl-cell mdl-cell--8-col">
+        <div id="chartDiv" style="width: 100%; height: 600px;"></div>
+    </div>
+    {{/each}}
+</div>
+<hr>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <a href="/stocks/income-statement/{{symbol}}" class="statement-title" style="float: left;">Income
+            Statement</a>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <a href="/stocks/balance-sheet/{{symbol}}" class="statement-title" style="float: left;">Balance Sheet</a><br>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <a href="/stocks/cashflow-statement/{{symbol}}" class="statement-title"
+            style="float: left;">Cashflow-Statement</a>
+    </div>
+</div>
+<hr>
+
+<div class="mdl-grid" style="padding: 0; margin: 0 auto;">
+    <div class="mdl-cell mdl-cell--6-col">
+
+        <p class="statement-title">Peers</p>
+        {{#each combinedData.peers}}
+
+        <br>
+        <a class="statement-title" href="/stocks/{{slug}}">{{company}} </a>
+        <div style="margin-right: 0; float: right; color: rgb(121, 121, 121);">YTD Return:<span class="peer-return"
+                id="return_{{slug}}"></span></div>
+        <div id="chartDiv_{{slug}}" class="chartDiv" style="height: 200px; width: 100%"></div>
+        <br>
+
+
+
+        {{/each}}
+
+
+    </div>
+    <div class="mdl-cell mdl-cell--6-col" style="color: #A5A4A4">
+        <p class="statement-title">Headlines</p>
+        <ul class="demo-list-two mdl-list"
+            style="color: #A5A4A4; width: 70% !important, margin-right: 20px !important;">
+            {{#each combinedData.headlines}}
+            <li class="mdl-list__item mdl-list__item--two-line" style="color: #A5A4A4">
+                <span class="mdl-list__item-primary-content">
+                    <!-- <i class="material-icons mdl-list__item-avatar"></i>  -->
+                    <span>{{headline}}</span>
+                    <span class="mdl-list__item-sub-title" style="color: #757575;">
+                        {{description}}
+                    </span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    <span class="mdl-list__item-secondary-info"></span>
+                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons"
+                            style="color:rgb(51, 221, 179) !important">
+                            <a href="{{url}}"> <span class="material-symbols-outlined"
+                                    style="color:rgb(51, 221, 179) !important">
+                                    view_timeline
+                                </span></a>
+                        </i>
+                    </a>
+                </span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<hr>
+
+<p class="statement-title">Regression Analysis</p>
+<div id="chartdiv-regression" style="height: 500px;"></div>
+<table class="statistic-table">
+    <thead>
+        <tr>
+            <th>Statistic</th>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="regression-hover">Slope</td>
+            <td id="slope"></td>
+            <td>The rate of change of the dependent variable (closing price) with respect to the independent variable
+                (volume).</td>
+        </tr>
+        <tr>
+            <td class="regression-hover">Intercept</td>
+            <td id="intercept"></td>
+            <td>The value of the dependent variable (closing price) when the independent variable (volume) is zero.</td>
+        </tr>
+        <tr>
+            <td>R-squared</td>
+            <td id="r_squared"></td>
+            <td>A measure of how well the regression line approximates the real data points.</td>
+        </tr>
+        <tr>
+            <td>Forecasted Price</td>
+            <td id="forecasted_price"></td>
+            <td>The projected price of AAPL based on the regression model for the next day.</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="stat-description-table">
+    <thead>
+        <tr>
+            <th>Statistic</th>
+            <th>Explanation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Slope</td>
+            <td>The slope of the regression line represents the relationship between volume and price. A steeper slope
+                indicates a stronger relationship.</td>
+        </tr>
+        <tr>
+            <td>Intercept</td>
+            <td>The intercept is the expected value of the price when the volume is zero. It gives an estimate of the
+                base price level.</td>
+        </tr>
+        <tr>
+            <td>R-squared</td>
+            <td>The R-squared value indicates how well the regression model fits the data. A higher value means a better
+                fit.</td>
+        </tr>
+        <tr>
+            <td>Forecasted Price</td>
+            <td>The forecasted price is the expected stock price based on the regression model using the most recent
+                volume data.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!--------------------------------WACC------------------------->
+
+
+{{#each combinedData.profilePage}}
+<script>
+    async function fetchFinancialData(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.statusText}`);
+        }
+        return response.json();
+    }
+
+    async function calculateWACC() {
+        const apiKey = '5302d703f001380f9c34fbf2d1b508f1'; // Replace with your FMP API key
+        const symbol = '{{symbol}}';
+
+        try {
+            const profileUrl = `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${apiKey}`;
+            const incomeStatementUrl = `https://financialmodelingprep.com/api/v3/income-statement/${symbol}?apikey=${apiKey}&limit=1`;
+            const balanceSheetUrl = `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?apikey=${apiKey}&limit=1`;
+
+            const [profile, incomeStatement, balanceSheet] = await Promise.all([
+                fetchFinancialData(profileUrl),
+                fetchFinancialData(incomeStatementUrl),
+                fetchFinancialData(balanceSheetUrl),
+            ]);
+
+            if (!profile.length || !incomeStatement.length || !balanceSheet.length) {
+                throw new Error('Incomplete data fetched from APIs.');
+            }
+
+            const marketCap = profile[0].mktCap;
+            const totalDebt = balanceSheet[0].totalDebt;
+            const riskFreeRate = 0.02; // Assume a risk-free rate of 2%
+            const beta = profile[0].beta;
+            const marketRiskPremium = 0.05; // Assume a market risk premium of 5%
+            const interestExpense = incomeStatement[0].interestExpense;
+            const ebitda = incomeStatement[0].ebitda; // Using EBITDA
+            const depreciationAndAmortization = incomeStatement[0].depreciationAndAmortization;
+            const incomeTaxExpense = incomeStatement[0].incomeTaxExpense;
+
+            if (ebitda === undefined || ebitda === 0) {
+                throw new Error('EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization) is missing or zero.');
+            }
+
+            if (depreciationAndAmortization === undefined) {
+                throw new Error('Depreciation and Amortization data is missing.');
+            }
+
+            const ebit = ebitda - depreciationAndAmortization; // Calculate EBIT
+            const taxRate = incomeTaxExpense ? (incomeTaxExpense / ebit) : 0;
+
+            if (!marketCap || !totalDebt || !interestExpense) {
+                throw new Error('One or more required financial metrics are missing.');
+            }
+
+            const costOfEquity = riskFreeRate + beta * marketRiskPremium;
+            const costOfDebt = interestExpense / totalDebt;
+            const totalValue = marketCap + totalDebt;
+
+            if (!totalValue) {
+                throw new Error('Total value (market cap + total debt) is zero.');
+            }
+
+            const wacc = (marketCap / totalValue) * costOfEquity + (totalDebt / totalValue) * costOfDebt * (1 - taxRate);
+
+            // Multiply WACC by 100 to get percentage and update the DOM element
+            const waccPercentage = (wacc * 100).toFixed(2); // Two decimal places
+
+            document.getElementById('wacc').textContent = `WACC: ${waccPercentage}%`;
+        } catch (error) {
+            console.error('Error calculating WACC:', error);
+            document.getElementById('wacc').textContent = 'Error calculating WACC';
+        }
+    }
+
+    // Call the function when the script loads
+    window.onload = calculateWACC;
+</script>
+
+{{/each}}
+<!--------------MAIN CHART----------------->
+<script>
+    $(document).ready(function () {
+        { { #each combinedData.profilePage } }
+        const slug = "{{symbol}}";
+        { {/each } }
+        const apiKey = "4216929bd9ab486f8777c3967fd35abf";
+        const startDate = "2024-01-01";
+
+        // Fetch historical data
+        fetch(`https://api.twelvedata.com/time_series?symbol=${slug}&interval=1day&start_date=${startDate}&outputsize=5000&apikey=${apiKey}&order=asc`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Ensure data is available
+                if (data.values && data.values.length > 0) {
+                    const values = data.values;
+                    const startPrice = parseFloat(values[0].close); // Price on startDate
+                    const lastPrice = parseFloat(values[values.length - 1].close); // Last recorded price
+                    const returnPercentage = ((lastPrice - startPrice) / startPrice) * 100;
+
+                    // Display return percentage
+                    document.getElementById(`return_${slug}`).innerText = `${returnPercentage.toFixed(2)}%`;
+
+                    // Create chart instance
+                    var chart = am4core.create(`chartDiv_${slug}`, am4charts.XYChart);
+
+                    // Set theme to dark
+                    chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+                    chart.background.fill = am4core.color("#FFFFFF00"); // Transparent background
+                    chart.responsive.enabled = true;
+                    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+                    // Create axes
+                    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                    dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+                    dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+                    dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+                    dateAxis.renderer.labels.template.fontSize = 12;
+
+                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+                    valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+                    valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+                    valueAxis.renderer.labels.template.fontSize = 12;
+
+                    // Create series
+                    var series = chart.series.push(new am4charts.LineSeries());
+                    series.dataFields.valueY = "close";
+                    series.dataFields.dateX = "datetime";
+                    series.strokeWidth = 2;
+                    series.tooltipText = "{valueY}";
+                    series.tooltip.getFillFromObject = false;
+                    series.tooltip.background.fill = am4core.color("#333333");
+                    series.tooltip.label.fill = am4core.color("#FFFFFF");
+                    series.tooltip.label.fontSize = 12;
+                    series.tooltip.pointerOrientation = "vertical";
+
+                    // Set data
+                    chart.data = values;
+
+                    // Add cursor
+                    chart.cursor = new am4charts.XYCursor();
+
+                    // Add title
+                    var title = chart.titles.create();
+                    title.text = "{{company}} Stock Price"; // Title dynamically set to company name
+                    title.fontSize = 20;
+                    title.marginBottom = 10;
+                    title.fill = am4core.color("#37EFBA");
+
+                    // Add legend
+                    chart.legend = new am4charts.Legend();
+                    chart.legend.labels.template.fill = am4core.color("#FFFFFF"); // Legend text color
+                    chart.legend.fontSize = 12;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+</script>
+<!---------------------REGRESSION------------------------->
+<script>
+    const apiKey = '4216929bd9ab486f8777c3967fd35abf';
+    const aaplSymbol = 'AAPL';
+    const sp500Symbol = 'SPY';
+    const startDate = '2015-01-01';
+    const endDate = '2024-08-26';
+    const aaplUrl = `https://api.twelvedata.com/time_series?symbol=${aaplSymbol}&interval=1day&start_date=${startDate}&end_date=${endDate}&apikey=${apiKey}`;
+    const sp500Url = `https://api.twelvedata.com/time_series?symbol=${sp500Symbol}&interval=1day&start_date=${startDate}&end_date=${endDate}&apikey=${apiKey}`;
+
+    Promise.all([fetch(aaplUrl), fetch(sp500Url)])
+        .then(responses => Promise.all(responses.map(response => response.json())))
+        .then(([aaplData, sp500Data]) => {
+            const aaplPrices = aaplData.values;
+            const sp500Prices = sp500Data.values;
+
+            if (!aaplPrices || !sp500Prices) return;
+
+            const aaplDataPoints = aggregateMonthlyData(aaplPrices);
+            const sp500DataPoints = aggregateMonthlyData(sp500Prices, true);
+
+            const regressionResult = performRegression(aaplDataPoints);
+            document.getElementById('slope').innerText = regressionResult.slope.toFixed(2);
+            document.getElementById('intercept').innerText = regressionResult.intercept.toFixed(2);
+            document.getElementById('r_squared').innerText = calculateRSquared(aaplDataPoints, regressionResult).toFixed(2);
+
+            const nextVolume = aaplDataPoints[aaplDataPoints.length - 1].volume;
+            const forecastedPrice = regressionResult.slope * nextVolume + regressionResult.intercept;
+            document.getElementById('forecasted_price').innerText = forecastedPrice.toFixed(2);
+
+            drawChart(aaplDataPoints, sp500DataPoints, regressionResult);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+
+    function aggregateMonthlyData(data, isSp500 = false) {
+        const monthlyData = {};
+
+        data.forEach(point => {
+            const date = new Date(point.datetime);
+            const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
+
+            if (!monthlyData[monthKey]) {
+                monthlyData[monthKey] = { volume: 0, close: 0, count: 0 };
+            }
+
+            monthlyData[monthKey].volume += parseFloat(point.volume || 0);
+            monthlyData[monthKey].close += parseFloat(point.close);
+            monthlyData[monthKey].count += 1;
+        });
+
+        return Object.keys(monthlyData).map(monthKey => ({
+            date: new Date(`${monthKey}-01`).toISOString().split('T')[0],
+            volume: monthlyData[monthKey].volume / monthlyData[monthKey].count,
+            close: isSp500
+                ? monthlyData[monthKey].close / monthlyData[monthKey].count
+                : monthlyData[monthKey].close / monthlyData[monthKey].count
+        }));
+    }
+
+    function performRegression(dataPoints) {
+        const n = dataPoints.length;
+        let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+
+        dataPoints.forEach(point => {
+            sumX += point.volume;
+            sumY += point.close;
+            sumXY += point.volume * point.close;
+            sumXX += point.volume * point.volume;
+        });
+
+        const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+        const intercept = (sumY - slope * sumX) / n;
+
+        return { slope, intercept };
+    }
+
+    function calculateRSquared(dataPoints, regressionResult) {
+        const n = dataPoints.length;
+        let sumResiduals = 0, sumTotal = 0;
+
+        const meanY = dataPoints.reduce((acc, point) => acc + point.close, 0) / n;
+
+        dataPoints.forEach(point => {
+            const predictedY = regressionResult.slope * point.volume + regressionResult.intercept;
+            sumResiduals += Math.pow(point.close - predictedY, 2);
+            sumTotal += Math.pow(point.close - meanY, 2);
+        });
+
+        return 1 - (sumResiduals / sumTotal);
+    }
+
+    function drawChart(aaplDataPoints, sp500DataPoints, regressionResult) {
+        am4core.ready(function () {
+            var chart = am4core.create("chartdiv-regression", am4charts.XYChart);
+
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#7989FF"), am4core.color("#A5A4A4")];
+            chart.background.fill = am4core.color("#1E1F26");
+
+            chart.data = aaplDataPoints.map((point, index) => ({
+                date: point.date,
+                aaplClose: point.close,
+                sp500Close: sp500DataPoints[index] ? sp500DataPoints[index].close : null,
+                regressionLine: regressionResult.slope * point.volume + regressionResult.intercept
+            }));
+
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.grid.template.disabled = true;
+            dateAxis.renderer.labels.template.fill = am4core.color("#37EFBA");
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.grid.template.disabled = true;
+            valueAxis.renderer.labels.template.fill = am4core.color("#37EFBA");
+
+            var series1 = chart.series.push(new am4charts.LineSeries());
+            series1.dataFields.valueY = "aaplClose";
+            series1.dataFields.dateX = "date";
+            { { #each combinedData.profilePage } }
+            series1.name = "{{symbol}} Price";
+            { {/each } }
+            series1.strokeWidth = 2;
+            series1.tensionX = 0.8;
+
+            var series2 = chart.series.push(new am4charts.LineSeries());
+            series2.dataFields.valueY = "sp500Close";
+            series2.dataFields.dateX = "date";
+            series2.name = "S&P 500 Price";
+            series2.strokeWidth = 2;
+            series2.tensionX = 0.8;
+
+            var regressionSeries = chart.series.push(new am4charts.LineSeries());
+            regressionSeries.dataFields.valueY = "regressionLine";
+            regressionSeries.dataFields.dateX = "date";
+            regressionSeries.name = "Regression Line";
+            regressionSeries.strokeWidth = 2;
+            regressionSeries.tensionX = 0.8;
+
+            chart.legend = new am4charts.Legend();
+            chart.legend.position = "top";
+            chart.legend.labels.template.fill = am4core.color("#37EFBA");
+
+            series1.hiddenState.properties.opacity = 0;
+            series2.hiddenState.properties.opacity = 0;
+            regressionSeries.hiddenState.properties.opacity = 0;
+
+            series1.tooltipText = "AAPL: [bold]{valueY}[/]";
+            series2.tooltipText = "S&P 500: [bold]{valueY}[/]";
+            regressionSeries.tooltipText = "Regression: [bold]{valueY}[/]";
+
+            chart.cursor = new am4charts.XYCursor();
+            chart.cursor.lineX.stroke = am4core.color("#37EFBA");
+            chart.cursor.lineY.stroke = am4core.color("#37EFBA");
+        });
+    }
+
+    document.querySelectorAll('.regression-hover').forEach(item => {
+        item.addEventListener('mouseover', event => {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.textContent = event.target.nextElementSibling.textContent;
+            tooltip.style.display = 'block';
+            tooltip.style.left = `${event.pageX}px`;
+            tooltip.style.top = `${event.pageY}px`;
+        });
+
+        item.addEventListener('mouseout', () => {
+            document.getElementById('tooltip').style.display = 'none';
+        });
+    });
+
+</script>
+
+
+
+
+
+
+<!-- ADD STOCK VIA ADD-STOCK BUTTON -->
+<script>
+    $(document).ready(function () {
+        $('#addStockBtn').click(function () {
+            var symbol = $(this).data('symbol');
+            console.log('Button clicked. Symbol:', symbol);
+
+            $.ajax({
+                type: 'POST',
+                url: '/stocks/user-stocks',
+                data: { search: symbol },
+                success: function (response) {
+                    console.log('Stock added successfully:', response);
+
+                    var snackbarContainer = document.querySelector('#snackbar');
+                    var data = {
+                        message: symbol + ' added successfully',
+                        timeout: 3000, // Display for 3 seconds
+                        actionText: 'View',
+                        actionHandler: function () {
+                            // Handle action, e.g., navigate to a page
+                            { { #each combinedData.profilePage } }
+                            window.location.href = '/stocks/{{symbol}}';
+                            {
+                                {
+                                    /each}} / / Redirect to user stocks page
+                                }
+                            };
+                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
+                            // Hide the add button after successful addition
+                            $('#addStockBtn').hide();
+                        },
+                        error: function (error) {
+                            console.error('Error adding stock:', error);
+
+                            var errorMessage = error.responseJSON && error.responseJSON.error ? error.responseJSON.error : 'Error adding stock';
+
+                            var snackbarContainer = document.querySelector('#snackbar');
+                            var data = {
+                                message: errorMessage,
+                                timeout: 3000 // Display error message for 3 seconds
+                            };
+                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                        }
+                    });
+        });
+    });
+</script>
+
+{{#each combinedData.profilePage}}
+<script>
+
+    fetch(`https://api.twelvedata.com/time_series?symbol={{symbol}}&interval=1week&start_date=2020-01-01&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create chart instance
+            var chart = am4core.create("chartDiv", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1E1F26"); // Updated background color
+            chart.background.fillOpacity = 1; // Ensures the background color is fully opaque
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "datetime";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = data.values;
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "{{companyName}} Stock Price";
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+            title.fontFamily = "Montserrat";
+
+            // Add legend
+            chart.legend = new am4charts.Legend();
+            chart.legend.labels.template.fill = am4core.color("#FFFFFF"); // Legend text color
+            chart.legend.fontSize = 12;
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+</script>
+{{/each}}
+
+<script>
+
+    $(document).ready(function () {
+        $(".contribution").each(function () { $(this).html(parseFloat($(this).text()).toLocaleString('en-US', { style: 'currency', currency: 'USD' })); })
+    })
+
+</script>
+
+<!-----------------------LOADER----------------------------->
+
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.querySelector(".loader");
+
+        loader.classList.add("loader--hidden");
+
+        loader.addEventListener("transitionend", () => {
+            document.body.removeChild(loader);
+        });
+    });
+
+</script>
+
+
+
+<!-------------------------FORMAT NEGATIVE NUMBER COLOR--------------------->
+<script>
+    $(document).ready(function () {
+
+        $('td').each(function () {
+
+            var cellvalue = $.trim($(this).text());
+            if (cellvalue.substring(0, 1) == '-') {
+                $(this).wrapInner('<p class="colorred"></p>');
+            }
+        });
+
+    });
+
+</script>
+
+
+
+<!------------------------------RETURN FORMULA------------------------------  -->
+{{#each combinedData.profilePage}}
+<script>
+    $(document).ready(function () {
+        // Assuming symbol is provided in the Handlebars context
+        const symbol = "{{symbol}}";
+        console.log('Fetching data from ' + symbol);
+        console.log(symbol); // Replace with your actual symbol or use a dynamic value
+
+        const apiKey = '4216929bd9ab486f8777c3967fd35abf'; // Replace with your 12data API key
+
+        // Fetch historical stock data
+        $.ajax({
+            url: `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&start_date=2024-01-01&outputsize=5000&apikey=${apiKey}&order=asc`,
+            method: 'GET',
+            success: function (data) {
+                if (data && data.values && data.values.length > 0) {
+                    // Extract the first and most recent prices
+                    const firstPrice = parseFloat(data.values[0].close);
+                    console.log('First Price:', firstPrice);
+                    const mostRecentPrice = parseFloat(data.values[data.values.length - 1].close);
+                    console.log('Most Recent Price:', mostRecentPrice);
+
+                    // Calculate the return
+                    const returnValue = (mostRecentPrice - firstPrice) / firstPrice;
+
+                    // Display the return value
+                    $('#return').text(`YTD Return: ${(returnValue * 100).toFixed(2)}%`);
+                } else {
+                    $('#return').text('No data available for the specified symbol.');
+                }
+            },
+            error: function () {
+                $('#return').text('Error fetching data');
+            }
+        });
+    });
+</script>
+{{/each}}

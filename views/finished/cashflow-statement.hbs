@@ -1,0 +1,425 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+        .hover-chart {
+            position: fixed;
+            display: none;
+            width: 600px;
+            height: 300px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+            z-index: 1000;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th:hover, td:hover {
+            cursor: pointer;
+            background-color: #2D2D37;
+        }
+    </style>
+</head>
+<body>
+    <button class="export-btn" onclick="exportToExcel()">Export to Excel</button>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+        <tr>
+            <td style="background-color: #1B1B1F;">
+                <p class="statement-title">Cashflow Statement</p>
+            </td>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <th style="margin-left: 30px; color: #37ECB1" scope="col">{{date}}</th>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Net Income</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{netIncome}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Depreciation and Amortization</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{depreciationAndAmortization}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Deferred Income Tax</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{deferredIncomeTax}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Stock Compensation</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{stockBasedCompensation}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Change in Working Capital</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{changeInWorkingCapital}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Accounts Receivable</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{accountsReceivables}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Accounts Payable</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{accountsPayables}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Inventory</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{inventory}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Other Working Capital</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{otherWorkingCapital}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Other Non-Cash Items</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{otherNonCashItems}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Net Cash from Operations</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{netCashProvidedByOperatingActivities}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">PP&E Investments</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{investmentsInPropertyPlantAndEquipment}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Net Acquisitions</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{acquisitionsNet}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Investment Purchases</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{purchasesOfInvestments}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Sales in Maturing Investments</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{salesMaturitiesOfInvestments}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Other Investment Activities</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{otherInvestingActivites}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Net Cash Used for Investment</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{netCashUsedForInvestingActivites}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Repayment of Debt</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{debtRepayment}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Common Stock Issued</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{commonStockIssued}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Common Stock Repurchased</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{commonStockRepurchased}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Dividends Paid</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{dividendsPaid}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Other Financing Activities</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{otherFinancingActivites}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Net Cash Provided by Financing</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{netCashProvidedByFinancingActivities}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Effect of Exchange Rate</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{effectOfForeignExchangeRate}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Net Change in Cash</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{netChangeInCash}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Cash at End of Period</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{cashAtEndOfPeriod}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Cash at Beginning of Period</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="margin: 30px;" class="contribution">{{cashAtBeginningOfPeriod}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+            <th scope="row" class="chart-hover-link">Free Cash Flow</th>
+            {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+            <td style="border-top: 1px solid white; color: #37ECB1" class="contribution">{{freeCashFlow}}</td>
+            {{/each}}
+            {{/if}}
+        </tr>
+        <tr>
+        <th scope="row" class="chart-hover-link">Total Liabilities and Shareholder Equity</th>
+        {{#if cashFlowStatement}}
+            {{#each cashFlowStatement}}
+                <td style="border-right: 1px grey; border-top: 1px solid white; color: #0d36ee">
+                         <a style="color: #0d36ee" href="/stocks/sec/{{cik}}">Go to SEC</a>
+                </td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    </table>
+    <div id="hover-chart" class="hover-chart"></div>
+    <script>
+        $(document).ready(function () {
+            $(".contribution").each(function () {
+                const value = parseFloat($(this).text().replace(/[$,]/g, ''));
+                $(this).data('raw-value', value);
+                $(this).html(value.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+            });
+        });
+
+        function exportToExcel() {
+            const table = document.querySelector('table');
+            const worksheet = XLSX.utils.table_to_sheet(table);
+            const workbook = XLSX.utils.book_new();
+
+            for (let cell in worksheet) {
+                if (worksheet[cell].t === 's' && worksheet[cell].v && worksheet[cell].v.includes('$')) {
+                    worksheet[cell].v = parseFloat(worksheet[cell].v.replace(/[$,]/g, ''));
+                    worksheet[cell].t = 'n';
+                }
+            }
+
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Cashflow Statement');
+            XLSX.writeFile(workbook, 'Cashflow_Statement.xlsx');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.chart-hover-link');
+            const hoverChartDiv = document.getElementById('hover-chart');
+
+            links.forEach(link => {
+                link.addEventListener('mouseenter', event => {
+                    const row = event.currentTarget.closest('tr');
+                    const cells = row.querySelectorAll('td');
+                    const data = Array.from(cells).map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')));
+
+                    const table = row.closest('table');
+                    const lastRow = table.querySelector('tr:last-child');
+                    const fcfCells = lastRow.querySelectorAll('td');
+                    const fcfData = Array.from(fcfCells).map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')));
+
+                    showChart(event.currentTarget.innerText, data, fcfData);
+                    hoverChartDiv.style.display = 'block';
+                    hoverChartDiv.style.top = `${event.clientY + window.scrollY}px`;
+                    hoverChartDiv.style.left = `${event.clientX + window.scrollX}px`;
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    hoverChartDiv.style.display = 'none';
+                    if (window.hoverChart) {
+                        window.hoverChart.dispose();
+                        window.hoverChart = null;
+                    }
+                });
+            });
+
+            function showChart(title, data, fcfData) {
+                am4core.ready(function() {
+                    if (window.hoverChart) {
+                        window.hoverChart.dispose();
+                    }
+
+                    var chart = am4core.create("hover-chart", am4charts.XYChart);
+                    window.hoverChart = chart;
+
+                    chart.hiddenState.properties.opacity = 0;
+
+                    chart.data = [
+                        { year: "2019", value: data[0], fcf: fcfData[0] },
+                        { year: "2020", value: data[1], fcf: fcfData[1] },
+                        { year: "2021", value: data[2], fcf: fcfData[2] },
+                        { year: "2022", value: data[3], fcf: fcfData[3] },
+                        { year: "2023", value: data[4], fcf: fcfData[4] }
+                    ];
+
+                    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                    categoryAxis.dataFields.category = "year";
+                    categoryAxis.renderer.grid.template.location = 0;
+                    categoryAxis.renderer.labels.template.rotation = 45;
+                    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+                    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+                    categoryAxis.renderer.labels.template.fill = am4core.color("grey");
+
+                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    valueAxis.renderer.minWidth = 35;
+                    valueAxis.renderer.labels.template.fill = am4core.color("grey");
+
+                    var secondaryValueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    secondaryValueAxis.renderer.opposite = true;
+                    secondaryValueAxis.renderer.grid.template.disabled = true;
+                    secondaryValueAxis.renderer.labels.template.fill = am4core.color("grey");
+
+                    var series = chart.series.push(new am4charts.ColumnSeries());
+                    series.name = title;
+                    series.dataFields.valueY = "value";
+                    series.dataFields.categoryX = "year";
+                    series.tooltipText = "{name}: [bold]{valueY}[/]";
+                    series.columns.template.adapter.add("fill", function(fill, target) {
+                        return am4core.color("#36DF8B");
+                    });
+
+                    var fcfSeries = chart.series.push(new am4charts.LineSeries());
+                    fcfSeries.name = "Free Cash Flow";
+                    fcfSeries.dataFields.valueY = "fcf";
+                    fcfSeries.dataFields.categoryX = "year";
+                    fcfSeries.yAxis = secondaryValueAxis;
+                    fcfSeries.stroke = am4core.color("#FF5733");
+                    fcfSeries.strokeWidth = 2;
+                    fcfSeries.tooltipText = "{name}: [bold]{valueY}[/]";
+
+                    chart.cursor = new am4charts.XYCursor();
+                    chart.cursor.lineY.opacity = 0;
+
+                    var legend = chart.legend = new am4charts.Legend();
+                    legend.labels.template.fill = am4core.color("grey");
+                    legend.markers.template.fill = am4core.color("grey");
+
+                    var chartTitle = chart.titles.create();
+                    chartTitle.text = title;
+                    chartTitle.fontSize = 20;
+                    chartTitle.marginBottom = 10;
+                    chartTitle.fill = am4core.color("grey");
+                    chartTitle.fontFamily = "Montserrat";
+
+                    chart.responsive.enabled = true;
+                });
+            }
+        });
+    </script>
+  <script>
+        $(document).ready(function () {
+
+            $('td').each(function () {
+
+                var cellvalue = $.trim($(this).text());
+                if (cellvalue.substring(0, 1) == '-') {
+                    $(this).wrapInner('<p class="negative-number"></p>');
+                }
+            });
+
+        });
+
+    </script>
+    <style>
+      .negative-number {
+      color: rgb(233, 19, 19);
+      }
+    </style>

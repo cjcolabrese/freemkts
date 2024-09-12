@@ -1,0 +1,26 @@
+<style>
+  .item:hover {
+color:aqua;
+  
+  }
+</style>
+
+<table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example"
+  style="margin: 0 auto; width: 100%;">
+  <thead style="font-size: 18px; font-family: Poppins; font-weight: 200;">
+    <tr>
+      <th style="font-size: 18px;">Item</th>
+      <th style="font-size: 18px;">Description</th>
+      
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each items}}
+      <tr>
+        <td class="item" ><a href="/realestate/{{code}}">{{item}}</a> </td>
+        <td>{{description}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

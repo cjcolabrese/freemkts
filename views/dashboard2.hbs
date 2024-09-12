@@ -1,0 +1,1008 @@
+<style>
+    #chartdiv1 {
+        width: 100%;
+        height: 300px;
+        background-color: #1B1B1F;
+        border-radius: 10px;
+    }
+
+    .colorred {
+        color: red;
+    }
+
+    .positive {
+        color: green;
+    }
+
+    .negative {
+        color: red;
+    }
+
+    #chartdiv2 {
+        width: 100%;
+        height: 300px;
+        background-color: #1B1B1F;
+    }
+
+    #chartdiv3 {
+        width: 100%;
+        height: 300px;
+        background-color: #1B1B1F;
+    }
+
+    .example {
+        max-width: 600px;
+        
+    }
+       .chart-container {
+            width: 100%;
+            height: 400px;
+        }
+    .example td {
+            border: none;
+            color: rgb(188, 189, 190);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left !important;
+            font-family: 'Poppins';
+        }
+
+        .example th {
+            color: white;
+            text-align: left !important;
+     font-family: 'Poppins';
+        }
+
+        .example thead {
+            background-color: #24242D;
+            color: white;
+        }
+
+        .example {
+            border-radius: 0;
+            border-style: none;
+        }
+
+        .example a {
+            text-decoration: none;
+            color: #39ea9f;
+            font-weight: 400;
+        }
+
+        .example tr:hover {
+            background-color: #24242D;
+        }
+    </style>
+ <p style="font-size: 24px; color:#37eeb9; font-family: Poppins;">Equities Dashboard</p>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <div id="chartdiv1" class="mdl-shadow--6dp"></div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <div id="chartdiv2" class="mdl-shadow--6dp"></div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <div id="chartdiv3" class="mdl-shadow--6dp"></div>
+    </div>
+</div>
+
+<div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col">
+                    <p style="color:#37eeb9; font-family: Poppins;">Most Active</p>
+<table class="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example">
+             <thead style=" font-size: 18px; font-family: Poppins; font-weight: 200;">
+                <tr>
+                    <th style="font-family: Poppins; font-size: 14px;">Company</th>
+                  <th style="font-family: Poppins; font-size: 14px;">Symbol</th>
+                  <th style="font-family: Poppins; font-size: 14px;">Change %</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each mostActive}}
+                <tr>
+                    <td><a class="stock-link" href="/stocks/{{ticker}}" data-symbol="{{ticker}}">{{ticker}} </a
+                            style="color: #2CEFAC"></td>
+                    <td>{{companyName}}</td>
+                    <td>{{changesPercentage}}%</td>
+                
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <p style="color:#37eeb9; font-family: Poppins;">Largest Gains</p>
+<table class="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example">
+             <thead style=" font-size: 18px; font-family: Poppins; font-weight: 200;">
+                <tr>
+                    <th style="font-family: Poppins; font-size: 14px;">Company</th>
+                  <th style="font-family: Poppins; font-size: 14px;">Symbol</th>
+                  <th style="font-family: Poppins; font-size: 14px;">Change %</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each gainers}}
+                <tr>
+                    <td><a class="stock-link" href="/stocks/{{ticker}}" data-symbol="{{ticker}}">{{ticker}} </a
+                            style="color: #2CEFAC"></td>
+                    <td>{{companyName}}</td>
+                    <td>{{changesPercentage}}%</td>
+                
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mdl-cell mdl-cell--4-col">
+          <p style="color:#37eeb9; font-family: Poppins;">Largest Losses</p>
+        <table class="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example">
+             <thead style=" font-size: 18px; font-family: Poppins; font-weight: 200;">
+                <tr>
+                    <th style="font-family: Poppins; font-size: 14px;">Company</th>
+                  <th style="font-family: Poppins; font-size: 14px;">Symbol</th>
+                  <th style="font-family: Poppins; font-size: 14px;">Change %</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each losers}}
+                <tr>
+                    <td><a class="stock-link" href="/stocks/{{ticker}}" data-symbol="{{ticker}}">{{ticker}} </a
+                            style="color: #2CEFAC"></td>
+                    <td>{{companyName}}</td>
+                    <td>{{changesPercentage}}%</td>
+                
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {{#each fredChartData}}
+            // Create chart instance
+            var chart = am4core.create("chart-{{@key}}", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1B1B1F");
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)");
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA");
+            dateAxis.renderer.grid.template.strokeOpacity = 0.3; // Light gray grid lines
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)");
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA");
+            valueAxis.renderer.grid.template.strokeOpacity = 0.3; // Light gray grid lines
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "value";
+            series.dataFields.dateX = "date";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = [
+                {{#each data}}
+                {
+                    date: new Date('{{date}}').toISOString(),
+                    value: {{value}}
+                }{{#unless @last}},{{/unless}}
+                {{/each}}
+            ];
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = '{{name}}'; // Use name from the data
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+            title.fontFamily = "Montserrat";
+
+            // Add legend
+            chart.legend = new am4charts.Legend();
+            chart.legend.labels.template.fill = am4core.color("#AAAAAA"); // Gray legend text
+
+            // Make chart appear
+            chart.appear(1000, 100);
+            {{/each}}
+        });
+    </script>
+    
+<div class="form-container" style="background-color: #1B1B1F">
+    <button id="closeForm" class="close-button">
+        <span class="material-symbols-outlined">
+            close</span>
+    </button>
+    <h2>Add Note</h2>
+    <form id="noteForm">
+        <script>$("#symbol").val($("#symbol option:first").val());</script>
+        <select id="symbol" name="symbol" class="mdl-select-workaround">
+            {{#each recentStocks}}
+            <option value="{{name}}" selected="1">{{name}}</option>
+            {{/each}}
+
+        </select>
+        <select id="status" name="status" class="mdl-select-workaround">
+            <option value="Private" selected>Private</option>
+            <option value="Public">Public</option>
+
+        </select>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <textarea id="title" name="title" rows="1" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="note" style="text-size: ">Note</label>
+            <textarea id="note" name="note" rows="8" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="mdl-grid">
+    <div id="sparkline"></div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<script>
+    $(document).ready(function () {
+        const apiKey = '6b564775b70e4608b8ab755d0aea798a'; // Replace with your Twelve Data API key
+
+        function fetchYTD(symbol) {
+            const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&start_date=2024-01-01&end_date=2024-12-31&apikey=${apiKey}`;
+
+            return $.ajax({
+                url: url,
+                method: 'GET'
+            });
+        }
+
+        function updateYTDData(symbol, ytd) {
+            $(`.ytd[data-symbol="${symbol}"]`).text(ytd.toFixed(2) + '%');
+        }
+
+        $('.ytd').each(function () {
+            const symbol = $(this).data('symbol');
+
+            fetchYTD(symbol).done(function (response) {
+                if (response && response.values && response.values.length > 0) {
+                    const startPrice = parseFloat(response.values[response.values.length - 1].close);
+                    const endPrice = parseFloat(response.values[0].close);
+                    const ytd = ((endPrice - startPrice) / startPrice) * 100;
+
+                    updateYTDData(symbol, ytd);
+                } else {
+                    updateYTDData(symbol, NaN);
+                }
+            }).fail(function () {
+                updateYTDData(symbol, NaN);
+            });
+        });
+    });
+</script>
+<script>
+    function colorNumbers() {
+        const table = document.getElementById('example');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+            const cell = rows[i].getElementsByTagName('td')[0];
+            const number = parseFloat(cell.textContent);
+
+            if (number > 0) {
+                cell.classList.add('positive');
+            } else if (number < 0) {
+                cell.classList.add('negative');
+            }
+        }
+    }
+
+    // Call the function to apply the colors
+    colorNumbers();
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('.changes').each(function () {
+
+            var cellvalue = $.trim($(this).text());
+            if (cellvalue.substring(0, 1) == '-') {
+                $(this).wrapInner('<strong class="colorred"></strong>');
+            }
+        });
+
+    });
+</script>
+<!-- =============SECTORS================== -->
+<script>
+    $(document).ready(function () {
+        const apiKeyFMP = '5302d703f001380f9c34fbf2d1b508f1';
+        const apiKeySeekingAlpha = 'a67d439d85mshfdcbdbdd5eea656p104667jsnea28aefe1cc7';
+
+        $('.sector').each(function () {
+            const symbol = $(this).data('symbol');
+            const sectorCell = $(this);
+
+            fetch(`https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${apiKeyFMP}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data[0] && data[0].sector) {
+                        sectorCell.text(data[0].sector);
+                    } else {
+                        sectorCell.text('N/A');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching sector data:', error);
+                    sectorCell.text('Error');
+                });
+        });
+
+
+    });
+</script>
+<!--===========================peers============================= -->
+<script>
+    $(document).ready(function () {
+        $('.peers').each(function () {
+            const apiKeyFMP = '5302d703f001380f9c34fbf2d1b508f1';
+            const apiKeySeekingAlpha = 'dce0130264mshe2e1fe77d4fa23cp1336cdjsn53a8ebfbcec7';
+            const symbol = $(this).data('symbol');
+            const peersCell = $(this);
+
+            fetch(`https://seeking-alpha.p.rapidapi.com/symbols/get-peers?symbol=${symbol}`, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "seeking-alpha.p.rapidapi.com",
+                    "x-rapidapi-key": 'dce0130264mshe2e1fe77d4fa23cp1336cdjsn53a8ebfbcec7'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.data && data.data.length) {
+                        const peers = data.data.slice(0, 3).map(peer => {
+                            return `<a href="/stocks/${peer.attributes.slug}">${peer.attributes.name}</a>`;
+                        }).join(', ');
+                        peersCell.html(peers);
+                    } else {
+                        peersCell.text('N/A');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching peers data:', error);
+                    peersCell.text('Error');
+                });
+        });
+    });
+</script>
+<!--= ===========================================DELETE STOCK==================== -->
+<script>
+    $(document).ready(function () {
+        // Handle click on delete button
+        $('.delete-stock-btn').on('click', function () {
+            // Get the symbol of the stock to be deleted
+            var symbol = $(this).data('symbol');
+
+            // Confirm deletion
+            if (confirm('Are you sure you want to delete this stock?')) {
+                // Store reference to the current button element
+                var $button = $(this);
+
+                // Make AJAX request to delete the stock
+                $.ajax({
+                    type: 'DELETE',
+                    url: `/user/user-stocks/${symbol}`, // Adjust URL if necessary
+                    success: function (response) {
+                        // Remove the row from the table
+                        $button.closest('tr').remove();
+
+                        // Show snackbar with success message
+                        showSnackbar('Stock removed successfully!');
+                    },
+                    error: function (error) {
+                        // Show snackbar with error message
+                        showSnackbar('Error removing stock.', true);
+                        console.log(error); // Log error for debugging
+                    }
+                });
+            }
+        });
+
+        // Function to display snackbar
+        function showSnackbar(message, isError = false) {
+            var snackbar = $('#snackbar');
+            snackbar.text(message);
+            snackbar.removeClass('error');
+            if (isError) {
+                snackbar.addClass('error');
+            }
+            snackbar.addClass('show');
+            setTimeout(function () {
+                snackbar.removeClass('show');
+            }, 3000); // Hide after 3 seconds
+        }
+    });
+</script>
+
+
+<!-- ==========================CHARTDIV============================ -->
+<script>
+
+    const apiKey = '6b564775b70e4608b8ab755d0aea798a'
+    fetch(`https://api.twelvedata.com/time_series?symbol=wmt&interval=1week&start_date=2024-01-01&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create chart instance
+            var chart = am4core.create("chartDiv", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1B1B1F");
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "datetime";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = data.values;
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "SP500";
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+
+            title.fontFamily = "Montserrat"; //
+            // Add legend
+            chart.legend = new am4charts.Legend();
+            chart.legend.labels.template.fill = am4core.color("#FFFFFF"); // Legend text color
+            chart.legend.fontSize = 12;
+
+
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+</script>
+
+<!--=============================CHRTDIV1 SP500 ----------------------->
+<script>
+
+    fetch(`https://api.twelvedata.com/time_series?symbol=spx&interval=1day&start_date=2024-01-01&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create chart instance
+            var chart = am4core.create("chartdiv1", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1B1B1F");
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "datetime";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = data.values;
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "Standard & Poors 500 Index";
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+
+            title.fontFamily = "Montserrat"; //
+            // Add legend
+
+
+
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+</script>
+<!-- =============================CHARTDIV2 NASDAQ ==================== -->
+<script>
+
+    fetch(`https://api.twelvedata.com/time_series?symbol=ndx&interval=1day&start_date=2024-01-01&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create chart instance
+            var chart = am4core.create("chartdiv2", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1B1B1F");
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "datetime";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = data.values;
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "NASDAQ 100 Index";
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+
+            title.fontFamily = "Montserrat"; //
+            // Add legend
+
+
+
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+</script>
+<!-- ==============================CHARTDIV3 RUSSELL =================== -->
+<script>
+
+    fetch(`https://api.twelvedata.com/time_series?symbol=dji&interval=1day&start_date=2024-01-01&outputsize=5000&apikey=${apiKey}&order=asc`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create chart instance
+            var chart = am4core.create("chartdiv3", am4charts.XYChart);
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA"), am4core.color("#EFA84A"), am4core.color("#6A9D58"), am4core.color("#D35E60"), am4core.color("#9565B0")];
+            chart.background.fill = am4core.color("#1B1B1F");
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Date axis labels color
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)"); // Value axis labels color
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA"); // Light grey grid lines
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15; // Grid line opacity (adjusted to 0.25)
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "datetime";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Set data
+            chart.data = data.values;
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+
+            // Add title
+            var title = chart.titles.create();
+            title.text = "Dow Jones Industrials";
+            title.fontSize = 20;
+            title.marginBottom = 10;
+            title.fill = am4core.color("#37EFBA");
+
+            title.fontFamily = "Montserrat"; //
+            // Add legend
+
+
+
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        // Get the value of the first cell with the class name .stock-link
+        var firstStockLink = $(".stock-link").first().text();
+
+        // Set the value of the first option in the select element
+        $("#symbol option:first").val(firstStockLink).text(firstStockLink);
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        const apiKey = 'dCZpwuRqCImTXtJMir0ruAyWuPnYvqJ9';
+        const symbols = [];
+
+        // Gather all symbols from the table
+        $('.example tbody tr').each(function () {
+            const symbol = $(this).find('td').eq(1).text().trim();
+            symbols.push(symbol);
+        });
+
+        // Fetch stock changesPercentage
+        const url = `https://financialmodelingprep.com/api/v3/quote/${symbols.join(',')}?apikey=${apiKey}`;
+
+        $.getJSON(url, function (data) {
+            data.forEach(stock => {
+                const changePercentage = stock.changesPercentage;
+                const symbol = stock.symbol;
+                $(`td.changes[data-symbol='${symbol}']`).text(`${changePercentage.toFixed(2)}%`);
+            });
+        });
+    });
+</script>
+<script>
+    $('.add-note-button').on('click', function () {
+        $('.form-container').show();
+    });
+    $('#closeForm').on('click', function () {
+        $('.form-container').hide(); // Hide the form container
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Close button click handler
+
+        // Form submission handler (simulated)
+        $('#noteForm').on('submit', function (e) {
+            e.preventDefault();
+            var symbol = $('#symbol').val();
+            var note = $('#note').val();
+            var title = $('#title').val();
+            // Simulated AJAX request
+            console.log("Submitting note for symbol:", symbol, "with note:", note);
+
+            // Close modal (simulated)
+            $('.form-container').hide();
+        });
+
+        // Show form container when clicking on Add Note button
+        $('.add-note-button').on('click', function () {
+            $('.form-container').show();
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Show form container when clicking on Add Note button
+        $('.add-note-button').on('click', function () {
+            // Get the company name from the row where the button was clicked
+            var companyName = $(this).closest('tr').find('td').eq(0).text().trim();
+
+            // Set the selected value of the symbol dropdown to the company name
+            $('#symbol').val(companyName);
+
+            // Show the form container
+            $('.form-container').show();
+        });
+
+        // Close button click handler
+        $('#closeForm').on('click', function () {
+            $('.form-container').hide(); // Hide the form container
+        });
+
+        // Form submission handler
+        $('#noteForm').on('submit', function (e) {
+            e.preventDefault();
+            var symbol = $('#symbol').val();
+            var status = $('#status').val();
+            var note = $('#note').val();
+            var title = $('#title').val();
+            var date = Date.now();
+
+            // Post the note to the server
+            $.ajax({
+                type: 'POST',
+                url: '/user/add-note',  // Update this URL to your actual endpoint
+                data: { symbol: symbol, note: note, title: title, status: status, date: date },
+                success: function (response) {
+                    // Show snackbar on success
+                    showSnackbar('Note on ' + symbol + 'added successfully!');
+                    $('#symbol').val('');
+                    $('#note').val('');
+                    $('#status').val('');
+                },
+                error: function (error) {
+                    // Show snackbar on error
+                    showSnackbar('Error adding note.', true);
+                    console.log(error); // Passing true to indicate an error
+                }
+            });
+        });
+
+        // Function to display snackbar
+        function showSnackbar(message, isError = false) {
+            var snackbar = $('#snackbar');
+            snackbar.text(message);
+            snackbar.removeClass('error');
+            if (isError) {
+                snackbar.addClass('error');
+            }
+            snackbar.addClass('show');
+            setTimeout(function () {
+                snackbar.removeClass('show');
+            }, 3000); // Hide after 3 seconds
+        }
+    });
+
+</script>
+<script>
+    $(document).ready(function () {
+        // Show form container when clicking on Add Note button
+        $('.add-note-button').on('click', function () {
+            // Get the company name from the row where the button was clicked
+            var companyName = $(this).closest('tr').find('td').eq(0).text().trim();
+
+            // Set the selected value of the symbol dropdown to the company name
+            $('#symbol').val(companyName);
+
+            // Show the form container
+            $('.form-container').show();
+        });
+
+        // Close button click handler
+        $('#closeForm').on('click', function () {
+            $('.form-container').hide(); // Hide the form container
+        });
+
+        // Form submission handler
+        $('#noteForm').on('submit', function (e) {
+            e.preventDefault();
+            var symbol = $('#symbol').val();
+            var status = $('#status').val();
+            var note = $('#note').val();
+            var title = $('#title').val();
+            var date = Date.now();
+
+            // Post the note to the server
+            $.ajax({
+                type: 'POST',
+                url: '/user/add-note',  // Update this URL to your actual endpoint
+                data: { symbol: symbol, note: note, title: title, status: status, date: date },
+                success: function (response) {
+                    // Show snackbar on success
+                    showSnackbar('Note added successfully!');
+                    $('#symbol').val('');
+                    $('#note').val('');
+                    $('#status').val('');
+                },
+                error: function (error) {
+                    // Show snackbar on error
+                    showSnackbar('Error adding note.', true);
+                    console.log(error); // Passing true to indicate an error
+                }
+            });
+        });
+
+        // Function to display snackbar
+        function showSnackbar(message, isError = false) {
+            var snackbar = $('#snackbar');
+            snackbar.text(message);
+            snackbar.removeClass('error');
+            if (isError) {
+                snackbar.addClass('error');
+            }
+            snackbar.addClass('show');
+            setTimeout(function () {
+                snackbar.removeClass('show');
+            }, 3000); // Hide after 3 seconds
+        }
+    });
+
+    <script>
+        $(document).ready(function () {
+            // Show form container when clicking on Add Note button
+            $('.add-note-button').on('click', function () {
+                // Get the company name from the row where the button was clicked
+                var companyName = $(this).closest('tr').find('td').eq(0).text().trim();
+
+                // Set the selected value of the symbol dropdown to the company name
+                $('#symbol').val(companyName);
+
+                // Show the form container
+                $('.form-container').show();
+            });
+
+        // Close button click handler
+        $('#closeForm').on('click', function () {
+            $('.form-container').hide(); // Hide the form container
+  });
+
+        // Form submission handler
+        $('#noteForm').on('submit', function (e) {
+            e.preventDefault();
+        var symbol = $('#symbol').val();
+        var status = $('#status').val();
+        var note = $('#note').val();
+        var title = $('#title').val();
+        var date = Date.now();
+
+        // Post the note to the server
+        $.ajax({
+            type: 'POST',
+        url: '/user/add-note',  // Update this URL to your actual endpoint
+        data: {symbol: symbol, note: note, title: title, status: status, date: date },
+        success: function (response) {
+            // Show snackbar on success
+            showSnackbar('Note on ' + symbol + 'added successfully!');
+        $('#symbol').val('');
+        $('#note').val('');
+        $('#status').val('');
+      },
+        error: function (error) {
+            // Show snackbar on error
+            showSnackbar('Error adding note.', true);
+        console.log(error); // Passing true to indicate an error
+      }
+    });
+  });
+
+        // Function to display snackbar
+        function showSnackbar(message, isError = false) {
+    var snackbar = $('#snackbar');
+        snackbar.text(message);
+        snackbar.removeClass('error');
+        if (isError) {
+            snackbar.addClass('error');
+    }
+        snackbar.addClass('show');
+        setTimeout(function () {
+            snackbar.removeClass('show');
+    }, 3000); // Hide after 3 seconds
+  }
+});
+
+</script>
+

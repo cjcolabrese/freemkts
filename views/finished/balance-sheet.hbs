@@ -1,0 +1,468 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+    .hover-chart {
+        position: absolute;
+        display: none;
+        width: 600px;
+        height: 300px;
+        background-color: #2E2E38;
+        color: grey;
+        border: none;
+        z-index: 1000;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th:hover,
+    td:hover {
+        cursor: pointer;
+        background-color: #2D2D37;
+    }
+</style>
+<button class="export-btn" onclick="exportToExcel()">Export to Excel</button>
+<table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+    <tr>
+        <td style="background-color: #1B1B1F;">
+            <p class="statement-title">Balance Sheet</p>
+        </td>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <th style="margin-left: 30px; color: #37ECB1;" scope="col">{{date}}</th>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Cash & Equivalents</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{cashAndCashEquivalents}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Short Term Investments</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{shortTermInvestments}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Net Receivables</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{netReceivables}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Inventory</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{inventory}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Other Current Assets</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{otherCurrentAssets}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Property, Plant and Equipment</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{propertyPlantEquipmentNet}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Longterm Debt</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{longTermInvestments}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Tax Assets</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{taxAssets}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Other Non-Current Assets</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{otherNonCurrentAssets}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Non-Current Assets</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalNonCurrentAssets}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Assets</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalAssets}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Accounts Payable</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{accountPayables}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Short Term Debt</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{shortTermDebt}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Tax Payables</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{taxPayables}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Defered Revenue</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{deferredRevenue}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Current Liabilities</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalCurrentLiabilities}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Long Term Debt</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{longTermDebt}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Capital Lease Obligations</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{capitalLeaseObligations}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Liabilities</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalLiabilities}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Shareholder Equity</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalStockholdersEquity}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Investments</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalInvestments}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Debt</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="margin: 30px;" class="contribution">{{totalDebt}}</td>
+            {{/each}}
+        {{/if}}
+    </tr>
+    <tr>
+        <th scope="row" class="chart-hover-link">Total Liabilities and Shareholder Equity</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="border-right: 1px grey; border-top: 1px solid white; color: #37ECB1" class="contribution">
+                    {{totalLiabilitiesAndStockholdersEquity}}
+                </td>
+            {{/each}}
+        {{/if}}
+    </tr>
+ <tr>
+        <th scope="row" class="chart-hover-link">Total Liabilities and Shareholder Equity</th>
+        {{#if balanceSheet}}
+            {{#each balanceSheet}}
+                <td style="border-right: 1px grey; border-top: 1px solid white; color: #0d36ee">
+                         <a style="color: #0d36ee" href="/stocks/sec/{{cik}}">Go to SEC</a>
+                </td>
+            {{/each}}
+        {{/if}}
+    </tr>
+</table>
+<br>
+<hr>
+{{#if balanceSheet}}
+    {{#each balanceSheet}}
+        <a href="/stocks/sec/{{cik}}">Go to SEC</a>
+    {{/each}}
+{{/if}}
+<div id="hover-chart" class="hover-chart"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".contribution").each(function () {
+            $(this).html(parseFloat($(this).text()).toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const links = document.querySelectorAll('.chart-hover-link');
+        const hoverChartDiv = document.getElementById('hover-chart');
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', event => {
+                const cells = event.currentTarget.closest('tr').querySelectorAll('td');
+                const data = Array.from(cells).map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')));
+
+                const totalAssets = Array.from(document.querySelectorAll('.contribution'))
+                    .map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')))
+                    .pop(); // Assume the last cell in the table is Total Assets
+
+                showChart(event.currentTarget.innerText, data, totalAssets);
+                hoverChartDiv.style.display = 'block';
+                hoverChartDiv.style.top = `${event.clientY + window.scrollY}px`;
+                hoverChartDiv.style.left = `${event.clientX + window.scrollX}px`;
+            });
+
+            link.addEventListener('mouseleave', () => {
+                hoverChartDiv.style.display = 'none';
+                if (window.hoverChart) {
+                    window.hoverChart.dispose();
+                    window.hoverChart = null;
+                }
+            });
+        });
+
+        function showChart(title, data, totalAssets) {
+            am4core.ready(function () {
+                if (window.hoverChart) {
+                    window.hoverChart.dispose();
+                }
+
+                var chart = am4core.create("hover-chart", am4charts.XYChart);
+                window.hoverChart = chart;
+
+                chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                chart.data = [
+                    { year: "2019", value: data[0] },
+                    { year: "2020", value: data[1] },
+                    { year: "2021", value: data[2] },
+                    { year: "2022", value: data[3] },
+                    { year: "2023", value: data[4] }
+                ];
+
+                var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                categoryAxis.dataFields.category = "year";
+                categoryAxis.renderer.grid.template.location = 0;
+                categoryAxis.renderer.labels.template.rotation = 45;
+                categoryAxis.renderer.labels.template.horizontalCenter = "right";
+                categoryAxis.renderer.labels.template.verticalCenter = "middle";
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.renderer.minWidth = 35;
+
+                var series = chart.series.push(new am4charts.ColumnSeries());
+                series.name = title;
+                series.dataFields.valueY = "value";
+                series.dataFields.categoryX = "year";
+                series.tooltipText = "{name}: [bold]{valueY}[/]";
+                series.columns.template.adapter.add("fill", function (fill, target) {
+                    return chart.colors.getIndex(0);
+                });
+
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.lineY.opacity = 0;
+
+                var legend = chart.legend = new am4charts.Legend();
+                legend.labels.template.fill = am4core.color("white"); // Grey color for legend text
+                legend.markers.template.fill = am4core.color("#white"); // Grey color for legend symbols
+
+                var titleElement = chart.titles.create();
+                titleElement.text = title;
+                titleElement.fontSize = 20;
+                titleElement.marginBottom = 10;
+                titleElement.fill = am4core.color("white");
+
+                titleElement.fontFamily = "Montserrat";
+
+                chart.responsive.enabled = true;
+            });
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".contribution").each(function () {
+            $(this).html(parseFloat($(this).text().replace(/[^0-9.-]/g, '')).toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const links = document.querySelectorAll('.chart-hover-link');
+        const hoverChartDiv = document.getElementById('hover-chart');
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', event => {
+                const cells = event.currentTarget.closest('tr').querySelectorAll('td');
+                const data = Array.from(cells).map(cell => {
+                    let value = parseFloat(cell.innerText.replace(/[^0-9.-]/g, ''));
+                    return isNaN(value) ? 0 : value;
+                });
+
+                const totalAssets = Array.from(document.querySelectorAll('.contribution'))
+                    .map(cell => parseFloat(cell.innerText.replace(/[^0-9.-]/g, '')))
+                    .pop(); // Assume the last cell in the table is Total Assets
+
+                showChart(event.currentTarget.innerText, data, totalAssets);
+                hoverChartDiv.style.display = 'block';
+                hoverChartDiv.style.top = `${event.clientY + window.scrollY}px`;
+                hoverChartDiv.style.left = `${event.clientX + window.scrollX}px`;
+            });
+
+            link.addEventListener('mouseleave', () => {
+                hoverChartDiv.style.display = 'none';
+                if (window.hoverChart) {
+                    window.hoverChart.dispose();
+                    window.hoverChart = null;
+                }
+            });
+        });
+
+        function showChart(title, data, totalAssets) {
+            am4core.ready(function () {
+                if (window.hoverChart) {
+                    window.hoverChart.dispose();
+                }
+
+                var chart = am4core.create("hover-chart", am4charts.XYChart);
+                window.hoverChart = chart;
+
+                chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                chart.data = [
+                    { year: "2019", value: data[0] },
+                    { year: "2020", value: data[1] },
+                    { year: "2021", value: data[2] },
+                    { year: "2022", value: data[3] },
+                    { year: "2023", value: data[4] }
+                ];
+
+                var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                categoryAxis.dataFields.category = "year";
+                categoryAxis.renderer.grid.template.location = 0;
+                categoryAxis.renderer.labels.template.rotation = 45;
+                categoryAxis.renderer.labels.template.horizontalCenter = "right";
+                categoryAxis.renderer.labels.template.verticalCenter = "middle";
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.renderer.minWidth = 35;
+
+                var series = chart.series.push(new am4charts.ColumnSeries());
+                series.name = title;
+                series.dataFields.valueY = "value";
+                series.dataFields.categoryX = "year";
+                series.tooltipText = "{name}: [bold]{valueY}[/]";
+                series.columns.template.adapter.add("fill", function (fill, target) {
+                    return chart.colors.getIndex(0);
+                });
+
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.lineY.opacity = 0;
+
+                var legend = chart.legend = new am4charts.Legend();
+                legend.labels.template.fill = am4core.color("white"); // Grey color for legend text
+                legend.markers.template.fill = am4core.color("#white"); // Grey color for legend symbols
+
+                var titleElement = chart.titles.create();
+                titleElement.text = title;
+                titleElement.fontSize = 20;
+                titleElement.marginBottom = 10;
+                titleElement.fill = am4core.color("white");
+
+                titleElement.fontFamily = "Montserrat";
+
+                chart.responsive.enabled = true;
+            });
+        }
+    });
+
+    function exportToExcel() {
+        // Get the table element
+        var table = document.getElementById('example');
+
+        // Convert table to worksheet
+        var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Clean up any non-numeric data
+        var ws = wb.Sheets['Sheet1'];
+        var range = XLSX.utils.decode_range(ws['!ref']); // Get the range of the sheet
+
+        for (let R = range.s.r; R <= range.e.r; ++R) {
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                let cell_address = { c: C, r: R }; // Address of the cell
+                let cell_ref = XLSX.utils.encode_cell(cell_address);
+                let cell = ws[cell_ref];
+
+                if (cell && typeof cell.v === 'string') {
+                    // Remove any formatting and convert to number if possible
+                    cell.v = parseFloat(cell.v.replace(/[^0-9.-]/g, ''));
+                    cell.t = isNaN(cell.v) ? 's' : 'n'; // Set cell type to number or string
+                }
+            }
+        }
+
+        // Generate Excel file and trigger download
+        XLSX.writeFile(wb, 'balance_sheet.xlsx');
+    }
+</script>

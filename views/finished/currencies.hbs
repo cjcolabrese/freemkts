@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Currency Data</title>
+    <style>
+        #example {
+            width: 100%;
+        }
+        th {
+            cursor: pointer;
+        }
+        #example td {
+            border: none;
+            color: rgb(188, 189, 190);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left !important;
+            font-family: 'Poppins';
+        }
+
+        #example th {
+            color: white;
+            text-align: left !important;
+            font-family: 'Poppins';
+        }
+        .currency-header {
+            text-align: left;
+        }
+        th {
+              text-align: left;
+        }
+            </style>
+</head>
+<body>
+    <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="margin: 0 auto;">
+        <thead>
+            <tr>
+                <th class="currency-header">Description</th>
+                <th class="currency-header">FRED Symbol</th>
+                <th class="currency-header">Date</th>
+                <th class="currency-header">Rate</th>
+                <th class="currency-header" >30-Day Change (%)</th>
+                <th class="currency-header" id="sortByChange">YTD Change (%)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>
+                    <a align-left href="/currencies/{{this.symbol}}" style="color: #37EFBA;">
+                        {{@key}}
+                    </a>
+                </td>
+                <td>{{this.symbol}}</td>
+                <td>
+                    {{#if this.observation}}
+                    {{this.observation.date}}
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <td>
+                    {{#if this.observation}}
+                    {{this.observation.value}}
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <td style="text-align: center">
+                    {{#if this.performance30Day}}
+                    {{this.performance30Day}}%
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <td style="text-align: center">
+                    {{#if this.performanceYTD}}
+                    {{this.performanceYTD}}%
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td>
+                <!--     <td style="text-align: center">
+                    {{#if this.performanceL12M}}
+                    {{this.performanceL12M}}%
+                    {{else}}
+                    No data available
+                    {{/if}}
+                </td> -->
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const table = document.getElementById('example');
+            const th = document.getElementById('sortByChange');
+
+            th.addEventListener('click', () => {
+                const rows = Array.from(table.querySelectorAll('tbody tr'));
+                const sortedRows = rows.sort((a, b) => {
+                    const aValue = parseFloat(a.cells[4].textContent.replace('%', '')) || 0;
+                    const bValue = parseFloat(b.cells[4].textContent.replace('%', '')) || 0;
+                    return bValue - aValue; // Descending order
+                });
+                const tbody = table.querySelector('tbody');
+                tbody.innerHTML = '';
+                sortedRows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rates Charts</title>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <style>
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Rates Charts</h1>
+
+{{#each fredChartData}}
+    <p>{{name}}</p>
+    <p class="ytd"></p>
+    <div id="chart-{{symbol}}" class="chart-container"></div>
+    
+    <script>
+    am4core.ready(function() {
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart instance
+        var chart = am4core.create("chart-{{symbol}}", am4charts.XYChart);
+
+        // Set chart title
+        var title = chart.titles.create();
+        title.text = "{{name}}"; // Dynamic title based on data
+        title.fontSize = 20;
+        title.marginBottom = 10;
+        title.fill = am4core.color("#37EEB9");
+
+        // Set up date formatting
+        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+        // Create X-axis (Date axis)
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.title.text = "Date";
+        dateAxis.title.fill = am4core.color("#212121");
+        dateAxis.title.fontSize = 14;
+        dateAxis.title.fontWeight = "bold";
+        dateAxis.renderer.labels.template.fill = am4core.color("#212121");  // Dark color for labels
+        dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA");  // Gridlines color
+        dateAxis.renderer.grid.template.strokeOpacity = 0.2; // Gridline opacity
+
+        // Create Y-axis (Value axis)
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.title.text = "Value";
+        valueAxis.title.fill = am4core.color("#212121");
+        valueAxis.title.fontSize = 14;
+        valueAxis.title.fontWeight = "bold";
+        valueAxis.renderer.labels.template.fill = am4core.color("#212121");  // Dark color for labels
+        valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA");  // Gridlines color
+        valueAxis.renderer.grid.template.strokeOpacity = 0.2; // Gridline opacity
+
+        // Create series
+        var series = chart.series.push(new am4charts.LineSeries());
+        series.dataFields.valueY = "value";
+        series.dataFields.dateX = "date";
+        series.name = "{{name}}"; // Name for the legend
+        series.tooltipText = "{value}";
+        series.stroke = am4core.color("#37EEB9"); // Line color
+        series.strokeWidth = 2;
+
+        // Add data to the chart
+        chart.data = [
+            {{#each fredData}}
+                { "date": "{{this.date}}", "value": {{this.value}} },
+            {{/each}}
+        ];
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+        chart.legend.labels.template.fill = am4core.color("#212121");
+        chart.legend.position = "top"; // Position legend at the top
+        chart.legend.marginBottom = 10;
+        chart.legend.labels.template.fontSize = 12; // Set font size for legend labels
+
+        // Add cursor
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.xAxis = dateAxis;
+
+        // Calculate YTD (Year-To-Date) change
+        var startOfYearValue = null;
+        var latestValue = null;
+        var currentYear = new Date().getFullYear();
+
+        for (var i = 0; i < chart.data.length; i++) {
+            var dataDate = new Date(chart.data[i].date);
+            if (dataDate.getFullYear() === currentYear) {
+                if (startOfYearValue === null) {
+                    startOfYearValue = chart.data[i].value; // First value of the year
+                }
+                latestValue = chart.data[i].value; // Continuously set to the latest value
+            }
+        }
+
+        // Calculate YTD change if we have valid data
+        if (startOfYearValue !== null && latestValue !== null) {
+            var ytdChange = ((latestValue - startOfYearValue) / startOfYearValue) * 100;
+            document.querySelector('.ytd').textContent = `YTD Change: ${ytdChange.toFixed(2)}%`;
+        } else {
+            document.querySelector('.ytd').textContent = "No YTD data available.";
+        }
+    });
+    </script>
+{{/each}}
+
+</body>
+</html>

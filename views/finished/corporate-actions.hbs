@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Actions</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: #24242D;
+            border: none;
+            padding: 10px;
+            z-index: 1000;
+            color: #abadad;
+            ;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .checkmark-icon {
+            color: #2DD0BA;
+        }
+    </style>
+    <style>
+        .form-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* semi-transparent background */
+            z-index: 1000;
+            /* higher z-index to ensure it's above other elements */
+            overflow: auto;
+            /* allow scrolling if content exceeds viewport */
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            top: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            display: none;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .colorred {
+            color: rgb(197, 55, 55);
+            font-weight: 200;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+        }
+
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-button:hover {
+            color: #000;
+        }
+
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            position: absolute z-index: 999;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        #snackbar.error {
+            background-color: #f44336;
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        .mdl-select-workaround {
+            border-style: solid;
+            border-color: #e0e0e0;
+            border-width: 0 0 1px 0;
+            color: #525151;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.4em;
+            font-weight: 400;
+            outline: 0;
+            margin-top: 1.4em;
+            margin-left: 0;
+            width: 250px;
+            text-transform: capitalize;
+        }
+
+        .active {
+            color: #424242;
+        }
+
+        .colorred {
+            color: red;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            top: 60px;
+            bottom: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            display: none;
+            z-index: 1000;
+            overflow: hidden;
+            height: 700px;
+            backdrop-filter: blur(10px);
+            /* Ensure positioning context for absolute positioning of close button */
+        }
+
+
+
+        #symbol {
+            width: 50%;
+            border-radius: 5px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        #status {
+            width: 50%;
+            border-radius: 5px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        #note {
+            width: 100%;
+            border-radius: 5px;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        #title {
+            width: 100%;
+            border-radius: 5px;
+            ;
+            background-color: #2E2E38;
+            color: grey;
+            border: none;
+        }
+
+        .add-note-button:hover {
+            color: #37E38B;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: #24242D;
+            border: none;
+            padding: 10px;
+            z-index: 1000;
+            color: #abadad;
+            ;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+
+
+
+
+        tbody tr:nth-child(odd) {
+            background-color: #2E2E38 !important;
+            border: none
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #2A2A35;
+            border: none;
+        }
+
+        #example td {
+            border: none;
+            color: rgb(188, 189, 190);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left !important;
+            font-family: 'Poppins';
+        }
+
+        #example th {
+            color: white;
+            text-align: left !important;
+     font-family: 'Poppins';
+        }
+
+        #example thead {
+            background-color: #24242D;
+            color: white;
+        }
+
+        #example {
+            border-radius: 0;
+            border-style: none;
+        }
+
+        #example a {
+            text-decoration: none;
+            color: #14fa74;
+            font-weight: 400;
+        }
+
+        #example tr:hover {
+            background-color: #24242D;
+        }
+
+        green {
+            color: #14fa74
+        }
+
+
+        .add-note-button i.green {
+            color: green;
+        }
+    </style>
+
+</head>
+
+<body>
+ <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+        <thead style=" font-size: 18px; font-family: Poppins; font-weight: 200;">
+            <tr>
+                <th style=" font-size: 18px;">Symbol</th>
+                <th style=" font-size: 18px; font-family: Poppins">Date</th>
+                <th style=" font-size: 18px;">Type</th>
+                <th style=" font-size: 18px;">Action</th>
+                <th style="font-size: 18x;">Add to Portfolio</th>
+                <th style=" font-size: 18px; font-family: Poppins">Add Note</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each tableData}}
+                <tr>
+                     <td><a class="stock-link" href="/stocks/{{this.Symbol}}" data-symbol="{{this.Symbol}}">{{this.Symbol}}</a></td>
+                    <td>{{this.Date}}</a></td>
+                    <td>{{this.Type}}</td>
+                    <td>{{this.Action}}</td>
+                  
+                    <td>
+                        <i class="material-icons checkmark-icon" style="display: none; color: #37E38B;">check_circle</i>
+                        <button class="mdl-button mdl-js-button mdl-button--icon header-icon add-stock-button"
+                            data-symbol="{{this.Symbol}}">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </td>
+                    <td>
+
+                        <button class="add-note-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">description</i>
+                        </button>
+
+
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+ 
+
+    <div class="popup" id="stock-popup"></div>
+
+  <div id="snackbar"></div>
+    <div class="form-container" style="background-color: #1B1B1F">
+        <button id="closeForm" class="close-button">
+            <span class="material-symbols-outlined">
+                close</span>
+        </button>
+        <h2>Add Note</h2>
+        <form id="noteForm">
+            <script>$("#symbol").val($("#symbol option:first").val());</script>
+            <select id="symbol" name="symbol" class="mdl-select-workaround">
+                {{#each tableData}}
+                    <option value="{{name}}" selected="1" value="this.symbol">{{this.Symbol}}</option>
+                {{/each}}
+
+            </select>
+            <select id="status" name="status" class="mdl-select-workaround">
+                <option value="Private" selected>Public</option>
+                <option value="Public">Private</option>
+
+            </select>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <textarea id="title" name="title" rows="1" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="note" style="text-size: ">Note</label>
+                <textarea id="note" name="note" rows="8" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- ALPHABETIZE SELECT -->
+   
+    <!-- COLOR FOR NEGATIVE NUMBERS -->
+    <script>
+$(document).ready(function() {
+    // Event listener for the "Add Note" button click
+    $(document).on('click', '.add-note-button', function() {
+        // Get the first cell value (Symbol) from the clicked row
+        var firstCellValue = $(this).closest('tr').find('td:first').text().trim();
+        
+        // Update the first option in the #symbol select dropdown with the value
+        var symbolDropdown = $('#symbol');
+        symbolDropdown.find('option:first').val(firstCellValue).text(firstCellValue);
+        
+        // Optionally, show the form (if hidden)
+        $('.form-container').show();
+    });
+
+    // Close form event listener (optional, if you have a close button)
+    $('#closeForm').on('click', function() {
+        $('.form-container').hide();
+    });
+});
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Close button click handler
+
+            // Form submission handler (simulated)
+            $('#noteForm').on('submit', function (e) {
+                e.preventDefault();
+                var symbol = $('#symbol').val();
+                var note = $('#note').val();
+                var title = $('#title').val();
+                // Simulated AJAX request
+                console.log("Submitting note for symbol:", symbol, "with note:", note);
+
+                // Close modal (simulated)
+                $('.form-container').hide();
+            });
+
+            // Show form container when clicking on Add Note button
+            $('.add-note-button').on('click', function () {
+                $('.form-container').show();
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Function to fetch user stocks and update the table
+            function updateTableWithUserStocks() {
+                $.ajax({
+                    method: 'GET',
+                    url: '/stocks/stocks-json', // Replace with your endpoint to get user stocks
+                    success: function (userStocks) {
+                        var userStocksSet = new Set(userStocks.map(stock => stock.symbol));
+
+                        $('#example tbody tr').each(function () {
+                            var symbol = $(this).find('.add-stock-button').data('symbol');
+                            if (userStocksSet.has(symbol)) {
+                                $(this).find('.checkmark-icon').show();
+                                $(this).find('.add-stock-button').hide();
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        console.error('Error fetching user stocks:', error);
+                        var data = {
+                            message: 'Error fetching user stocks!',
+                            timeout: 3000 // Display duration in milliseconds (3 seconds)
+                        };
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    }
+                });
+            }
+
+            // Initial call to update the table
+            updateTableWithUserStocks();
+
+            // Snackbar initialization
+            var snackbarContainer = document.querySelector('#snackbar');
+
+            // Add stock button click event
+            $('#example').on('click', '.add-stock-button', function () {
+                var symbol = $(this).data('symbol'); // Get the symbol from data attribute
+                var addButton = $(this); // Reference to the add button clicked
+
+                console.log('Adding stock:', symbol); // Example log, you can replace with your logic
+
+                // Example: Send an AJAX request to add the stock using the symbol
+                // Replace with your actual implementation to add the stock
+                $.ajax({
+                    method: 'POST',
+                    url: '/user/user-stocks', // Replace with your endpoint
+                    data: { search: symbol },
+                    success: function (response) {
+                        if (response.status === 'exists') { // Adjust this condition based on your backend response
+                            // Show snackbar with error message
+                            var data = {
+                                message: 'Stock already exists!',
+                                timeout: 3000 // Display duration in milliseconds (3 seconds)
+                            };
+                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                        } else {
+                            console.log('Stock added successfully:', response); // Example success message
+
+                            // Replace add button with checkmark icon
+                            addButton.hide(); // Hide the add button
+                            addButton.siblings('.checkmark-icon').show(); // Show the checkmark icon
+
+                            // Show snackbar with confirmation message
+                            var data = {
+                                message: 'Stock added successfully!',
+                                timeout: 3000 // Display duration in milliseconds (3 seconds)
+                            };
+                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                        }
+                    },
+                    error: function (error) {
+                        console.error('Error adding stock:', error); // Example error handling
+                        // Show snackbar with error message
+                        var data = {
+                            message: 'Error adding stock!',
+                            timeout: 3000 // Display duration in milliseconds (3 seconds)
+                        };
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Stock links -->
+
+    
+    <!-- Popup container -->
+    <div id="stock-popup"></div>
+    
+ <!--<script>
+    $(document).ready(function () {
+        var fmpApiKey = 'ouqIpA71oCd4XeYeIslXEoCcxYygUWnv'; // FMP API Key
+        var twelveDataApiKey = '4198770003984699a71ef335b17b310b'; // Replace with your 12data API key
+
+        function fetchStockData(symbol) {
+            return $.ajax({
+                url: `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1week&start_date=2020-01-01&outputsize=5000&apikey=${twelveDataApiKey}&order=asc`,
+                method: 'GET'
+            });
+        }
+
+        function renderChart(chartData) {
+            var chart = am4core.create("chartDiv", am4charts.XYChart);
+            chart.data = chartData;
+
+            // Set theme to dark
+            chart.colors.list = [am4core.color("#37EFBA")];
+            chart.background.fill = am4core.color("#FFFFFF00");
+            chart.responsive.enabled = true;
+            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+            // Create axes
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)");
+            dateAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA");
+            dateAxis.renderer.grid.template.strokeOpacity = 0.15;
+            dateAxis.renderer.labels.template.fontSize = 12;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fill = am4core.color("rgb(165, 164, 164)");
+            valueAxis.renderer.grid.template.stroke = am4core.color("#AAAAAA");
+            valueAxis.renderer.grid.template.strokeOpacity = 0.15;
+            valueAxis.renderer.labels.template.fontSize = 12;
+
+            // Create series
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "close";
+            series.dataFields.dateX = "date";
+            series.strokeWidth = 2;
+            series.tooltipText = "{valueY}";
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#333333");
+            series.tooltip.label.fill = am4core.color("#FFFFFF");
+            series.tooltip.label.fontSize = 12;
+            series.tooltip.pointerOrientation = "vertical";
+
+            // Add cursor
+            chart.cursor = new am4charts.XYCursor();
+        }
+
+        $('.stock-link').hover(function (event) {
+            const symbol = $(this).data('symbol');
+            const popup = $('#stock-popup');
+
+            $.ajax({
+                url: `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${fmpApiKey}`,
+                method: 'GET',
+                success: function (data) {
+                    if (data.length > 0) {
+                        const stock = data[0];
+                        popup.html(`
+                            <div class="container" style="text-align: center;">
+                                <img style="height: 50px;" src="${stock.image}" alt="${stock.companyName}"/><br>
+                                <strong>${stock.companyName}</strong><br> (${stock.symbol})<br>
+                                <hr>
+                                Industry: ${stock.industry}
+                                <hr>
+                                Price: $${stock.price}
+                                <br>
+                                Change: ${stock.changes}
+                                <br><br>
+                                <div id="chartDiv" style="width: 100%; height: 100px;"></div>
+                            </div>
+                        `);
+                        popup.css({
+                            top: event.pageY + 10 + 'px',
+                            left: event.pageX + 10 + 'px',
+                        }).show();
+
+                        // Fetch and render the chart
+                        fetchStockData(symbol).then(data => {
+                            var chartData = data.values.map(item => ({
+                                date: new Date(item.datetime).toISOString().split('T')[0],
+                                close: parseFloat(item.close)
+                            }));
+
+                            renderChart(chartData);
+                        })
+                        .catch(error => {
+                            console.error('Error fetching stock data:', error);
+                        });
+
+                    }
+                },
+                error: function () {
+                    popup.html('Error fetching data').show();
+                }
+            });
+        }, function () {
+            $('#stock-popup').hide();
+            am4core.disposeAllCharts(); // Dispose of all charts when hiding the popup
+        });
+
+        $('.stock-link').mousemove(function (event) {
+            $('#stock-popup').css({
+                top: event.pageY + 10 + 'px',
+                left: event.pageX + 10 + 'px'
+            });
+        });
+    });
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            // Function to fetch user notes and update the table
+            function updateTableWithUserNotes() {
+                $.ajax({
+                    method: 'GET',
+                    url: '/user/notes', // Replace with your endpoint to get user notes
+                    success: function (userNotes) {
+                        var userNotesMap = {}; // Create a map of company names with notes
+                        userNotes.forEach(note => {
+                            userNotesMap[note.company] = note;
+                        });
+
+                        $('#example tbody tr').each(function () {
+                            var company = $(this).find('.add-note-button').data('company');
+                            if (userNotesMap[company]) {
+                                $(this).find('.add-note-button i').addClass('green');
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        console.error('Error fetching user notes:', error);
+                        showSnackbar('Error fetching user notes!', true);
+                    }
+                });
+            }
+
+            // Initial call to update the table
+            updateTableWithUserNotes();
+
+            // Function to display snackbar
+            function showSnackbar(message, isError = false) {
+                var snackbar = $('#snackbar');
+                snackbar.text(message);
+                snackbar.removeClass('error');
+                if (isError) {
+                    snackbar.addClass('error');
+                }
+                snackbar.addClass('show');
+                setTimeout(function () {
+                    snackbar.removeClass('show');
+                }, 3000); // Hide after 3 seconds
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+    <script>
+        $('.add-note-button').on('click', function () {
+            $('.form-container').show();
+        });
+        $('#closeForm').on('click', function () {
+            $('.form-container').hide(); // Hide the form container
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('td').each(function () {
+
+                var cellvalue = $.trim($(this).text());
+                if (cellvalue.substring(0, 1) == '-') {
+                    $(this).wrapInner('<strong class="colorred"></strong>');
+                }
+            });
+
+        });
+
+    </script>
+
+   
+
+   <!-- <script>
+        $(document).ready(function () {
+            var apiKey = 'vGUG0vEZx4BwUtU7Zdg4KR2rNVqHWXbp'; // Replace with your FMP API key
+
+            $('.stock-link').hover(function (event) {
+                const symbol = $(this).data('symbol');
+                const popup = $('#stock-popup');
+
+                $.ajax({
+                    url: `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${apiKey}`,
+                    method: 'GET',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            const stock = data[0];
+                            popup.html(`
+                        <div class="container" style="text-align: center;">
+                        <img style="height: 50px;" src="${stock.image}"/><br>
+                            <strong>
+                            ${stock.companyName}
+                            </strong>
+                            <br> (${stock.symbol})
+                            <br>
+                              <hr>
+                              Industry: ${stock.industry}
+                              <hr>
+                            Price: $${stock.price}
+                            (Change: ${stock.changes}%)
+                          
+                        `);
+                            popup.css({
+                                top: event.pageY + 10 + 'px',
+                                left: event.pageX + 10 + 'px',
+
+                            }).show();
+                        }
+                    },
+                    error: function () {
+                        popup.html('Error fetching data').show();
+                    }
+                });
+            }, function () {
+                $('#stock-popup').hide();
+            });
+
+            $('.stock-link').mousemove(function (event) {
+                $('#stock-popup').css({
+                    top: event.pageY + 10 + 'px',
+                    left: event.pageX + 10 + 'px'
+                });
+            });
+        });
+    </script> -->
+
+    <script>
+        $(document).ready(function () {
+
+            $('td').each(function () {
+
+                var cellvalue = $.trim($(this).text());
+                if (cellvalue.substring(0, 1) == '-') {
+                    $(this).wrapInner('<strong class="colorred"></strong>');
+                }
+            });
+
+        });
+
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const links = document.querySelectorAll('.chart-hover-link');
+        const hoverChartDiv = document.getElementById('hover-chart');
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', event => {
+                const cells = event.currentTarget.closest('tr').querySelectorAll('td');
+                const data = Array.from(cells).map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')));
+
+                showChart(event.currentTarget.innerText, data);
+                hoverChartDiv.style.display = 'block';
+                hoverChartDiv.style.top = `${event.clientY + window.scrollY}px`;
+                hoverChartDiv.style.left = `${event.clientX + window.scrollX}px`;
+            });
+
+            link.addEventListener('mouseleave', () => {
+                hoverChartDiv.style.display = 'none';
+                if (window.hoverChart) {
+                    window.hoverChart.dispose();
+                    window.hoverChart = null;
+                }
+            });
+        });
+
+        function showChart(title, data) {
+            am4core.ready(function() {
+                if (window.hoverChart) {
+                    window.hoverChart.dispose();
+                }
+
+                var chart = am4core.create("hover-chart", am4charts.XYChart);
+                window.hoverChart = chart;
+
+                chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                chart.data = [
+                    { year: "2019", value: data[0] },
+                    { year: "2020", value: data[1] },
+                    { year: "2021", value: data[2] },
+                    { year: "2022", value: data[3] },
+                    { year: "2023", value: data[4] }
+                ];
+
+                var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                categoryAxis.dataFields.category = "year";
+                categoryAxis.renderer.grid.template.location = 0;
+                categoryAxis.renderer.labels.template.rotation = 45;
+                categoryAxis.renderer.labels.template.horizontalCenter = "right";
+                categoryAxis.renderer.labels.template.verticalCenter = "middle";
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.renderer.minWidth = 35;
+
+                var series = chart.series.push(new am4charts.ColumnSeries());
+                series.name = title;
+                series.dataFields.valueY = "value";
+                series.dataFields.categoryX = "year";
+                series.tooltipText = "{name}: [bold]{valueY}[/]";
+                series.columns.template.adapter.add("fill", function(fill, target) {
+                    return am4core.color("#33ECB1"); // Set bar color to #33ECB1
+                });
+
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.lineY.opacity = 0;
+
+                var legend = chart.legend = new am4charts.Legend();
+                legend.labels.template.fill = am4core.color("white"); // Grey color for legend text
+                legend.markers.template.fill = am4core.color("#white"); // Grey color for legend symbols
+
+                // Add title
+                var title = chart.titles.create();
+                title.text = title;
+                title.fontSize = 20;
+                title.marginBottom = 10;
+                title.fill = am4core.color("white");
+                title.fontFamily = "Montserrat";
+
+                chart.responsive.enabled = true;
+            });
+        }
+    });
+</script>
+
+
+
+  <script>
+    $(document).ready(function () {
+  // Show form container when clicking on Add Note button
+  $('.add-note-button').on('click', function () {
+    // Get the company name from the row where the button was clicked
+    var companyName = $(this).closest('tr').find('td').eq(0).text().trim();
+    
+    // Set the selected value of the symbol dropdown to the company name
+    $('#symbol').val(companyName);
+    
+    // Show the form container
+    $('.form-container').show();
+  });
+  
+  // Close button click handler
+  $('#closeForm').on('click', function () {
+    $('.form-container').hide(); // Hide the form container
+  });
+
+  // Form submission handler
+  $('#noteForm').on('submit', function (e) {
+    e.preventDefault();
+    var symbol = $('#symbol').val();
+    var status = $('#status').val();
+    var note = $('#note').val();
+    var title = $('#title').val();
+    var date = Date.now();
+    
+    // Post the note to the server
+    $.ajax({
+      type: 'POST',
+      url: '/user/add-note',  // Update this URL to your actual endpoint
+      data: { symbol: symbol, note: note, title: title, status: status, date: date },
+      success: function (response) {
+        // Show snackbar on success
+        showSnackbar('Note on '+symbol+ 'added successfully!');
+        $('#symbol').val('');
+        $('#note').val('');
+        $('#status').val('');
+      },
+      error: function (error) {
+        // Show snackbar on error
+        showSnackbar('Error adding note.', true);
+        console.log(error); // Passing true to indicate an error
+      }
+    });
+  });
+
+  // Function to display snackbar
+  function showSnackbar(message, isError = false) {
+    var snackbar = $('#snackbar');
+    snackbar.text(message);
+    snackbar.removeClass('error');
+    if (isError) {
+      snackbar.addClass('error');
+    }
+    snackbar.addClass('show');
+    setTimeout(function () {
+      snackbar.removeClass('show');
+    }, 3000); // Hide after 3 seconds
+  }
+});
+
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+ 
+</body>
+
+</html>

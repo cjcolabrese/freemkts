@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Notes</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Link to your CSS file -->
+</head>
+
+<body>
+  {{#if notes.length}}
+    <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+      <thead style=" font-size: 18px; font-family: Poppins; font-weight: 200;">
+        <th>Date</th>
+        <th>Company</th>
+        <th>Title</th>
+        <th>Note</th>
+<th>Status</th>
+      </thead>
+      <tbody>
+        {{#each notes}}
+          <tr>
+            <td>{{date}}</td>
+            <td>{{symbol}}</td>
+            <td>{{title}}</td>
+            <td>{{note}}</td>
+            <td>{{status}}</td>
+
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
+
+  <script src="/scripts.js"></script>
+
+</body>
+
+</html>

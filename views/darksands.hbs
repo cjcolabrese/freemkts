@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins+Abril+Fatface&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway+Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+<style>
+  body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background: #353535;
+    }
+
+  .grid--container {
+    min-width: 740px;
+    max-width: 94%;
+    margin: 2em auto;
+    background: #efefef;
+    display: grid;
+    grid-template-columns: 1fr 1fr 260px 50px 1fr;
+    grid-template-rows: 100px 120px 1fr 1fr;
+    }
+
+  .brand {
+    grid-row: 2/2;
+    grid-column: 1/2;
+    margin: 2.2em 0 0 2em;
+    }
+
+  .name {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.414rem;
+    margin: 0;
+    line-height: 0.8;
+    }
+  .name > span {
+    font-family: "Cormorant Garamond", serif;
+    display: block;
+    }
+
+  .social {
+    grid-row: 1/2;
+    grid-column: 5/-1;
+    padding-top: 1em;
+    }
+  .social--header {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: 1.4rem;
+    }
+  .social--links {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    align-self: flex-end;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60%;
+    }
+  .social--links > li {
+    font-family: "Cormorant Garamond", serif;
+    margin-left: 16px;
+    font-size: 1.5em;
+    }
+
+  .links {
+    grid-column: 3/4;
+    grid-row: 1/3;
+    padding-top: 1em;
+    }
+  .links > ul {
+    list-style: none;
+    padding: 0;
+    text-align: right;
+    }
+  .links > ul li {
+    font-size: 1rem;
+    padding: 1em 0;
+    border-bottom: 1px solid rgba(12, 12, 13, 0.5);
+    text-transform: uppercase;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    }
+  .links > ul li:nth-of-type(4) {
+    border-bottom: none;
+    }
+  .links > ul li:nth-of-type(1) {
+    padding: 0 0 1em;
+    }
+  .links > ul li > a {
+    font-family: "Raleway", sans-serif;
+    text-decoration: none;
+    color: #333;
+    }
+  @media screen and (min-width: 915px) {
+    .links > ul li {
+      font-size: 1.252rem;
+      }
+    }
+
+  .journal {
+    grid-column: 1/4;
+    grid-row: 3/4;
+    padding: 0 0 0 2em;
+    background: url(https://cdn140.picsart.com/278273753031211.png?r1024x1024) center center no-repeat;
+    filter: drop-shadow(2px 2px 6px rgba(12, 12, 13, 0.2));
+    }
+
+  .journal--title > h1 {
+    font-size: 4.2em;
+    line-height: 0.9;
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    color: #4f4d4d;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(12, 12, 13, 0.5);
+    border-top: 1px solid rgba(12, 12, 13, 0.5);
+    }
+  .journal--title > h1 > span {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 200;
+    COLOR: white;
+    letter-spacing: 0.04em;
+    display: block;
+    }
+  @meida screen and (min-width: 950px) {
+    .journal--title > h1 {
+      font-size: 5.2em;
+      }
+    }
+  @media screen and (min-width: 1109px) {
+    .journal--title > h1 {
+      font-size: 6.5em;
+      }
+    }
+  @media screen and (min-width: 1337px) {
+    .journal--title > h1 {
+      font-size: 7.8em;
+      }
+    }
+  @media screen and (min-width: 1338px) {
+    .journal--title > h1 {
+      font-size: 9.6em;
+      }
+    }
+
+  .journal--subtitle, .journal--date {
+    text-transform: uppercase;
+    font-size: 1.247rem;
+    color: #605f5f;
+    }
+  .journal--subtitle > h2, .journal--date > h2 {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    font-size: 34px;
+    }
+  .journal--subtitle > span, .journal--date > span {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    }
+  @media screen and (min-width: 915px) {
+    .journal--subtitle, .journal--date {
+      font-size: 1.747rem;
+      }
+    }
+
+  .journal--subtitle {
+    margin: 1em 0 0.5em;
+    }
+
+  .journal--date {
+    margin: 0.5em 0 0;
+    text-align: right;
+    }
+
+  .explore {
+    grid-row: 4/-1;
+    grid-column: 2/3;
+    align-self: center;
+    justify-self: end;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(12, 12, 13, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+  .explore > a {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #333;
+    }
+  @media screen and (min-width: 1109px) {
+    .explore {
+      width: 175px;
+      height: 175px;
+      }
+    }
+  @media screen and (min-width: 1337px) {
+    .explore {
+      width: 275px;
+      height: 275px;
+      }
+    }
+
+  .active:before {
+    content: "*";
+    font-size: 2rem;
+    }
+
+  .image--large {
+    grid-column:1/-1;
+    grid-row: 1/-1;
+    }
+  .image--large > img {
+    display: block;
+    width: 100%;
+    min-height: 100%;
+    }
+
+  .image--small {
+    grid-column: 1/2;
+    grid-row: 4/-1;
+    }
+  .image--small > img {
+    display: block;
+    width: 100%;
+    min-height: 100%;
+    }
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300|Raleway:700&display=swap" rel="stylesheet">
+<main class="grid--container">
+  <div class="brand">
+    <p class="name">Chris <span>Colabrese</span></p>
+  </div>
+  <div class="image--small">
+<img src="<img src="https://bgintr.com/wp-content/uploads/2017/11/boeing-8476_745x675.png" alt="Boeing Logo" class="logo">"/>
+  </div>
+    <nav class="links">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">Assignments</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="journal">
+    <h2 class="journal--subtitle">Markets <span>Data Journal</span></h2>
+    <div class="journal--title">
+      <h1>BLACK SANDS<span>&amp; Fiery Skies</span></h1>
+    </div>
+    <h2 class="journal--date">September<span>2024</span></h2>
+  </div>
+
+  <div class="image--large">
+    <img src="https://plus.unsplash.com/premium_photo-1674834298045-e405bc99076b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" center  />
+  </div>
+
+</main>
+
+  <script  src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Metrics</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .chart-hover-link {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Key Metrics for {{company}}</h1>
+  <table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        {{#each keyMetrics}}
+        <th>{{date}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" class="chart-hover-link">Revenue Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{revenuePerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Net Income Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{netIncomePerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Operating Cash Flow Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{operatingCashFlowPerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Free Cash Flow Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{freeCashFlowPerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Cash Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{cashPerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Book Value Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{bookValuePerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Tangible Book Value Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{tangibleBookValuePerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Shareholders Equity Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{shareholdersEquityPerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Interest Debt Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{interestDebtPerShare}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Market Cap</th>
+        {{#each keyMetrics}}
+        <td>{{marketCap}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Enterprise Value</th>
+        {{#each keyMetrics}}
+        <td>{{enterpriseValue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">PE Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{peRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Price to Sales Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{priceToSalesRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Pocf Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{pocfratio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Pfcf Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{pfcfRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">PB Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{pbRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">PtB Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{ptbRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">EV to Sales</th>
+        {{#each keyMetrics}}
+        <td>{{evToSales}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Enterprise Value Over EBITDA</th>
+        {{#each keyMetrics}}
+        <td>{{enterpriseValueOverEBITDA}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">EV to Operating Cash Flow</th>
+        {{#each keyMetrics}}
+        <td>{{evToOperatingCashFlow}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">EV to Free Cash Flow</th>
+        {{#each keyMetrics}}
+        <td>{{evToFreeCashFlow}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Earnings Yield</th>
+        {{#each keyMetrics}}
+        <td>{{earningsYield}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Free Cash Flow Yield</th>
+        {{#each keyMetrics}}
+        <td>{{freeCashFlowYield}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Debt to Equity</th>
+        {{#each keyMetrics}}
+        <td>{{debtToEquity}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Debt to Assets</th>
+        {{#each keyMetrics}}
+        <td>{{debtToAssets}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Net Debt to EBITDA</th>
+        {{#each keyMetrics}}
+        <td>{{netDebtToEBITDA}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Current Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{currentRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Interest Coverage</th>
+        {{#each keyMetrics}}
+        <td>{{interestCoverage}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Income Quality</th>
+        {{#each keyMetrics}}
+        <td>{{incomeQuality}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Dividend Yield</th>
+        {{#each keyMetrics}}
+        <td>{{dividendYield}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Payout Ratio</th>
+        {{#each keyMetrics}}
+        <td>{{payoutRatio}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Sales General and Administrative to Revenue</th>
+        {{#each keyMetrics}}
+        <td>{{salesGeneralAndAdministrativeToRevenue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Research and Development to Revenue</th>
+        {{#each keyMetrics}}
+        <td>{{researchAndDdevelopementToRevenue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Intangibles to Total Assets</th>
+        {{#each keyMetrics}}
+        <td>{{intangiblesToTotalAssets}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Capex to Operating Cash Flow</th>
+        {{#each keyMetrics}}
+        <td>{{capexToOperatingCashFlow}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Capex to Revenue</th>
+        {{#each keyMetrics}}
+        <td>{{capexToRevenue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Capex to Depreciation</th>
+        {{#each keyMetrics}}
+        <td>{{capexToDepreciation}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Stock Based Compensation to Revenue</th>
+        {{#each keyMetrics}}
+        <td>{{stockBasedCompensationToRevenue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Graham Number</th>
+        {{#each keyMetrics}}
+        <td>{{grahamNumber}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">ROIC</th>
+        {{#each keyMetrics}}
+        <td>{{roic}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Return on Tangible Assets</th>
+        {{#each keyMetrics}}
+        <td>{{returnOnTangibleAssets}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Graham Net Net</th>
+        {{#each keyMetrics}}
+        <td>{{grahamNetNet}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Working Capital</th>
+        {{#each keyMetrics}}
+        <td>{{workingCapital}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Tangible Asset Value</th>
+        {{#each keyMetrics}}
+        <td>{{tangibleAssetValue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Net Current Asset Value</th>
+        {{#each keyMetrics}}
+        <td>{{netCurrentAssetValue}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Invested Capital</th>
+        {{#each keyMetrics}}
+        <td>{{investedCapital}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Average Receivables</th>
+        {{#each keyMetrics}}
+        <td>{{averageReceivables}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Average Payables</th>
+        {{#each keyMetrics}}
+        <td>{{averagePayables}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Average Inventory</th>
+        {{#each keyMetrics}}
+        <td>{{averageInventory}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Days Sales Outstanding</th>
+        {{#each keyMetrics}}
+        <td>{{daysSalesOutstanding}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Days Payables Outstanding</th>
+        {{#each keyMetrics}}
+        <td>{{daysPayablesOutstanding}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Days of Inventory on Hand</th>
+        {{#each keyMetrics}}
+        <td>{{daysOfInventoryOnHand}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Receivables Turnover</th>
+        {{#each keyMetrics}}
+        <td>{{receivablesTurnover}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Payables Turnover</th>
+        {{#each keyMetrics}}
+        <td>{{payablesTurnover}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Inventory Turnover</th>
+        {{#each keyMetrics}}
+        <td>{{inventoryTurnover}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">ROE</th>
+        {{#each keyMetrics}}
+        <td>{{roe}}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row" class="chart-hover-link">Capex Per Share</th>
+        {{#each keyMetrics}}
+        <td>{{capexPerShare}}</td>
+        {{/each}}
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

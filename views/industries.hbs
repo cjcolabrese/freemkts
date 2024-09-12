@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Industries</h1>
+    {{#if industries.length}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Industry</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each industries}}
+                    <tr>
+                        <td>{{this.industry}}</td>
+                        <td>{{this.description}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No industries found.</p>
+    {{/if}}
+</body>
+</html>

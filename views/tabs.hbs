@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<title>Tabs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<head>
+  <style>
+    .tab-button {
+      text-transform: none; /* Disable uppercase */
+    }
+  </style>
+</head>
+
+<body>
+
+  <header style="background-color: #1b1b1f;">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--3-col">
+        <button class="mdl-button mdl-js-button tab-button" style="color: gray" onclick="opencategory('Equities', this)">Equities</button>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <button class="mdl-button mdl-js-button tab-button" style="color: gray" onclick="opencategory('Rates', this)">Rates</button>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <button class="mdl-button mdl-js-button tab-button" style="color: gray" onclick="opencategory('Commodities', this)">Commodities</button>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <button class="mdl-button mdl-js-button tab-button" style="color: gray" onclick="opencategory('Currencies', this)">Currencies</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="Equities" class="w3-container category">
+    <h2>Equities</h2>
+    <p>Equity markets information.</p>
+  </div>
+
+  <div id="Rates" class="w3-container category" style="display:none">
+    <h2>Rates</h2>
+    <p>Interest rates and bond markets.</p>
+  </div>
+
+  <div id="Commodities" class="w3-container category" style="display:none">
+    <h2>Commodities</h2>
+    <p>Commodity markets overview.</p>
+  </div>
+
+  <div id="Currencies" class="w3-container category" style="display:none">
+    <h2>Currencies</h2>
+    <p>Currency exchange and markets.</p>
+  </div>
+
+  <script>
+    function opencategory(categoryName, element) {
+      var i;
+      var x = document.getElementsByClassName("category");
+      var buttons = document.getElementsByClassName("tab-button");
+
+      // Hide all content
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+
+      // Remove custom background color from all buttons
+      for (i = 0; i < buttons.length; i++) {
+        buttons[i].style.backgroundColor = "";
+      }
+
+      // Show the selected category and change button background color
+      document.getElementById(categoryName).style.display = "block";
+      element.style.backgroundColor = "#37EEB9"; // Apply custom background color to clicked button
+    }
+  </script>
+
+</body>
+
+</html>

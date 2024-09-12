@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <!-- Material Design Lite -->
+  
+
+
+  <!-- Always shows a header, even in smaller screens. -->
+
+
+        <div class="mdl-card mdl-shadow--16dp" id="profilecard" style="margin: 0 auto; top: 100px;">
+          <div class="mdl-card__title mdl-card--expand">
+            <h2 class="mdl-card__title-text">Get Profile</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            <form id="search-site" action='/user/user-stocks' method='post'>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input oninput="this.value = this.value.toUpperCase()" class="mdl-textfield__input" id="search" type="search" name='search' style="border-radius: 5px;"
+                  placeholder="Search by Ticker" placeholder="Ticker">
+                <label class="mdl-textfield__label" for="sample3">Get Profile</label>
+              </div>
+              <br>
+
+              <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">
+                Submit
+              </button>
+            </form>
+          </div>
+          <div class="mdl-card__actions mdl-card--border" id="actions" type="submit">
+
+          </div>
+        </div>
+
+
+     

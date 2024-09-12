@@ -1,0 +1,110 @@
+<style>
+    body {
+        background-color: #33333D;
+    }
+
+    #chartdiv {
+        height: 250px;
+        width: 450px margin: 20px;
+    }
+
+    #chartdiv2 {
+        height: 250px;
+        width: 500px;
+        margin: 20px;
+    }
+
+    #chartdiv3 {
+        height: 250px;
+        margin: 20px;
+        width: 500px;
+    }
+
+    #chartdiv4 {
+        height: 250px;
+        margin: 20px;
+        width: 500px;
+    }
+
+    #chartdiv5 {
+        height: 250px;
+        margin: 20px;
+        width: 500px;
+    }
+
+    #chartdiv6 {
+        height: 250px;
+        margin: 20px;
+        width: 500px;
+
+    }
+</style>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+<script>$('#example').DataTable({
+        ajax: 'scripts/server_processing.php',
+        processing: true,
+        serverSide: true
+    });</script>
+
+<style>
+    .mini-price {
+        color: white
+    }
+
+    .mini-popup {
+        height: 200px;
+        width: 200px;
+        background-color: black;
+    }
+</style>
+
+<br>
+<div class="mdl-grid" id="dashboard-grid">
+    {{#each stocks}}
+        <div class="mini-price mdl-cell--1-col center-items" style="margin-top: 5px;">
+            <a class="mini-link" href="/stocks/{{symbol}}">
+                <img class="micro-image" style="height: 30px; width: 30px; margin: 10px;" src="{{image}}" />
+            </a>
+            {{symbol}}
+            <hr style="margin: 0;">
+            ${{price}}
+        </div>
+
+    {{/each}}
+   
+</div>
+
+
+
+
+
+<script>
+$(document).ready(function() {
+  $(".mini-popup").hide();
+
+  $(".mini-link").hover(function() {
+      $(".mini-popup ").show();
+    }),
+    $(".mini-popup").mouseenter(function() {
+      $(".mini-popup ").show();
+    });
+  $(".mini-popup").mouseleave(function() {
+    $(" .mini-popup").hide();
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

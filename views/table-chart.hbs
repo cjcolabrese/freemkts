@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Hover Chart</title>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <style>
+        .hover-chart {
+            position: absolute;
+            padding: 20px;
+            display: none;
+            width: 600px;
+            height: 300px;
+            background-color: #2E2E38;
+            border: none;
+            z-index: 1000;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th:hover, td:hover {
+            cursor: pointer;
+            background-color: #2f2f30;
+        }
+        .hover-td {
+            background-color: #37ECB1;
+        }
+        .hover-td:hover {
+            background-color: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<table id="example" class="mdl-data-table mdl-js-data-table mdl-shadow--6dp example" style="width: 100%;">
+    <tbody>
+        <tr>
+            <td></td>
+            <th style="margin-left: 30px; color: #37ECB1;" scope="col">2019-12-31</th>
+            <th style="margin-left: 30px; color: #37ECB1;" scope="col">2020-12-31</th>
+            <th style="margin-left: 30px; color: #37ECB1;" scope="col">2021-12-31</th>
+            <th style="margin-left: 30px; color: #37ECB1;" scope="col">2022-12-31</th>
+            <th style="margin-left: 30px; color: #37ECB1;" scope="col">2023-12-31</th>
+        </tr>
+        <tr data-row="Revenue">
+            <th class="hover-td" scope="row">Revenue</th>
+            <td>$24,578,000,000.00</td>
+            <td>$31,536,000,000.00</td>
+            <td>$53,823,000,000.00</td>
+            <td>$81,462,000,000.00</td>
+            <td>$96,773,000,000.00</td>
+        </tr>
+        <tr data-row="Cost of Revenue">
+            <th scope="row">Cost of Revenue</th>
+            <td>$20,509,000,000.00</td>
+            <td>$24,906,000,000.00</td>
+            <td>$40,217,000,000.00</td>
+            <td>$60,609,000,000.00</td>
+            <td>$79,113,000,000.00</td>
+        </tr>
+        <tr data-row="R&D Expenses">
+            <th scope="row">R&amp;D Expenses</th>
+            <td>$1,343,000,000.00</td>
+            <td>$1,491,000,000.00</td>
+            <td>$2,593,000,000.00</td>
+            <td>$3,075,000,000.00</td>
+            <td>$3,969,000,000.00</td>
+        </tr>
+        <tr data-row="General Administration">
+            <th scope="row">General Administration</th>
+            <td>$0.00</td>
+            <td>$0.00</td>
+            <td>$0.00</td>
+            <td>$0.00</td>
+            <td>$0.00</td>
+        </tr>
+        <tr data-row="Selling & Marketing">
+            <th scope="row">Selling &amp; Marketing</th>
+            <td>$0.00</td>
+            <td>$0.00</td>
+            <td>$0.00</td>
+            <td>$0.00</td>
+            <td>$0.00</td>
+        </tr>
+        <tr data-row="Selling General & Admin">
+            <th scope="row">Selling General &amp; Admin</th>
+            <td>$2,646,000,000.00</td>
+            <td>$3,145,000,000.00</td>
+            <td>$4,517,000,000.00</td>
+            <td>$3,946,000,000.00</td>
+            <td>$4,800,000,000.00</td>
+        </tr>
+        <tr data-row="Other Expenses">
+            <th scope="row">Other Expenses</th>
+            <td>$45,000,000.00</td>
+            <td><strong class="red">-$122,000,000.00</strong></td>
+            <td>$135,000,000.00</td>
+            <td><strong class="red">-$43,000,000.00</strong></td>
+            <td>$172,000,000.00</td>
+        </tr>
+        <tr data-row="Operating Expenses">
+            <th scope="row">Operating Expenses</th>
+            <td>$3,989,000,000.00</td>
+            <td>$4,636,000,000.00</td>
+            <td>$7,110,000,000.00</td>
+            <td>$7,021,000,000.00</td>
+            <td>$8,769,000,000.00</td>
+        </tr>
+        <tr data-row="General Cost & Expenses">
+            <th scope="row">General Cost &amp; Expenses</th>
+            <td>$45,000,000.00</td>
+            <td><strong class="red">-$122,000,000.00</strong></td>
+            <td>$135,000,000.00</td>
+            <td><strong class="red">-$43,000,000.00</strong></td>
+            <td>$172,000,000.00</td>
+        </tr>
+        <tr data-row="Interest Income">
+            <th scope="row">Interest Income</th>
+            <td>$44,000,000.00</td>
+            <td>$30,000,000.00</td>
+            <td>$56,000,000.00</td>
+            <td>$297,000,000.00</td>
+            <td>$1,066,000,000.00</td>
+        </tr>
+        <tr data-row="Interest Expense">
+            <th scope="row">Interest Expense</th>
+            <td>$685,000,000.00</td>
+            <td>$748,000,000.00</td>
+            <td>$371,000,000.00</td>
+            <td>$191,000,000.00</td>
+            <td>$156,000,000.00</td>
+        </tr>
+        <tr data-row="EBITDA">
+            <th scope="row">EBITDA</th>
+            <td>$2,323,000,000.00</td>
+            <td>$4,224,000,000.00</td>
+            <td>$9,598,000,000.00</td>
+            <td>$17,833,000,000.00</td>
+            <td>$14,796,000,000.00</td>
+        </tr>
+        <tr data-row="Depreciation and Amortization">
+            <th scope="row">Depreciation and Amortization</th>
+            <td>$2,154,000,000.00</td>
+            <td>$2,230,000,000.00</td>
+            <td>$2,911,000,000.00</td>
+            <td>$4,177,000,000.00</td>
+            <td>$4,667,000,000.00</td>
+        </tr>
+        <tr data-row="Income Before Tax">
+            <th scope="row">Income Before Tax</th>
+            <td>$2,323,000,000.00</td>
+            <td>$4,224,000,000.00</td>
+            <td>$9,598,000,000.00</td>
+            <td>$17,833,000,000.00</td>
+            <td>$14,796,000,000.00</td>
+        </tr>
+        <tr data-row="Operating Income">
+            <th class="" scope="row">Operating Income</th>
+            <td>$169,000,000.00</td>
+            <td>$1,994,000,000.00</td>
+            <td>$6,687,000,000.00</td>
+            <td>$13,656,000,000.00</td>
+            <td>$8,891,000,000.00</td>
+        </tr>
+        <tr data-row="Total Other Income and Expenses">
+            <th scope="row">Total Other Income and Expenses</th>
+            <td>$2,323,000,000.00</td>
+            <td>$4,224,000,000.00</td>
+            <td>$9,598,000,000.00</td>
+            <td>$17,833,000,000.00</td>
+            <td>$14,796,000,000.00</td>
+        </tr>
+        <tr data-row="Net Income">
+            <th scope="row">Net Income</th>
+            <td>$1,015,000,000.00</td>
+            <td>$3,003,000,000.00</td>
+            <td>$8,761,000,000.00</td>
+            <td>$13,060,000,000.00</td>
+            <td>$11,322,000,000.00</td>
+        </tr>
+        <tr data-row="Consolidated Income">
+            <th scope="row">Consolidated Income</th>
+            <td>$1,015,000,000.00</td>
+            <td>$3,003,000,000.00</td>
+            <td>$8,761,000,000.00</td>
+            <td>$13,060,000,000.00</td>
+            <td>$11,322,000,000.00</td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="hover-chart" class="hover-chart"></div>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const rows = document.querySelectorAll('table tr[data-row]');
+    const hoverChartDiv = document.getElementById('hover-chart');
+
+    rows.forEach(row => {
+        row.addEventListener('mouseenter', event => {
+            const dataRow = event.currentTarget.dataset.row;
+            const cells = event.currentTarget.querySelectorAll('td');
+            const data = Array.from(cells).map(cell => parseFloat(cell.innerText.replace(/[$,]/g, '')));
+
+            showChart(dataRow, data);
+            hoverChartDiv.style.display = 'block';
+            hoverChartDiv.style.top = `${event.clientY + window.scrollY}px`;
+            hoverChartDiv.style.left = `${event.clientX + window.scrollX}px`;
+        });
+
+        row.addEventListener('mouseleave', () => {
+            hoverChartDiv.style.display = 'none';
+            am5.array.each(am5.registry.rootElements, function(root) {
+                if (root.dom.id === "hover-chart") {
+                    root.dispose();
+                }
+            });
+        });
+    });
+
+    function showChart(title, data) {
+        am5.ready(function() {
+            var root = am5.Root.new("hover-chart");
+
+            root.setThemes([
+                am5themes_Animated.new(root)
+            ]);
+
+            var chart = root.container.children.push(am5xy.XYChart.new(root, {
+                panX: true,
+                panY: true,
+                wheelX: "panX",
+                wheelY: "zoomX",
+                pinchZoomX: true
+            }));
+
+            var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+            cursor.lineY.set("visible", false);
+
+            var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+                categoryField: "year",
+                renderer: am5xy.AxisRendererX.new(root, {}),
+                tooltip: am5.Tooltip.new(root, {})
+            }));
+
+            var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+                renderer: am5xy.AxisRendererY.new(root, {})
+            }));
+
+            var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+                name: title,
+                xAxis: xAxis,
+                yAxis: yAxis,
+                valueYField: "value",
+                categoryXField: "year",
+                tooltip: am5.Tooltip.new(root, {
+                    labelText: "{valueY}"
+                })
+            }));
+
+            var dataSet = [
+                { year: "2019-12-31", value: data[0] },
+                { year: "2020-12-31", value: data[1] },
+                { year: "2021-12-31", value: data[2] },
+                { year: "2022-12-31", value: data[3] },
+                { year: "2023-12-31", value: data[4] }
+            ];
+
+            xAxis.data.setAll(dataSet);
+            series.data.setAll(dataSet);
+
+            series.appear();
+            chart.appear(1000, 100);
+        });
+    }
+});
+
+</script>
+</body>
+</html>
